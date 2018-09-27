@@ -25,7 +25,7 @@
                             <div class=" ">
                                 <span :title="item.item_data.name"
                                       class="item-username">{{item.item_data.name}}</span><br/>
-                                <span class="item-like" v-if="item.canLike">
+                                <span class="item-like" >
                                      <span :id="item.item_data.item_id">
                                 Glasovi: {{item.likeCount}}
                             </span>
@@ -34,7 +34,7 @@
                                   v-on:click="processLike(item.item_data.item_id)">vote</span>
 
                         </span>
-                                <span class="item-like" v-else>
+                                <span class="item-like" >
                                     <span :id="item.item_data.item_id">
                                 Glasovi: {{item.likeCount}}
                             </span>
@@ -110,6 +110,7 @@
 
             },
             processLike(item) {
+                console.log("LIKE - " + item)
                 this.$parent.likeItem(item, this.likeSuccess, this.likeError);
                 this.likedItemId = item;
             },

@@ -384,7 +384,7 @@
 
                 axios.post(this.$parent.apiUrl + 'gallery/store', formData, config)
                     .then(response => {
-                        this.button = this.$t('gallery.participate.upload_success_btn');
+                        this.button = 'Upload';
                         this.image = '';
                         this.$parent.$emit('successUpload', blob);
                         this.isDisabled = false;

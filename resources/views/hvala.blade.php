@@ -45,5 +45,5 @@
 
 
 @section('title_text')
-    Prima - Hvala
+    hvala
 @endsection

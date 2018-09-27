@@ -3,14 +3,13 @@
 @section('content')
     <div class="col-lg-12">
         <div class="container app-wrapper" id="app">
-            <registration :data="name"></registration>
+            <registration></registration>
         </div>
     </div>
 @endsection
-@section('afw_scripts')
-    @stack('afw_scripts_stack')
-    <script src="{{ asset('js/gallery.js') }}"></script>
-@endsection
+@push('scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
+@endpush
 @section('title_text')
-    Prima - Registruj se
+    registruj se
 @endsection

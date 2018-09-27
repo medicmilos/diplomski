@@ -24,5 +24,5 @@
 @endsection
 
 @section('title_text')
-    Prima - Početna
+   početna
 @endsection

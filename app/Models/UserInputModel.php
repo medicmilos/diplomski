@@ -23,14 +23,14 @@ class UserInputModel extends GalleryModel
             $model->user_id = Auth::user()->id;
             $model->cycle_id = Helper::getCurrentCycleId();//ToDo fix this
             if($model->cycle_id == -1){
-                abort(500, trans('afw::gallery.e500'));//ToDo fix this
+                abort(500, 'An error occured');//ToDo fix this
             }
             if (Schema::hasColumn($model->getTable(), 'approved')) {
                 $model->approved = config('settings.autoApprove', 0);//ToDo fix this
             }
             $cycle = Cycle::find(Helper::getCurrentCycleId());
             if($cycle && $cycle->allow_input == 0){
-                abort(403, trans('afw::gallery.activity_closed'));//ToDo fix this
+                abort(403, 'This activity is now closed.');//ToDo fix this
             }
             if ($cycle && $cycle->begun == 0) {
                 $cycle->begun = 1;
@@ -50,6 +50,6 @@ class UserInputModel extends GalleryModel
 
     public function cycle()
     {
-        return $this->hasOne('Viewpnt\Afw\Base\Models\Cycle', 'id', 'cycle_id');
+        return $this->hasOne('App\Models\Cycle', 'id', 'cycle_id');
     }
 }

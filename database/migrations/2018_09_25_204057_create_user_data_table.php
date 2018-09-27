@@ -17,8 +17,7 @@ class CreateUserDataTable extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->primary('user_id');
-            $table->string('facebook_id')->nullable();
-            $table->string('facebook_token')->nullable();
+            $table->string('livingPlace');
             $table->tinyInteger('completed')->nullable();
             $table->timestamps();
         });

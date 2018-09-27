@@ -16,5 +16,5 @@
 @endpush
 
 @section('title_text')
-    Prima - Prijavi rad
+    prijavi rad
 @endsection

@@ -14,5 +14,5 @@
 @endpush
 
 @section('title_text')
-    Prima - Galerija
+    galerija
 @endsection

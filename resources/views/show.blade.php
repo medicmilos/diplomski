@@ -44,7 +44,6 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/gallery.js') }}"></script>
     <script>
         $(document).ready(function () {
             let canLike = "<?php print_r($galleryItem['canLike']); ?>";
@@ -84,5 +83,5 @@
 @endpush
 
 @section('title_text')
-    Prima - Rad
+    rad
 @endsection

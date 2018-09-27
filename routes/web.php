@@ -17,10 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+//
+//Route::get('/', 'HomeController@index');
+//Route::post('/', 'HomeController@index');
 
-Route::get('/', 'HomeController@index');
-Route::post('/', 'HomeController@index');
+Route::get('/home', 'GalleryApi@landing')->name('home');
+
+Route::get('/', 'GalleryApi@landing');
+Route::post('/', 'GalleryApi@landing');
 
 Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function(){
     Route::get('item/show/{id}', 'GalleryApi@apiShow');
