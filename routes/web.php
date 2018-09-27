@@ -14,3 +14,38 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'HomeController@index');
+Route::post('/', 'HomeController@index');
+
+Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function(){
+    Route::get('item/show/{id}', 'GalleryApi@show');
+    Route::get('item/hvala', 'GalleryApi@returnUploadedImage');
+    Route::get('landing','GalleryApi@landing');
+
+    Route::get('register','GalleryApi@register')->name('afw.register');
+    Route::post('register','GalleryApi@registerForm');
+});
+
+Route::group(['middleware' => 'web', 'prefix' => '/api/v1/gallery'], function () {
+    Route::post('like/{id}', 'GalleryApi@apiLike');
+    Route::post('store', 'GalleryApi@apiStore');
+    Route::get('index', 'GalleryApi@apiIndex')->name('afw.gallery.index');
+    Route::get('index/paginate', 'GalleryApi@apiIndexPaginate');
+    Route::get('show/{id}', 'GalleryApi@apiShow');
+
+    Route::get('active', 'GalleryApi@apiIsActive');
+});
+
+Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function(){
+    Route::get('show/{modelId}', 'GalleryApi@indexWithModalShown');
+    Route::get('index', 'GalleryApi@index');
+    Route::get('/', 'GalleryApi@index');
+
+    Route::get('/participate', 'GalleryApi@participate');
+    Route::get('/winners', 'GalleryApi@winners');
+});
