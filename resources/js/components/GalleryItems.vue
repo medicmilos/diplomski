@@ -2,35 +2,10 @@
     <div class="col-lg-12" style="margin-bottom: 5rem;">
         <div class="container" style="margin-bottom: 5rem;">
             <div class="row">
-                <div class="col-lg-12">
-
-                    <div class="col-sm-2 col-xs-2 show-on-mob">
-                        &nbsp;
-                    </div>
-                    <div class="col-sm-10 col-xs-10">
-                        <a v-bind:href="$parent.baseUrl+'/Gallery/gallery/landing'">
-
-                            <div class="logo-wrapper">
-                            </div>
-                        </a>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-4 col-md-4">
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <a v-bind:href="$parent.baseUrl+'/Gallery/gallery/index'">
-                        <img class="img-responsive show-imgt" style="margin: 0 auto;"
-                             v-bind:src="$parent.baseUrl + '/images/btn_galerija.png'"/>
+                    <a v-bind:href="$parent.baseUrl+'/gallery/participate'">
+                        participate
                     </a>
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <div class="search-wrapper">
-                        <input v-on:keyup="searchFetch()" class="gallery-search" type="search">
-                    </div>
                 </div>
             </div>
             <div class="component-body col-lg-12">
@@ -38,16 +13,16 @@
                     <div class="col-lg-12 ">
                         <div class="item-wrapper col-lg-4 col-md-4 col-sm-6 col-xs-12"
                              v-for="item in $parent.appItems">
-                            <div class="rotate-wrapper">
-                                <a v-bind:href="$parent.baseUrl+'/Gallery/gallery/item/show/'+item.id">
-                                    <div class="gallery-img-wrapper">
-                                        <img class="gallery-item-image"
+                            <div class="">
+                                <a v-bind:href="$parent.baseUrl+'/gallery/item/show/'+item.id">
+                                    <div class="">
+                                        <img class=""
 
                                              :src="$parent.pgItemUrl+item.item_data.photo">
                                     </div>
                                 </a>
                             </div>
-                            <div class="image-subtext">
+                            <div class=" ">
                                 <span :title="item.item_data.name"
                                       class="item-username">{{item.item_data.name}}</span><br/>
                                 <span class="item-like" v-if="item.canLike">
@@ -55,9 +30,8 @@
                                 Glasovi: {{item.likeCount}}
                             </span>
                                     <br/>
-                            <span class="vote-button" @click="calculateTop" v-on:click="processLike(item.item_data.item_id)"><img
-                                    :src="$parent.baseUrl+'/images/btn_glasaj.png'"
-                                    alt=""></span>
+                            <span class="vote-button" @click="calculateTop"
+                                  v-on:click="processLike(item.item_data.item_id)">vote</span>
 
                         </span>
                                 <span class="item-like" v-else>
@@ -65,15 +39,11 @@
                                 Glasovi: {{item.likeCount}}
                             </span>
                                     <br/>
-                            <span class="vote-button" style="opacity:0.5"><img
-                                    :src="$parent.baseUrl+'/images/btn_glasaj.png'"
-                                    alt=""></span>
+                            <span class="vote-button" style="opacity:0.5">vote</span>
 
                         </span>
                                 <br/>
-                                <span class="item-share" v-on:click="fbShare(item.id)"><img
-                                        :src="$parent.baseUrl+'/images/btn_share.png'"
-                                        alt=""></span>
+                                <span class="item-share" v-on:click="fbShare(item.id)">share</span>
                             </div>
                         </div>
 
@@ -85,7 +55,7 @@
             <div v-if="this.$parent.moreItems === 1 && this.$parent.appItems.length > 6">
                 <img style="max-width: 6.5rem" :src="$parent.baseUrl+'/images/loading.gif'">
             </div>
-            <div class="end-of-data" v-else>
+            <div class="" v-else>
                 Kraj podataka za prikaz.
             </div>
         </mugen-scroll>
@@ -118,19 +88,13 @@
                 modalOpen: false,
                 loading: false,
                 initDataFetch: true,
-                pullToRefreshCfg: {
-                    errorLabel: this.$t('gallery.mobile.pull_to_refresh.errorLabel'),
-                    startLabel: this.$t('gallery.mobile.pull_to_refresh.startLabel'),
-                    readyLabel: this.$t('gallery.mobile.pull_to_refresh.readyLabel'),
-                    loadingLabel: this.$t('gallery.mobile.pull_to_refresh.loadingLabel')
-                },
                 likedItemId: 0,
                 fromTop: 300
             }
         },
         methods: {
-            calculateTop(button){
-               this.fromTop = button.pageY;
+            calculateTop(button) {
+                this.fromTop = button.pageY;
             },
             showModal(msg) {
 
@@ -154,7 +118,7 @@
                     let baseUrl = this.$parent.baseUrl;
                     let array = {
                         'type': '',
-                        'msg': "Da biste glasali morate se registrovati i popuniti podatke <a href=" + baseUrl + "/Gallery/gallery/participate>ovde</a>."
+                        'msg': "Da biste glasali morate se registrovati i popuniti podatke <a href=" + baseUrl + "/gallery/participate>ovde</a>."
                     };
                     this.showModal(array);
                     this.$parent.forbidden = false;
@@ -168,52 +132,21 @@
                     let baseUrl = this.$parent.baseUrl;
                     let array = {
                         'type': '',
-                        'msg': "Da biste glasali morate se registrovati i popuniti podatke <a href=" + baseUrl + "/Gallery/gallery/participate>ovde</a>."
+                        'msg': "Da biste glasali morate se registrovati i popuniti podatke <a href=" + baseUrl + "/gallery/participate>ovde</a>."
                     };
                     this.showModal(array);
                 }
             },
             fbShare(id) {
-                let url = baseUrl + "/Gallery/gallery/share/" + id;
+                let url = baseUrl + "/gallery/share/" + id;
                 let fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, "pop", "width=600, height=400, scrollbars=no");
                 this.$parent.shareItem(id);
             },
             fetchData() {
-                let _this = this;
-
-                //initial data fetch
-                if (this.initDataFetch) {
-                    _this.loading = true;
-                    let searchValue = $(".gallery-search").val();
-                    _this.$parent.insertMoreDataToList(searchValue);
-                    _this.loading = false;
-                    _this.initDataFetch = false;
-                }
-
-                //desktop scroll support
-                $(window).bind('mousewheel DOMMouseScroll', function (event) {
-                    if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-                    }
-                    else {
-                        if (event.clientY + 1300 > $(document).height()) {
-                            _this.loading = true;
-                            let searchValue = $(".gallery-search").val();
-                            _this.$parent.insertMoreDataToList(searchValue);
-                            _this.loading = false;
-                        }
-                    }
-                });
-
-                //mobile touch support
-                document.addEventListener('touchmove', function (e) {
-                    let touch = e.touches[0];
-                    if (touch.pageY + 1300 > $(document).height()) {
-                        _this.loading = true;
-                        let searchValue = $(".gallery-search").val();
-                        _this.$parent.insertMoreDataToList(searchValue);
-                        _this.loading = false;
-                    }
-                }, false);
+                this.loading = true;
+                this.$parent.insertMoreDataToList();
+                this.loading = false;
+                this.initDataFetch = false;
             },
             searchFetch() {
 

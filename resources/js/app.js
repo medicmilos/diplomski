@@ -38,11 +38,10 @@ new Vue({
         dataReady: false,
         baseUrl: baseUrl,
         apiUrl: baseUrl + '/api/v1/',
-        pgItemUrl: baseUrl + "/storage/afw/gallery/uploads/",
+        pgItemUrl: baseUrl + "/storage/gallery/uploads/",
         resource_url: baseUrl + '/api/v1/gallery/index/paginate',
         infScroll: true,
         pagination: false,
-        searchValue: "",
         forbidden: false
     },
     mounted() {
@@ -86,10 +85,9 @@ new Vue({
             self.dataReady = false;
 
         },
-        insertMoreDataToList: function (searchText) {
+        insertMoreDataToList: function () {
             console.log('Gallery - insertMoreDataToList');
 
-            this.searchValue = searchText;
 
             let self = this;
             //if (this.moreItems === 1 && this.loadingData === 0) {
@@ -111,11 +109,6 @@ new Vue({
 
             let queryString = "?itemOffsetId=" + offset_id + "&itemLimit=" + limit;
 
-            if (this.searchValue !== null || this.searchValue !== "") {
-                queryString += "&search=" + this.searchValue;
-            }
-
-            //console.log(queryString);
 
             let self = this;
             this.loadData(queryString, function (json) {
@@ -218,7 +211,7 @@ new Vue({
                     } else {
                         self.appItems = self.appItems.concat(response.data);
                     }
-                    //console.log(self.appItems);
+                    console.log(self.appItems);
                 })
                 .catch(e => {
                     console.log(e);

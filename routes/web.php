@@ -23,18 +23,20 @@ Route::get('/', 'HomeController@index');
 Route::post('/', 'HomeController@index');
 
 Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function(){
-    Route::get('item/show/{id}', 'GalleryApi@show');
+    Route::get('item/show/{id}', 'GalleryApi@apiShow');
     Route::get('item/hvala', 'GalleryApi@returnUploadedImage');
     Route::get('landing','GalleryApi@landing');
 
-    Route::get('register','GalleryApi@register')->name('afw.register');
+    Route::get('register','GalleryApi@register')->name('register');
     Route::post('register','GalleryApi@registerForm');
 });
+
+//api
 
 Route::group(['middleware' => 'web', 'prefix' => '/api/v1/gallery'], function () {
     Route::post('like/{id}', 'GalleryApi@apiLike');
     Route::post('store', 'GalleryApi@apiStore');
-    Route::get('index', 'GalleryApi@apiIndex')->name('afw.gallery.index');
+    Route::get('index', 'GalleryApi@apiIndex')->name('gallery.index');
     Route::get('index/paginate', 'GalleryApi@apiIndexPaginate');
     Route::get('show/{id}', 'GalleryApi@apiShow');
 
@@ -47,5 +49,5 @@ Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function(){
     Route::get('/', 'GalleryApi@index');
 
     Route::get('/participate', 'GalleryApi@participate');
-    Route::get('/winners', 'GalleryApi@winners');
+    Route::get('/winners', 'GalleryApi@winners');//ToDo winners???
 });

@@ -19,6 +19,7 @@ use App\Models\GalleryItem;
 use App\Models\GalleryItemData;
 use App\Models\GalleryWinner;
 use App\Http\Traits\FileUploadTrait;
+use App\Http\Helpers as Helper;
 
 
 
@@ -56,12 +57,12 @@ class GalleryApi extends Controller
                 $offset = $limit - 20;
             }
         }
-        $items = GalleryItem::query()->where('cycle_id', getCurrentCycleId())->where('approved', 1)->take($limit)->offset($offset)->orderBy('created_at', 'desc')->orderBy('id', 'desc')->get();
+        $items = GalleryItem::query()->where('cycle_id', Helper::getCurrentCycleId())->where('approved', 1)->take($limit)->offset($offset)->orderBy('created_at', 'desc')->orderBy('id', 'desc')->get();
         return response()->json($items, 200);
     }
 
     public function apiIndexPaginate(Request $request){
-        return GalleryItem::query()->where('cycle_id', getCurrentCycleId())->where('approved', 1)->orderBy('created_at', 'desc')->orderBy('id', 'desc')->jsonPaginate(5);
+        return GalleryItem::query()->where('cycle_id', Helper::getCurrentCycleId())->where('approved', 1)->orderBy('created_at', 'desc')->orderBy('id', 'desc')->jsonPaginate(5);
     }
 
     public function apiWinners()

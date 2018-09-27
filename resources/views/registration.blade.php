@@ -1,4 +1,4 @@
-@extends(afw_service_namespace() . '::layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="col-lg-12">

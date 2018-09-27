@@ -2,7 +2,6 @@ html,
 body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-    background: url('../images/bg_elements.png'), url('../images/bg_bg.png');
     background-size: contain, contain;
     background-repeat: no-repeat, repeat;
     background-position: top left;
@@ -936,7 +935,6 @@ a:hover {
 }
 
 .search-wrapper {
-    background-image: url("../images/search_bg.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
