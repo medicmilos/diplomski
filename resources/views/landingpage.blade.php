@@ -8,7 +8,7 @@
 
                     <div class="col-lg-4 col-center">
 
-                            <a href="<?php  echo url('/'); ?>/participate">
+                            <a href="<?php  echo url('/'); ?>/gallery/participate">
                                 participate
                             </a><br>
                             <a href="<?php  echo url('/'); ?>/gallery/index">

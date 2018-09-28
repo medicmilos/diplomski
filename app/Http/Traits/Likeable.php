@@ -82,7 +82,8 @@ trait Likeable
         $itemId = $this->id;
         $dateLiked = Date::parse(date('Y-m-d'))->timezone(config('settings.appTimezone'));
         $ip = $_SERVER['REMOTE_ADDR'];
-        $query = DB::select(DB::raw("SELECT COUNT(*) as like_count FROM " . $this->likesTable . " WHERE (item_id = ? AND date_liked = ? AND unique_id = ?) OR (item_id = ? AND date_liked = ? AND ip_address = ?)"), [$itemId, $dateLiked, $this->getUniqueId(), $itemId, $dateLiked, $ip]);
+        $uniqueId = $this->getUniqueId();
+        $query = DB::select(DB::raw("SELECT COUNT(*) as like_count FROM " . $this->likesTable . " WHERE (item_id = ? AND date_liked = ? AND unique_id = ?) OR (item_id = ? AND date_liked = ? AND ip_address = ?)"), [$itemId, $dateLiked, $uniqueId, $itemId, $dateLiked, $ip]);
         $count = $query[0]->like_count;
         return $count == 0 ? true : false;
     }
@@ -92,6 +93,6 @@ trait Likeable
         $itemId = $this->id;
         $query = DB::select(DB::raw("SELECT COUNT(*) as like_count FROM " . $this->likesTable . " WHERE item_id = ?"), [$itemId]);
         $count = $query[0]->like_count;
-        return $count == 0 ? true : false;
+        return $count;
     }
 }

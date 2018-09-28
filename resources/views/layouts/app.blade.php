@@ -18,13 +18,12 @@
     <link href="{{ asset('css/style.css?v=2') }}" rel="stylesheet">
     <link href="{{ asset('css/slick.css') }}" rel="stylesheet">
     <script>
-        var baseUrl = '<?php echo url('/'); ?>';
+        let baseUrl = '<?php echo url('/'); ?>';
     </script>
-@yield('afw_head')
 </head>
 <body>
 <div>
-
+    <a href="{{ url('/logout') }}"> logout </a>
     @yield('content')
 </div>
 

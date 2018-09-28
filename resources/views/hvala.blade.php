@@ -8,7 +8,7 @@
                         &nbsp;
                     </div>
                     <div class="col-sm-10 col-xs-10">
-                        <a href="<?php  echo url('/'); ?>/Gallery/gallery/landing">
+                        <a href="<?php  echo url('/'); ?>/gallery/landing">
                             <div class="logo-wrapper">
                             </div>
                         </a>
@@ -28,7 +28,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 sub-description">
                     <p class="thanks-message">Hvala na poslatoj fotografiji, nakon autorizacije će se naći u
                         galeriji</p>
-                    <p><a href="<?php  echo url('/'); ?>/Gallery/gallery/index">
+                    <p><a href="<?php  echo url('/'); ?>/gallery/index">
                             <img class=" show-imgt img-responsive" style="margin: 0 auto;"
                                  src="{{ asset('images/btn_galerija.png') }}">
                         </a>

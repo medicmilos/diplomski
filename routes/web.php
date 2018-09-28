@@ -22,6 +22,8 @@ Auth::routes();
 //Route::get('/', 'HomeController@index');
 //Route::post('/', 'HomeController@index');
 
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 Route::get('/home', 'GalleryApi@landing')->name('home');
 
 Route::get('/', 'GalleryApi@landing');

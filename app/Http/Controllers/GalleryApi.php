@@ -75,7 +75,7 @@ class GalleryApi extends Controller
 
     public function apiWinners()
     {
-        return GalleryWinner::query()->where('approved', '=', 1)->orderBy('created_at', 'desc')->join('gallery_item_data', 'gallery_item_data.item_id', '=', 'afw_gallery_winners.item_id')->get();
+        return GalleryWinner::query()->where('approved', '=', 1)->orderBy('created_at', 'desc')->join('gallery_item_data', 'gallery_item_data.item_id', '=', 'gallery_winners.item_id')->get();
     }
 
     public function apiShow($id)
@@ -101,7 +101,10 @@ class GalleryApi extends Controller
             $request->request->add(['photo_max_width' => 1440, 'photo_max_height' => 1440]);
             $request = $this->saveFiles($request);
 
+
+
             $galleryItem = GalleryItem::create();
+
 
             $itemData = $this->createItemData($request, $galleryItem->id);
 
@@ -112,13 +115,13 @@ class GalleryApi extends Controller
         } catch (\Exception $e) {
             $this->onException($e);
             throw $e;
-        } finally {
+        } /*finally {
             $this->afterStoreCallback($response);
             if (!$response) {
                 $response = response()->json(['message' => 'Doslo je do greske.'], 500);//ToDo fix this
             }
             return $response;
-        }
+        }*/
     }
 
     public function returnUploadedImage()
@@ -136,6 +139,7 @@ class GalleryApi extends Controller
     public function apiLike($id)
     {
         $galleryItem = GalleryItem::findOrFail($id);
+        $user = auth()->user();
         if ($galleryItem) {
 
             if ($like = $galleryItem->addLike()) {
@@ -167,11 +171,6 @@ class GalleryApi extends Controller
     public function winners()
     {
         return view('winners');
-    }
-
-    public function getReport()
-    {
-        return new GalleryExport();
     }
 
     protected function getSequentialPosition($itemId)
@@ -223,7 +222,7 @@ class GalleryApi extends Controller
         if (!$user) return redirect('login');
 
         if ($user->userData) {
-            return redirect('Gallery/gallery');
+            return redirect('gallery');
         }
 
         return view('registration');
@@ -284,16 +283,16 @@ class GalleryApi extends Controller
 
     protected function uploadPath()
     {
-        return base_path(afw_service_config('gallery.uploadPath'));
+        return base_path(afw_service_config('gallery.uploadPath'));//ToDo paste relative path
     }
 
     protected function thumbsPath()
     {
-        return base_path(afw_service_config('gallery.thumbsPath'));
+        return base_path(afw_service_config('gallery.thumbsPath'));//ToDo paste relative path
     }
 
     protected function previewPath()
     {
-        return base_path(afw_service_config('gallery.previewPath'));
+        return base_path(afw_service_config('gallery.previewPath'));//ToDo paste relative path
     }
 }

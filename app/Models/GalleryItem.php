@@ -11,6 +11,7 @@ namespace App\Models;
 use Illuminate\Support\Traits\Macroable;
 use PHPUnit\Framework\MockObject\Stub;
 use App\Models\UserInputModel;
+use App\Models\GalleryModel;
 use App\Http\Traits\TimezonedTimestampsTrait;
 use App\Http\Traits\Approvable;
 use App\Http\Traits\Likeable;
@@ -21,13 +22,16 @@ class GalleryItem extends UserInputModel
     /**
      * @var Likeable
      */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
     protected $table = 'gallery_items';
 
     use Approvable;
     use Likeable;
     use TimezonedTimestampsTrait;
-
 
     protected $fillable = [
         'user_id',
@@ -62,16 +66,14 @@ class GalleryItem extends UserInputModel
     public function getImageUrlAttribute()
     {
         return [
-            'upload' => url('storage/gallery/uploads/'.optional($this->item_data)->photo),
+            'upload' => url('storage/gallery/uploads/' . optional($this->item_data)->photo),
             'preview' => url('storage/gallery/preview/' . optional($this->item_data)->photo),
             'thumb' => url('storage/gallery/thumbs/' . optional($this->item_data)->photo),
         ];
     }
 
-    public function getIsWinnerAttribute(){
-        return gallery_winner::where('item_id', $this->id)->where('approved', 1)->first() ? true : false;//ToDo gallery_winner
+    public function getIsWinnerAttribute()
+    {
+        return GalleryWinner::where('item_id', $this->id)->where('approved', 1)->first() ? true : false;
     }
-
-
-
 }
