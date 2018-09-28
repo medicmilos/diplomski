@@ -15,5 +15,6 @@ class GalleryItemLike extends GalleryModel
 {
 
     protected $table = 'gallery_likes';
+    protected $primaryKey = "post_id";
 
 }

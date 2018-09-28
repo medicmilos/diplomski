@@ -13,20 +13,19 @@ use PHPUnit\Framework\MockObject\Stub;
 use App\Models\UserInputModel;
 use App\Http\Traits\TimezonedTimestampsTrait;
 use App\Http\Traits\Approvable;
-use App\Http\Traits\LikeableInterface;
+use App\Http\Traits\Likeable;
 
 
 class GalleryItem extends UserInputModel
 {
     /**
-     * @var LikeableInterface
+     * @var Likeable
      */
-    private static $likeImplementation = null;
 
     protected $table = 'gallery_items';
 
     use Approvable;
-    //use CrudTrait;
+    use Likeable;
     use TimezonedTimestampsTrait;
 
 
@@ -37,16 +36,8 @@ class GalleryItem extends UserInputModel
     ];
 
     protected $appends = ['canLike', 'likeCount', 'imageUrl'];
-
-
-    public static function setLikeImplementation($likeImpl){
-        if($likeImpl instanceof LikeableInterface) {
-            static::$likeImplementation = $likeImpl;
-            return true;
-        } else {
-            return false;
-        }
-    }
+    public $timestamps = true;
+    protected $guarded = ['id'];
 
     public function likes()
     {
@@ -58,6 +49,16 @@ class GalleryItem extends UserInputModel
         return $this->hasOne('App\Models\GalleryItemData', 'item_id', 'id');
     }
 
+    public function cycle()
+    {
+        return $this->hasOne('App\Models\Cycle', 'id', 'cycle_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'user_id');
+    }
+
     public function getImageUrlAttribute()
     {
         return [
@@ -67,44 +68,10 @@ class GalleryItem extends UserInputModel
         ];
     }
 
-
-    public function checkCycle(): bool
-    {
-        if(static::$likeImplementation != null) {
-            return static::$likeImplementation->checkCycle($this);
-        }
-        return false;
+    public function getIsWinnerAttribute(){
+        return gallery_winner::where('item_id', $this->id)->where('approved', 1)->first() ? true : false;//ToDo gallery_winner
     }
 
-    public function addLike(): array
-    {
-        if(static::$likeImplementation != null) {
-            return static::$likeImplementation->addLike($this);
-        }
-        return [];
-    }
 
-    public function getCanLikeAttribute(): bool
-    {
-        if(static::$likeImplementation != null) {
-            return static::$likeImplementation->getCanLikeAttribute($this);
-        }
-        return false;
-    }
 
-    public function getLikeCountAttribute(): int
-    {
-        if(static::$likeImplementation != null) {
-            return static::$likeImplementation->getLikeCountAttribute($this);
-        }
-        return 0;
-    }
-
-    public function getLikesTable()
-    {
-        if(static::$likeImplementation != null) {
-            return static::$likeImplementation->getLikesTable();
-        }
-        return 'gallery_likes';
-    }
 }

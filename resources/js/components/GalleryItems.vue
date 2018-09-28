@@ -119,7 +119,7 @@
                     let baseUrl = this.$parent.baseUrl;
                     let array = {
                         'type': '',
-                        'msg': "Da biste glasali morate se registrovati i popuniti podatke <a href=" + baseUrl + "/gallery/participate>ovde</a>."
+                        'msg': "error"
                     };
                     this.showModal(array);
                     this.$parent.forbidden = false;
@@ -133,7 +133,7 @@
                     let baseUrl = this.$parent.baseUrl;
                     let array = {
                         'type': '',
-                        'msg': "Da biste glasali morate se registrovati i popuniti podatke <a href=" + baseUrl + "/gallery/participate>ovde</a>."
+                        'msg': "error"
                     };
                     this.showModal(array);
                 }
