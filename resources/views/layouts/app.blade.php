@@ -4,26 +4,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>@yield('title_text')</title>
-
-    <!-- Styles -->
-    <!--Dynamic StyleSheets added from a view would be pasted here-->
-    @yield('styles')
-
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css?v=2') }}" rel="stylesheet">
-    <link href="{{ asset('css/slick.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css?v=1') }}" rel="stylesheet">
     <script>
         let baseUrl = '<?php echo url('/'); ?>';
     </script>
 </head>
 <body>
-<div>
-    <a href="{{ url('/logout') }}"> logout </a>
+<div id="app">
+    @include('header')
     @yield('content')
 </div>
 

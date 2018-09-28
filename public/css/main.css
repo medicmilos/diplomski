@@ -1,0 +1,109 @@
+html,
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    background: url("../images/back_pattern.png");
+    background-size: unset;
+    background-repeat: repeat;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.col-center {
+    float: none;
+    display: block;
+    margin: 0 auto;
+}
+
+@font-face {
+    font-family: KGSecondChancesSolid;
+    src: url(../fonts/KGSecondChancesSolid.ttf);
+}
+
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1440px;
+    }
+}
+
+/* pull to refresh */
+.pull-down-header {
+    background-color: transparent !important;
+}
+
+.bubble-item {
+    background: #d5d5d5 !important;
+}
+
+/* infinite scroll */
+.mugen-scroll {
+    text-align: center !important;
+}
+
+/* modal */
+
+.modal-mask {
+    display: block !important;
+}
+
+.modal-wrapper {
+    margin: 0 auto;
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-open .modal {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+.header {
+    background-color: #539a00;
+}
+
+.header .navbar {
+    background: url("../images/ictheader-bg-big.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.header .navbar .nav-item.active a,
+.header .navbar .nav-item a:hover,
+.header .navbar-brand:hover {
+    color: #fff000;
+}
+
+.header .navbar .nav-item a,
+.header .navbar-brand {
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+.header .navbar-brand {
+    font-size: 1.5rem;
+}
+
+.header .navbar-collapse {
+    display: block !important
+}
+
+.header .navbar-nav {
+    float: right;
+}
+
+.landing p {
+    font-family: KGSecondChancesSolid;
+    font-size: 2rem;
+    color: #539a00;
+    line-height: 1.2;
+    transform: rotate(-3deg);
+    margin-top: 7rem;
+}
