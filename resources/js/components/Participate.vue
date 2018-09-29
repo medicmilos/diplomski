@@ -1,52 +1,32 @@
 <template>
-    <div class="col-lg-12">
-        <div class="row">
-            <form @submit.prevent="formValidateBeforeSubmit" class="participate-form">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-no-pad">
-                        <picture-input
-                            ref="pictureInput"
-                            @change="onChanged"
-                            @remove="onRemoved"
-                            @error="error"
-                            :crop="true"
-                            :removable="true"
-                            removeButtonClass="ui red button"
-                            accept="image/jpg, image/jpeg, image/png"
-                            buttonClass="ui button primary"
-                            :zIndex=9800
-                            :size=10
-                            :alertOnError="false"
-                        >
-                        </picture-input>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-no-pad">
-                        <br>
-                        <div class="input-wrapper">
-                            <input class="form-input firstName" name="name" type="text" placeholder="Ime" value="milos">
-                        </div>
-                        <br>
-                        <div class="input-wrapper">
-                            <input class="form-input lastName" name="lastname" type="text"
-                                   placeholder="Prezime" value="medic">
-                        </div>
-                        <br>
-                        <div class="input-wrapper">
-                            <input class="form-input email" name="email" type="text" placeholder="Email"
-                                   value="milos@test.com">
-                        </div>
-                        <br>
-                        <div class="input-wrapper">
-                            <input class="form-input address" name="livingPlace" type="text"
-                                   placeholder="Mesto stanovanja" value="agsdyugasdasd">
-                        </div>
-                        <br>
-                        <div class="button-row">
-                            <button class="scroll-top-button" id="show-modal">submit</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+    <div class="col-lg-12 row participate">
+        <div class="col-lg-6 col-center">
+            <picture-input
+                ref="pictureInput"
+                @change="onChanged"
+                @remove="onRemoved"
+                @error="error"
+                :crop="true"
+                :removable="true"
+                removeButtonClass="ui red button"
+                accept="image/jpg, image/jpeg, image/png"
+                buttonClass="ui button primary"
+                :zIndex=9800
+                :size=10
+                :alertOnError="false"
+                :customStrings="{
+                            'upload' : '',
+                            'drag' : 'Prevucite sliku ili kliknite ovde da biste je izabrali',
+                            'change' : 'Izmeni sliku',
+                            'remove' : 'Izbriši sliku',
+                            'select' : '',
+                            'fileSize' : '',
+                            'fileType' : '',
+                            'aspect' : ''
+                        }"
+            >
+            </picture-input>
+            <button class="button-submit" @click="submitForm()">Pošalji</button>
         </div>
         <modal v-if="this.modalOpen" @close="showModal">
             <div slot="header">
@@ -101,13 +81,9 @@
                 this.image = '';
             },
             submitForm() {
-                let firstName = $(".firstName").val();
-                let lastName = $(".lastName").val();
-                let email = $(".email").val();
-                let address = $(".address").val();
                 let canvas1 = $(".picture-preview");
 
-                this.$parent.$emit('loadImageToCanvas', canvas1[0].toDataURL("image/png"), firstName, lastName, email, address);
+                this.$parent.$emit('loadImageToCanvas', canvas1[0].toDataURL("image/png"));
 
                 $(".participate-display").hide();
             },
@@ -117,13 +93,6 @@
                     'msg': e.message
                 };
                 this.showModal(array);
-            },
-            formValidateBeforeSubmit: function formValidateBeforeSubmit() {
-
-                this.submitForm();
-                return;
-
-
             }
         }
     }

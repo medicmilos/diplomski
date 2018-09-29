@@ -1,46 +1,30 @@
 @extends('layouts.app')
 @section('content')
-    <div class="col-lg-12 show-item-page">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="col-lg-4">
-                        <a href="<?php  echo url('/'); ?>/gallery/participate">
-                            participate
-                        </a>
-                    </div>
-                    <div class="col-lg-4">
-                        <a href="<?php  echo url('/'); ?>/gallery/index">
-                            gallery
-                        </a>
-                    </div>
-                </div>
+    <div class="container show-page">
+        <div class="col-lg-12 row">
+            <div class="item-wrap col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <img class="" src="{{$galleryItem['imageUrl']['upload']}}">
+
             </div>
-            <div class="bottom-wrapper col-lg-12">
-                <div class="item-wrapper show-bottom-wrap col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
-                    <div class="">
-                        <div class="">
-                            <img class="" src="{{$galleryItem['imageUrl']['upload']}}">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="outter-content col-lg-6 col-md-6 col-sm-12">
+                <div class="inner-content">
 
 
                     <p class="">{{$galleryItem['item_data']['name']}}</p>
                     <p class="">Glasovi: <span
-                                class="show-like-count">{{$galleryItem['likeCount']}}</span></p>
-                    <p class="show-like">like</p>
-                    <p onclick="fbShare({{$galleryItem['id']}})">share</p>
+                            class="show-like-count">{{$galleryItem['likeCount']}}</span></p>
+                    <p class="show-like"><img
+                            src="{{asset("images/btn_glasaj.png")}}"></p>
+                    <p onclick="fbShare({{$galleryItem['id']}})"><img class="item-share"
+                                                                      src="{{asset("images/btn_share.png")}}"></p>
                 </div>
             </div>
         </div>
-
-
     </div>
+
+
 @endsection
 
 @push('scripts')
@@ -54,7 +38,7 @@
         });
 
         $(".show-like").on("click", function () {
-            console.log("test");
+
             let id = "<?php print_r($galleryItem['id']); ?>";
 
             let baseUrl = "<?php  echo url('/'); ?>";
@@ -63,12 +47,18 @@
                 url: baseUrl + '/api/v1/gallery/like/' + id,
                 data: null,
                 type: 'post',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 success: function (output) {
+                    console.log("ajax test");
+                    console.log(output);
                     let newVal = parseInt($(".show-like-count").html()) + +1;
                     $(".show-like-count").html(newVal);
                     $(".show-like").css("opacity", "0.5");
                 },
                 error: function (e) {
+                    console.log(e);
                 },
             });
         });
@@ -83,5 +73,5 @@
 @endpush
 
 @section('title_text')
-    rad
+    Rad | ICT galerija
 @endsection

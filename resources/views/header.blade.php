@@ -11,7 +11,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="<?php  echo url('/'); ?>/gallery/participate">Ucestvuj</a>
+                            <a class="nav-link" href="<?php  echo url('/'); ?>/gallery/participate">Prijavi rad</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php  echo url('/'); ?>/gallery/index">Galerija</a>
@@ -25,8 +25,6 @@
                     </ul>
                 </div>
             </nav>
-
-
         </div>
     </div>
 </div>

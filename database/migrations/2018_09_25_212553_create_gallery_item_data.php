@@ -19,7 +19,6 @@ class CreateGalleryItemData extends Migration
             $table->primary('item_id');
             $table->string('name');
             $table->string('photo');
-            $table->string('livingPlace');
             $table->timestamps();
         });
     }

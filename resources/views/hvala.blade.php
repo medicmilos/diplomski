@@ -45,5 +45,5 @@
 
 
 @section('title_text')
-    hvala
+    Hvala | ICT galerija
 @endsection

@@ -102,7 +102,6 @@ class GalleryApi extends Controller
             $request = $this->saveFiles($request);
 
 
-
             $galleryItem = GalleryItem::create();
 
 
@@ -193,21 +192,17 @@ class GalleryApi extends Controller
     protected function validationRules()
     {
         return [
-            'photo' => 'required|image|mimes:jpeg,png,jpg|max:10000',
-            'firstName' => 'required|string|max:191',
-            'lastName' => 'required|string|max:191',
-            'email' => 'required|email|max:191',
-            'livingPlace' => 'required|string|max:191',
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:10000'
         ];
     }
 
     protected function createItemData($request, $item_id)
     {
+        $user = auth()->user();
         return [
             'item_id' => $item_id,
             'photo' => $request->photo,
-            'livingPlace' => $request->livingPlace,
-            'name' => $request->firstName . " " . $request->lastName
+            'name' => explode(' ', $user->name)[0] . " " . explode(' ', $user->name, 2)[1]
         ];
     }
 
@@ -255,15 +250,7 @@ class GalleryApi extends Controller
 
     public function participate()
     {
-        $user = auth()->user();
-        return view('participate')->with([
-            /*
-            'livingPlace' => $user->userData->livingPlace,
-            'firstName' => explode(' ', $user->name)[0],
-            'lastName' => explode(' ', $user->name, 2)[1],
-            'email' => $user->email
-            */
-        ]);
+        return view('participate');
     }
 
     protected function afterStoreCallback($response)

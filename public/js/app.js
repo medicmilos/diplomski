@@ -1084,13 +1084,13 @@ module.exports = Cancel;
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(46)
+  __webpack_require__(47)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(49)
+var __vue_script__ = __webpack_require__(50)
 /* template */
-var __vue_template__ = __webpack_require__(50)
+var __vue_template__ = __webpack_require__(51)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1230,7 +1230,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(48)
+var listToStyles = __webpack_require__(49)
 
 /*
 type StyleObject = {
@@ -1443,7 +1443,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(65);
+module.exports = __webpack_require__(66);
 
 
 /***/ }),
@@ -1455,13 +1455,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_GalleryItems_vue__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_GalleryItems_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_GalleryItems_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Participate_vue__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Participate_vue__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Participate_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Participate_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ModifyImage_vue__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ModifyImage_vue__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ModifyImage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_ModifyImage_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RegistrationForm_vue__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RegistrationForm_vue__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RegistrationForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_RegistrationForm_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_FinishModifyingScreen_vue__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_FinishModifyingScreen_vue__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_FinishModifyingScreen_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_FinishModifyingScreen_vue__);
 var Vue = __webpack_require__(16);
 window.Vue = Vue;
@@ -1482,7 +1482,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store();
 
 Vue.config.debug = true;
 
-Vue.component('modal', __webpack_require__(61));
+Vue.component('modal', __webpack_require__(62));
 
 new Vue({
     store: store,
@@ -1492,14 +1492,14 @@ new Vue({
         items: [],
         currentOffset: -1,
         startingOffset: -1,
-        limit: 12,
+        limit: 4,
         moreItems: 1,
         newItems: 1,
         loadingData: 0,
         dataReady: false,
         baseUrl: baseUrl,
         apiUrl: baseUrl + '/api/v1/',
-        pgItemUrl: baseUrl + "/storage/gallery/uploads/",
+        pgItemUrl: baseUrl + "/storage/gallery/preview/",
         resource_url: baseUrl + '/api/v1/gallery/index/paginate',
         infScroll: true,
         pagination: false,
@@ -14777,7 +14777,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(40)
 /* template */
-var __vue_template__ = __webpack_require__(43)
+var __vue_template__ = __webpack_require__(44)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -14823,8 +14823,6 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_mugen_scroll__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_mugen_scroll___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_mugen_scroll__);
-//
-//
 //
 //
 //
@@ -14943,8 +14941,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (e) {
                 var _baseUrl = this.$parent.baseUrl;
                 var array = {
-                    'type': '',
-                    'msg': "error"
+                    'type': 'error',
+                    'msg': "forbidden"
                 };
                 this.showModal(array);
                 this.$parent.forbidden = false;
@@ -14957,8 +14955,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.$parent.updateFrontEndLike(id);
                 var _baseUrl2 = this.$parent.baseUrl;
                 var array = {
-                    'type': '',
-                    'msg': "error"
+                    'type': 'error',
+                    'msg': "error general"
                 };
                 this.showModal(array);
             }
@@ -14974,27 +14972,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.loading = false;
             this.initDataFetch = false;
         },
-        searchFetch: function searchFetch() {
-
-            this.loading = true;
-            this.$parent.appItems = [];
-            this.$parent.currentOffset = -1;
-            this.$parent.startingOffset = -1;
-
-            var searchValue = $(".gallery-search").val();
-            //console.log(searchValue);
-            this.$parent.insertMoreDataToList(searchValue);
-            this.loading = false;
-        },
-
-        onRefresh: function onRefresh() {
-            var self = this;
-            return new Promise(function (resolve, reject) {
-                setTimeout(function () {
-                    self.$parent.loadNewData();
-                    resolve();
-                }, 750);
-            });
+        modifyDateTime: function modifyDateTime(dateTime) {
+            var dateFormat = __webpack_require__(43);
+            var input = new Date(dateTime);
+            var output = dateFormat(input, "dd.mm.yyyy.");
+            return output;
         }
     }
 });
@@ -15172,168 +15154,385 @@ function throttle (func, wait) {
 /* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var __WEBPACK_AMD_DEFINE_RESULT__;/*
+ * Date Format 1.2.3
+ * (c) 2007-2009 Steven Levithan <stevenlevithan.com>
+ * MIT license
+ *
+ * Includes enhancements by Scott Trenda <scott.trenda.net>
+ * and Kris Kowal <cixar.com/~kris.kowal/>
+ *
+ * Accepts a date, a mask, or a date and a mask.
+ * Returns a formatted version of the given date.
+ * The date defaults to the current date/time.
+ * The mask defaults to dateFormat.masks.default.
+ */
+
+(function(global) {
+  'use strict';
+
+  var dateFormat = (function() {
+      var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZWN]|"[^"]*"|'[^']*'/g;
+      var timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g;
+      var timezoneClip = /[^-+\dA-Z]/g;
+  
+      // Regexes and supporting functions are cached through closure
+      return function (date, mask, utc, gmt) {
+  
+        // You can't provide utc if you skip other args (use the 'UTC:' mask prefix)
+        if (arguments.length === 1 && kindOf(date) === 'string' && !/\d/.test(date)) {
+          mask = date;
+          date = undefined;
+        }
+  
+        date = date || new Date;
+  
+        if(!(date instanceof Date)) {
+          date = new Date(date);
+        }
+  
+        if (isNaN(date)) {
+          throw TypeError('Invalid date');
+        }
+  
+        mask = String(dateFormat.masks[mask] || mask || dateFormat.masks['default']);
+  
+        // Allow setting the utc/gmt argument via the mask
+        var maskSlice = mask.slice(0, 4);
+        if (maskSlice === 'UTC:' || maskSlice === 'GMT:') {
+          mask = mask.slice(4);
+          utc = true;
+          if (maskSlice === 'GMT:') {
+            gmt = true;
+          }
+        }
+  
+        var _ = utc ? 'getUTC' : 'get';
+        var d = date[_ + 'Date']();
+        var D = date[_ + 'Day']();
+        var m = date[_ + 'Month']();
+        var y = date[_ + 'FullYear']();
+        var H = date[_ + 'Hours']();
+        var M = date[_ + 'Minutes']();
+        var s = date[_ + 'Seconds']();
+        var L = date[_ + 'Milliseconds']();
+        var o = utc ? 0 : date.getTimezoneOffset();
+        var W = getWeek(date);
+        var N = getDayOfWeek(date);
+        var flags = {
+          d:    d,
+          dd:   pad(d),
+          ddd:  dateFormat.i18n.dayNames[D],
+          dddd: dateFormat.i18n.dayNames[D + 7],
+          m:    m + 1,
+          mm:   pad(m + 1),
+          mmm:  dateFormat.i18n.monthNames[m],
+          mmmm: dateFormat.i18n.monthNames[m + 12],
+          yy:   String(y).slice(2),
+          yyyy: y,
+          h:    H % 12 || 12,
+          hh:   pad(H % 12 || 12),
+          H:    H,
+          HH:   pad(H),
+          M:    M,
+          MM:   pad(M),
+          s:    s,
+          ss:   pad(s),
+          l:    pad(L, 3),
+          L:    pad(Math.round(L / 10)),
+          t:    H < 12 ? dateFormat.i18n.timeNames[0] : dateFormat.i18n.timeNames[1],
+          tt:   H < 12 ? dateFormat.i18n.timeNames[2] : dateFormat.i18n.timeNames[3],
+          T:    H < 12 ? dateFormat.i18n.timeNames[4] : dateFormat.i18n.timeNames[5],
+          TT:   H < 12 ? dateFormat.i18n.timeNames[6] : dateFormat.i18n.timeNames[7],
+          Z:    gmt ? 'GMT' : utc ? 'UTC' : (String(date).match(timezone) || ['']).pop().replace(timezoneClip, ''),
+          o:    (o > 0 ? '-' : '+') + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
+          S:    ['th', 'st', 'nd', 'rd'][d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10],
+          W:    W,
+          N:    N
+        };
+  
+        return mask.replace(token, function (match) {
+          if (match in flags) {
+            return flags[match];
+          }
+          return match.slice(1, match.length - 1);
+        });
+      };
+    })();
+
+  dateFormat.masks = {
+    'default':               'ddd mmm dd yyyy HH:MM:ss',
+    'shortDate':             'm/d/yy',
+    'mediumDate':            'mmm d, yyyy',
+    'longDate':              'mmmm d, yyyy',
+    'fullDate':              'dddd, mmmm d, yyyy',
+    'shortTime':             'h:MM TT',
+    'mediumTime':            'h:MM:ss TT',
+    'longTime':              'h:MM:ss TT Z',
+    'isoDate':               'yyyy-mm-dd',
+    'isoTime':               'HH:MM:ss',
+    'isoDateTime':           'yyyy-mm-dd\'T\'HH:MM:sso',
+    'isoUtcDateTime':        'UTC:yyyy-mm-dd\'T\'HH:MM:ss\'Z\'',
+    'expiresHeaderFormat':   'ddd, dd mmm yyyy HH:MM:ss Z'
+  };
+
+  // Internationalization strings
+  dateFormat.i18n = {
+    dayNames: [
+      'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+      'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+    ],
+    monthNames: [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+      'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+    ],
+    timeNames: [
+      'a', 'p', 'am', 'pm', 'A', 'P', 'AM', 'PM'
+    ]
+  };
+
+function pad(val, len) {
+  val = String(val);
+  len = len || 2;
+  while (val.length < len) {
+    val = '0' + val;
+  }
+  return val;
+}
+
+/**
+ * Get the ISO 8601 week number
+ * Based on comments from
+ * http://techblog.procurios.nl/k/n618/news/view/33796/14863/Calculate-ISO-8601-week-and-year-in-javascript.html
+ *
+ * @param  {Object} `date`
+ * @return {Number}
+ */
+function getWeek(date) {
+  // Remove time components of date
+  var targetThursday = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  // Change date to Thursday same week
+  targetThursday.setDate(targetThursday.getDate() - ((targetThursday.getDay() + 6) % 7) + 3);
+
+  // Take January 4th as it is always in week 1 (see ISO 8601)
+  var firstThursday = new Date(targetThursday.getFullYear(), 0, 4);
+
+  // Change date to Thursday same week
+  firstThursday.setDate(firstThursday.getDate() - ((firstThursday.getDay() + 6) % 7) + 3);
+
+  // Check if daylight-saving-time-switch occurred and correct for it
+  var ds = targetThursday.getTimezoneOffset() - firstThursday.getTimezoneOffset();
+  targetThursday.setHours(targetThursday.getHours() - ds);
+
+  // Number of weeks between target Thursday and first Thursday
+  var weekDiff = (targetThursday - firstThursday) / (86400000*7);
+  return 1 + Math.floor(weekDiff);
+}
+
+/**
+ * Get ISO-8601 numeric representation of the day of the week
+ * 1 (for Monday) through 7 (for Sunday)
+ * 
+ * @param  {Object} `date`
+ * @return {Number}
+ */
+function getDayOfWeek(date) {
+  var dow = date.getDay();
+  if(dow === 0) {
+    dow = 7;
+  }
+  return dow;
+}
+
+/**
+ * kind-of shortcut
+ * @param  {*} val
+ * @return {String}
+ */
+function kindOf(val) {
+  if (val === null) {
+    return 'null';
+  }
+
+  if (val === undefined) {
+    return 'undefined';
+  }
+
+  if (typeof val !== 'object') {
+    return typeof val;
+  }
+
+  if (Array.isArray(val)) {
+    return 'array';
+  }
+
+  return {}.toString.call(val)
+    .slice(8, -1).toLowerCase();
+};
+
+
+
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+      return dateFormat;
+    }).call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports === 'object') {
+    module.exports = dateFormat;
+  } else {
+    global.dateFormat = dateFormat;
+  }
+})(this);
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col-lg-12", staticStyle: { "margin-bottom": "5rem" } },
+    { staticClass: "col-lg-12 gallery row" },
     [
-      _c(
-        "div",
-        { staticClass: "container", staticStyle: { "margin-bottom": "5rem" } },
-        [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-4 col-md-4" }, [
-              _c(
-                "a",
-                {
-                  attrs: { href: _vm.$parent.baseUrl + "/gallery/participate" }
-                },
-                [_vm._v("\n                    participate\n                ")]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "component-body col-lg-12" }, [
-            _c(
-              "div",
-              { staticClass: "col-lg-12", staticStyle: { padding: "0" } },
-              [
+      _vm._l(_vm.$parent.appItems, function(item) {
+        return _c(
+          "div",
+          { staticClass: "item-wrapper col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+          [
+            _c("div", { staticClass: "item-inner-wrapper" }, [
+              _c("div", { staticClass: "item-outter-wrapper" }, [
                 _c(
-                  "div",
-                  { staticClass: "col-lg-12 " },
-                  _vm._l(_vm.$parent.appItems, function(item) {
-                    return _c(
-                      "div",
+                  "a",
+                  {
+                    attrs: {
+                      href:
+                        _vm.$parent.baseUrl + "/gallery/item/show/" + item.id
+                    }
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src: _vm.$parent.pgItemUrl + item.item_data.photo
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", {}, [
+                _c("div", { staticClass: "middle-block" }, [
+                  _c("div", { staticClass: "date" }, [
+                    _c("span", { staticClass: "item-date" }, [
+                      _vm._v(_vm._s(_vm.modifyDateTime(item.created_at.date)))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "name" }, [
+                    _c(
+                      "span",
                       {
-                        staticClass:
-                          "item-wrapper col-lg-4 col-md-4 col-sm-6 col-xs-12"
+                        staticClass: "item-username",
+                        attrs: { title: item.item_data.name }
                       },
-                      [
-                        _c("div", {}, [
+                      [_vm._v(_vm._s(item.item_data.name))]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "bottom-block" }, [
+                  _c("div", { staticClass: "vote" }, [
+                    item.canLike
+                      ? _c("span", { staticClass: "item-like" }, [
                           _c(
-                            "a",
+                            "span",
                             {
-                              attrs: {
-                                href:
-                                  _vm.$parent.baseUrl +
-                                  "/gallery/item/show/" +
-                                  item.id
+                              staticClass: "vote-button",
+                              on: {
+                                click: [
+                                  _vm.calculateTop,
+                                  function($event) {
+                                    _vm.processLike(item.item_data.item_id)
+                                  }
+                                ]
                               }
                             },
                             [
-                              _c("div", {}, [
-                                _c("img", {
-                                  attrs: {
-                                    src:
-                                      _vm.$parent.pgItemUrl +
-                                      item.item_data.photo
-                                  }
-                                })
-                              ])
+                              _c("img", {
+                                attrs: {
+                                  src:
+                                    _vm.$parent.baseUrl +
+                                    "/images/btn_glasaj.png"
+                                }
+                              })
                             ]
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: " " }, [
+                        ])
+                      : _c("span", { staticClass: "item-like" }, [
                           _c(
                             "span",
                             {
-                              staticClass: "item-username",
-                              attrs: { title: item.item_data.name }
+                              staticClass: "vote-button",
+                              staticStyle: { opacity: "0.5" }
                             },
-                            [_vm._v(_vm._s(item.item_data.name))]
-                          ),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "item-like" }, [
-                            _c(
-                              "span",
-                              { attrs: { id: item.item_data.item_id } },
-                              [
-                                _vm._v(
-                                  "\n                            Glasovi: " +
-                                    _vm._s(item.likeCount) +
-                                    "\n                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "vote-button",
-                                on: {
-                                  click: [
-                                    _vm.calculateTop,
-                                    function($event) {
-                                      _vm.processLike(item.item_data.item_id)
-                                    }
-                                  ]
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src:
+                                    _vm.$parent.baseUrl +
+                                    "/images/btn_glasaj.png"
                                 }
-                              },
-                              [_vm._v("vote")]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "item-like" }, [
-                            _c(
-                              "span",
-                              { attrs: { id: item.item_data.item_id } },
-                              [
-                                _vm._v(
-                                  "\n                            Glasovi: " +
-                                    _vm._s(item.likeCount) +
-                                    "\n                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "vote-button",
-                                staticStyle: { opacity: "0.5" }
-                              },
-                              [_vm._v("vote")]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              staticClass: "item-share",
-                              on: {
-                                click: function($event) {
-                                  _vm.fbShare(item.id)
-                                }
-                              }
-                            },
-                            [_vm._v("share")]
+                              })
+                            ]
                           )
                         ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "share" }, [
+                    _c("span", { attrs: { id: item.item_data.item_id } }, [
+                      _vm._v(
+                        "\n                            Glasovi: " +
+                          _vm._s(item.likeCount) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass: "item-share",
+                        on: {
+                          click: function($event) {
+                            _vm.fbShare(item.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src: _vm.$parent.baseUrl + "/images/btn_share.png"
+                          }
+                        })
                       ]
-                    )
-                  })
-                )
-              ]
-            )
-          ])
-        ]
-      ),
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "clear" })
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
+      }),
       _vm._v(" "),
       _vm.$parent.infScroll
         ? _c(
             "mugen-scroll",
             {
+              staticClass: "col-lg-12",
               attrs: { handler: _vm.fetchData, "should-handle": !_vm.loading }
             },
             [
@@ -15346,7 +15545,7 @@ var render = function() {
                       }
                     })
                   ])
-                : _c("div", {}, [
+                : _c("div", [
                     _vm._v("\n            Kraj podataka za prikaz.\n        ")
                   ])
             ]
@@ -15382,7 +15581,7 @@ var render = function() {
           )
         : _vm._e()
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -15396,15 +15595,15 @@ if (false) {
 }
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(45)
+var __vue_script__ = __webpack_require__(46)
 /* template */
-var __vue_template__ = __webpack_require__(51)
+var __vue_template__ = __webpack_require__(52)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -15443,7 +15642,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15452,26 +15651,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_picture_input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_picture_input__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -15556,13 +15735,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.image = '';
         },
         submitForm: function submitForm() {
-            var firstName = $(".firstName").val();
-            var lastName = $(".lastName").val();
-            var email = $(".email").val();
-            var address = $(".address").val();
             var canvas1 = $(".picture-preview");
 
-            this.$parent.$emit('loadImageToCanvas', canvas1[0].toDataURL("image/png"), firstName, lastName, email, address);
+            this.$parent.$emit('loadImageToCanvas', canvas1[0].toDataURL("image/png"));
 
             $(".participate-display").hide();
         },
@@ -15573,23 +15748,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'msg': e.message
             };
             this.showModal(array);
-        },
-        formValidateBeforeSubmit: function formValidateBeforeSubmit() {
-
-            this.submitForm();
-            return;
         }
     }
 });
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(47);
+var content = __webpack_require__(48);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -15609,7 +15779,7 @@ if(false) {
 }
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(12)(false);
@@ -15623,7 +15793,7 @@ exports.push([module.i, "\n.picture-input[data-v-431cb064] {\n  width: 100%;\n  
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 /**
@@ -15656,7 +15826,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16246,7 +16416,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 });
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -16479,7 +16649,7 @@ if (false) {
 }
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -16488,53 +16658,56 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col-lg-12" },
+    { staticClass: "col-lg-12 row participate" },
     [
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "form",
-          {
-            staticClass: "participate-form",
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.formValidateBeforeSubmit($event)
+      _c(
+        "div",
+        { staticClass: "col-lg-6 col-center" },
+        [
+          _c("picture-input", {
+            ref: "pictureInput",
+            attrs: {
+              crop: true,
+              removable: true,
+              removeButtonClass: "ui red button",
+              accept: "image/jpg, image/jpeg, image/png",
+              buttonClass: "ui button primary",
+              zIndex: 9800,
+              size: 10,
+              alertOnError: false,
+              customStrings: {
+                upload: "",
+                drag: "Prevucite sliku ili kliknite ovde da biste je izabrali",
+                change: "Izmeni sliku",
+                remove: "Izbriši sliku",
+                select: "",
+                fileSize: "",
+                fileType: "",
+                aspect: ""
               }
+            },
+            on: {
+              change: _vm.onChanged,
+              remove: _vm.onRemoved,
+              error: _vm.error
             }
-          },
-          [
-            _c("div", { staticClass: "row" }, [
-              _c(
-                "div",
-                { staticClass: "col-lg-6 col-md-6 col-sm-12 col-no-pad" },
-                [
-                  _c("picture-input", {
-                    ref: "pictureInput",
-                    attrs: {
-                      crop: true,
-                      removable: true,
-                      removeButtonClass: "ui red button",
-                      accept: "image/jpg, image/jpeg, image/png",
-                      buttonClass: "ui button primary",
-                      zIndex: 9800,
-                      size: 10,
-                      alertOnError: false
-                    },
-                    on: {
-                      change: _vm.onChanged,
-                      remove: _vm.onRemoved,
-                      error: _vm.error
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _vm._m(0)
-            ])
-          ]
-        )
-      ]),
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button-submit",
+              on: {
+                click: function($event) {
+                  _vm.submitForm()
+                }
+              }
+            },
+            [_vm._v("Pošalji")]
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       this.modalOpen
         ? _c("modal", { on: { close: _vm.showModal } }, [
@@ -16562,84 +16735,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-lg-6 col-md-6 col-sm-12 col-no-pad" },
-      [
-        _c("br"),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-wrapper" }, [
-          _c("input", {
-            staticClass: "form-input firstName",
-            attrs: {
-              name: "name",
-              type: "text",
-              placeholder: "Ime",
-              value: "milos"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-wrapper" }, [
-          _c("input", {
-            staticClass: "form-input lastName",
-            attrs: {
-              name: "lastname",
-              type: "text",
-              placeholder: "Prezime",
-              value: "medic"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-wrapper" }, [
-          _c("input", {
-            staticClass: "form-input email",
-            attrs: {
-              name: "email",
-              type: "text",
-              placeholder: "Email",
-              value: "milos@test.com"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-wrapper" }, [
-          _c("input", {
-            staticClass: "form-input address",
-            attrs: {
-              name: "livingPlace",
-              type: "text",
-              placeholder: "Mesto stanovanja",
-              value: "agsdyugasdasd"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("div", { staticClass: "button-row" }, [
-          _c(
-            "button",
-            { staticClass: "scroll-top-button", attrs: { id: "show-modal" } },
-            [_vm._v("submit")]
-          )
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -16650,15 +16746,15 @@ if (false) {
 }
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(53)
+var __vue_script__ = __webpack_require__(54)
 /* template */
-var __vue_template__ = __webpack_require__(54)
+var __vue_template__ = __webpack_require__(55)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -16697,7 +16793,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16706,6 +16802,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_picture_input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_picture_input__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+//
+//
 //
 //
 //
@@ -16773,179 +16871,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var _this = this;
-
         $(".modifyimage-display").hide();
         var self = this;
-        this.$parent.$on('loadImageToCanvas', function (image, firstName, lastName, email, livingPlace) {
+        this.$parent.$on('loadImageToCanvas', function (image) {
             $(".modifyimage-display").show();
 
             var uploadedImage = image;
 
-            _this.firstName = firstName;
-            _this.lastName = lastName;
-            _this.email = email;
-            _this.livingPlace = livingPlace;
-
             var containerWidth = $(".canvas-wrapper").width();
             var containerHeight = $(".canvas-wrapper").height();
-
-            var HideControls = {
-                'tl': true,
-                'tr': true,
-                'bl': true,
-                'br': true,
-                'ml': false,
-                'mt': true,
-                'mr': false,
-                'mb': false,
-                'mtr': true
-            };
-
-            var isVML = function isVML() {
-                return typeof G_vmlCanvasManager !== 'undefined';
-            };
-
-            fabric.util.object.extend(fabric.Object.prototype, {
-
-                selectedIconImage: new Image(),
-                selectedIconImage1: new Image(),
-                selectedIconImage2: new Image(),
-                selectedIconImage3: new Image(),
-                //rotateSrc: 'http://cdn.flaticon.com/svg/25/25429.svg',refreshicon.svg
-                rotateSrc: self.$parent.baseUrl + '/images/refreshicon.svg',
-                //deleteSrc: 'http://cdn.flaticon.com/svg/51/51517.svg',
-                deleteSrc: self.$parent.baseUrl + '/images/closedeleteicon.svg',
-                //resizeSrcL: 'http://cdn.flaticon.com/svg/25/25476.svg',
-                resizeSrcL: self.$parent.baseUrl + '/images/arrowsicon.svg',
-                isLoaded: false,
-                isLoaded1: false,
-                isLoaded2: false,
-                isLoaded3: false,
-
-                _drawControl: function _drawControl(control, ctx, methodName, left, top) {
-
-                    if (!this.isControlVisible(control)) {
-                        return;
-                    }
-                    var size = this.cornerSize;
-                    isVML() || this.transparentCorners || ctx.clearRect(left, top, size, size);
-
-                    if (control !== 'bl' && control !== 'tl' && control !== 'mtr' && control !== 'tr' && control !== 'br' && control !== 'mt') ctx['fillRect'](left, top, size, size);
-
-                    if (control === 'mtr') {
-
-                        if (this.isLoaded2) {
-                            ctx.drawImage(this.selectedIconImage2, left, top, size, size);
-                        } else {
-                            var self = this;
-                            self.isLoaded2 = true;
-                            this.selectedIconImage2.src = this.rotateSrc;
-                        }
-                    }
-
-                    if (control === 'bl') {
-                        if (this.isLoaded) {
-                            ctx.drawImage(this.selectedIconImage, left, top, size, size);
-                        } else {
-                            var self = this;
-                            self.isLoaded = true;
-                            this.selectedIconImage.src = this.resizeSrcL;
-                        }
-                    }
-
-                    if (control === 'tr') {
-                        if (this.isLoaded) {
-                            ctx.drawImage(this.selectedIconImage, left, top, size, size);
-                        } else {
-                            var self = this;
-                            self.isLoaded = true;
-                            this.selectedIconImage.src = this.resizeSrcL;
-                        }
-                    }
-
-                    if (control === 'mt') {
-                        if (this.isLoaded1) {
-                            ctx.drawImage(this.selectedIconImage1, left, top, size, size);
-                        } else {
-                            var self = this;
-                            self.isLoaded1 = true;
-                            this.selectedIconImage1.src = this.deleteSrc;
-                        }
-                    }
-
-                    if (control === 'br') {
-                        if (this.isLoaded) {
-                            ctx.drawImage(this.selectedIconImage, left, top, size, size);
-                        } else {
-                            var self = this;
-                            self.isLoaded = true;
-                            this.selectedIconImage.src = this.resizeSrcL;
-                        }
-                    }
-
-                    if (control === 'tl') {
-                        if (this.isLoaded) {
-                            ctx.drawImage(this.selectedIconImage, left, top, size, size);
-                        } else {
-                            var self = this;
-                            self.isLoaded = true;
-                            this.selectedIconImage.src = this.resizeSrcL;
-                        }
-                    }
-
-                    this.setControlsVisibility({
-                        bl: true,
-                        br: true,
-                        tl: true,
-                        tr: true,
-                        mt: true,
-                        mb: false,
-                        ml: false,
-                        mr: false,
-                        mtr: true
-                    });
-                }
-
-            });
-
-            var cursorOffset = { mt: 0, tr: 1, mr: 2, br: 3, mb: 4, bl: 5, ml: 6, tl: 7 };
-
-            //degreesToRadians = fabric.util.degreesToRadians;
-            fabric.util.object.extend(fabric.Canvas.prototype, {
-                setCursor: function setCursor(value) {
-                    this.upperCanvasEl.style.cursor = value;
-                },
-                _getActionFromCorner: function _getActionFromCorner(target, corner) {
-                    if (corner && corner === 'mtr') {
-                        var action_rotate = target ? 'rotate' : 'rotate';
-                        return action_rotate;
-                    }
-
-                    if (corner && corner === 'tl') {
-                        var action_scale = target ? 'scale' : 'scale';
-                        return action_scale;
-                    }
-                    if (corner && corner === 'tr') {
-                        var action_scale = target ? 'scale' : 'scale';
-                        return action_scale;
-                    }
-                    if (corner && corner === 'bl') {
-                        var action_scale = target ? 'scale' : 'scale';
-                        return action_scale;
-                    }
-                    if (corner && corner === 'br') {
-                        var action_scale = target ? 'scale' : 'scale';
-                        return action_scale;
-                    }
-
-                    if (corner === 'mt') {
-                        if (this.getActiveObject()) {
-                            this.remove(this.getActiveObject());
-                        }
-                    }
-                }
-            });
 
             self.canvas = new fabric.Canvas('canvasMain', {
                 preserveObjectStacking: true
@@ -16956,8 +16890,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 img.id = "user_image";
                 img.selectable = false;
                 img.globalCompositeOperation = 'destination-over';
-                img.hasControls = false;
-                img.setControlsVisibility(HideControls);
                 self.canvas.setHeight(img.height);
                 self.canvas.setWidth(img.width);
 
@@ -16967,6 +16899,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 if (scaleW > scaleH) scale = scaleH;else scale = scaleW;
 
+                if ($(window).width() > 768) {
+                    $(".canvas-container").css("transform", "scale(" + scale * 0.8 + ")");
+                    $(".canvas-wrapper").css('width', parseInt(img.width * scale * 0.8) + 'px');
+                    $(".canvas-wrapper").css('height', parseInt(img.height * scale * 0.8) + 'px');
+                } else {
+                    $(".canvas-container").css("transform", "scale(" + scale + ")");
+                    $(".canvas-wrapper").css('width', parseInt(img.width * scale) + 'px');
+                    $(".canvas-wrapper").css('height', parseInt(img.height * scale) + 'px');
+                }
+
                 self.canvas.forEachObject(function (obj) {
                     var setCoords = obj.setCoords.bind(obj);
                     obj.on({
@@ -16975,28 +16917,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         rotating: setCoords
                     });
                 });
-
-                if ($(window).width() > 768) {
-                    $(".canvas-container").css("transform", "scale(" + scale * 1.25 + ")");
-                    $(".canvas-wrapper").css('width', parseInt(img.width * scale * 1.25) + 'px');
-                    $(".canvas-wrapper").css('height', parseInt(img.height * scale * 1.25) + 'px');
-                } else {
-                    $(".canvas-container").css("transform", "scale(" + scale + ")");
-                    $(".canvas-wrapper").css('width', parseInt(img.width * scale) + 'px');
-                    $(".canvas-wrapper").css('height', parseInt(img.height * scale) + 'px');
-                }
-
                 self.canvas.add(img);
 
                 var cornerSize = 15;
                 cornerSize /= scale;
 
                 fabric.Object.prototype.set({
-                    borderColor: '#f9cf0b',
-                    cornerColor: 'transparent',
+                    borderColor: '#43740b',
+                    cornerColor: '#539a00',
                     cornerSize: cornerSize,
                     rotatingPointOffset: cornerSize * 2,
-                    transparentCorners: true
+                    transparentCorners: false
                 });
             });
         });
@@ -17030,8 +16961,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 self.canvas.calcOffset();
             });
         },
+        removeSticker: function removeSticker() {
+            var self = this;
+            if (self.canvas.getActiveObject().id !== "user_image") {
+                var activeObject = self.canvas.getActiveObject();
+                self.canvas.remove(activeObject);
+            }
+        },
         uploadModitiedImage: function uploadModitiedImage() {
-            var _this2 = this;
+            var _this = this;
 
             var self = this;
 
@@ -17068,34 +17006,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var formData = new FormData();
             formData.append('photo', blob);
-            formData.append('firstName', this.firstName);
-            formData.append('lastName', this.lastName);
-            formData.append('email', this.email);
-            formData.append('livingPlace', this.livingPlace);
-            formData.append('name', this.firstName + " " + this.lastName);
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post(this.$parent.apiUrl + 'gallery/store', formData, config).then(function (response) {
-                _this2.button = 'Upload';
-                _this2.image = '';
-                _this2.$parent.$emit('successUpload', blob);
-                _this2.isDisabled = false;
+                console.log("uspesan upload!");
+                _this.button = 'Upload';
+                _this.image = '';
+                _this.$parent.$emit('successUpload', blob);
+                _this.isDisabled = false;
                 $('.save').css("opacity", "1");
                 window.location.replace(self.$parent.baseUrl + '/gallery/item/hvala?id=' + response.data.item_data["item_id"]);
             }).catch(function (err) {
-                _this2.isDisabled = false;
+                console.log("ne uspesan upload!");
+
+                _this.isDisabled = false;
                 $('.save').css("opacity", "1");
                 var array = {
                     'type': 'error',
                     'msg': err
                 };
-                _this2.showModal(array);
+                _this.showModal(array);
             });
         }
     }
 });
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -17104,77 +17040,94 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col-lg-12" },
+    { staticClass: "col-lg-12 row modify-image" },
     [
-      _c(
-        "div",
-        { staticClass: "col-lg-12 col-centered  modify-image-wrapper" },
-        [
-          _c("div", { staticClass: "col-lg-8 col-centered modify-image" }, [
-            _vm._m(0),
-            _vm._v(" "),
+      _c("div", { staticClass: "col-lg-12 col-center" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "col-lg-12 col-centered col-sm-12 col-md-12 col-xs-12 remove-sticker"
+          },
+          [
             _c(
-              "div",
-              { staticClass: "col-lg-2 col-md-2 col-sm-12 choose-sticker" },
-              [
-                _c("img", {
-                  staticClass: "img-responsive",
-                  attrs: {
-                    src: _vm.$parent.baseUrl + "/images/stickers/oblak.png"
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.selectSticker(
-                        _vm.$parent.baseUrl + "/images/stickers/oblak.png"
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("img", {
-                  staticClass: "img-responsive",
-                  attrs: {
-                    src: _vm.$parent.baseUrl + "/images/stickers/brod.png"
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.selectSticker(
-                        _vm.$parent.baseUrl + "/images/stickers/brod.png"
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("img", {
-                  staticClass: "img-responsive",
-                  attrs: {
-                    src: _vm.$parent.baseUrl + "/images/stickers/sunce.png"
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.selectSticker(
-                        _vm.$parent.baseUrl + "/images/stickers/sunce.png"
-                      )
-                    }
-                  }
-                })
-              ]
-            ),
+              "button",
+              { staticClass: "delete", on: { click: _vm.removeSticker } },
+              [_vm._v("Obriši selektovani stiker")]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-lg-12 col-md-12 col-sm-12 choose-sticker" },
+          [
+            _c("img", {
+              staticClass: "img-responsive",
+              attrs: { src: _vm.$parent.baseUrl + "/images/stickers/logo.png" },
+              on: {
+                click: function($event) {
+                  _vm.selectSticker(
+                    _vm.$parent.baseUrl + "/images/stickers/logo.png"
+                  )
+                }
+              }
+            }),
             _vm._v(" "),
-            _c("div", { staticClass: "col-sm-12 modify-buttons-wrapper" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "button-upload",
-                  attrs: { disabled: _vm.isDisabled },
-                  on: { click: _vm.uploadModitiedImage }
-                },
-                [_vm._v("\n                    send\n                ")]
-              )
-            ])
-          ])
-        ]
-      ),
+            _c("img", {
+              staticClass: "img-responsive",
+              attrs: { src: _vm.$parent.baseUrl + "/images/stickers/vue.png" },
+              on: {
+                click: function($event) {
+                  _vm.selectSticker(
+                    _vm.$parent.baseUrl + "/images/stickers/vue.png"
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("img", {
+              staticClass: "img-responsive",
+              attrs: {
+                src: _vm.$parent.baseUrl + "/images/stickers/laravel.png"
+              },
+              on: {
+                click: function($event) {
+                  _vm.selectSticker(
+                    _vm.$parent.baseUrl + "/images/stickers/laravel.png"
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("img", {
+              staticClass: "img-responsive",
+              attrs: { src: _vm.$parent.baseUrl + "/images/stickers/bill.png" },
+              on: {
+                click: function($event) {
+                  _vm.selectSticker(
+                    _vm.$parent.baseUrl + "/images/stickers/bill.png"
+                  )
+                }
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-12 modify-buttons-wrapper" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button-upload",
+              attrs: { disabled: _vm.isDisabled },
+              on: { click: _vm.uploadModitiedImage }
+            },
+            [_vm._v("\n                Pošalji\n            ")]
+          )
+        ])
+      ]),
       _vm._v(" "),
       this.modalOpen
         ? _c("modal", { on: { close: _vm.showModal } }, [
@@ -17207,11 +17160,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-8 col-md-8 col-sm-12" }, [
-      _c("div", { staticClass: "canvas-wrapper aligner" }, [
-        _c("canvas", { attrs: { id: "canvasMain" } })
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "col-lg-8 col-md-8 col-sm-12 col-center" },
+      [
+        _c("div", { staticClass: "canvas-wrapper aligner" }, [
+          _c("canvas", { attrs: { id: "canvasMain" } })
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -17224,15 +17181,15 @@ if (false) {
 }
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(56)
+var __vue_script__ = __webpack_require__(57)
 /* template */
-var __vue_template__ = __webpack_require__(57)
+var __vue_template__ = __webpack_require__(58)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -17271,7 +17228,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17340,7 +17297,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -17424,7 +17381,7 @@ var staticRenderFns = [
               staticClass: "save scroll-top-button",
               attrs: { type: "submit", id: "show-modal" }
             },
-            [_vm._v("submit")]
+            [_vm._v("Pošalji")]
           )
         ])
       ])
@@ -17441,15 +17398,15 @@ if (false) {
 }
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(59)
+var __vue_script__ = __webpack_require__(60)
 /* template */
-var __vue_template__ = __webpack_require__(60)
+var __vue_template__ = __webpack_require__(61)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -17488,18 +17445,11 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -17524,65 +17474,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
+        var _this = this;
+
         $(".finishmodifyingimage-display").hide();
-        /*
-        this.$parent.$on('successUpload', (image) => {
+
+        this.$parent.$on('successUpload', function (image) {
             $(".modifyimage-display").hide();
             $(".finishmodifyingimage-display").show();
-            this.image = URL.createObjectURL(image);
+            _this.image = URL.createObjectURL(image);
         });
-        */
     }
 });
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-lg-12 show-item-page" }, [
+  return _c("div", { staticClass: "col-lg-12 row modify-image-finish" }, [
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "bottom-wrapper col-lg-12" }, [
         _c(
           "div",
-          {
-            staticClass:
-              "item-wrapper show-bottom-wrap col-lg-6 col-md-6 col-sm-12 col-xs-12"
-          },
+          { staticClass: "col-center col-lg-6 col-md-6 col-sm-12 col-xs-12" },
           [
-            _c("div", { staticClass: "rotate-wrapper" }, [
-              _c("div", { staticClass: "gallery-img-wrapper" }, [
-                _c("img", {
-                  staticClass: "gallery-item-image",
-                  attrs: { src: _vm.image }
-                })
-              ])
-            ])
+            _c("img", {
+              staticClass: "gallery-item-image",
+              attrs: { src: _vm.image }
+            })
           ]
         ),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-lg-6 col-md-6 col-sm-12 sub-description" },
-          [
-            _c("p", { staticClass: "thanks-message" }, [
-              _vm._v(
-                "Hvala na poslatoj fotografiji, nakon autorizacije će se naći u\n                    galeriji"
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _c(
-                "a",
-                { attrs: { href: _vm.$parent.baseUrl + "/gallery/index" } },
-                [_vm._v("link to gallery")]
-              )
-            ])
-          ]
-        )
+        _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+          _c("p", { staticClass: "thanks-message" }, [
+            _vm._v(
+              "Hvala na poslatoj fotografiji, nakon odobrenja administratora, naći će se\n                    u "
+            ),
+            _c(
+              "a",
+              { attrs: { href: _vm.$parent.baseUrl + "/gallery/index" } },
+              [_vm._v("galeriji")]
+            )
+          ])
+        ])
       ])
     ])
   ])
@@ -17598,19 +17535,19 @@ if (false) {
 }
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(62)
+  __webpack_require__(63)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(64)
+var __vue_template__ = __webpack_require__(65)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -17649,13 +17586,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(63);
+var content = __webpack_require__(64);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -17675,7 +17612,7 @@ if(false) {
 }
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(12)(false);
@@ -17689,7 +17626,7 @@ exports.push([module.i, "\n.modal-mask[data-v-53ab54d2] {\n    position: fixed;\
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -17721,7 +17658,7 @@ if (false) {
 }
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

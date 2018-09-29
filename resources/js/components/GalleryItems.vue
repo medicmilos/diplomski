@@ -1,61 +1,59 @@
 <template>
-    <div class="col-lg-12" style="margin-bottom: 5rem;">
-        <div class="container" style="margin-bottom: 5rem;">
-            <div class="row">
-                <div class="col-lg-4 col-md-4">
-                    <a v-bind:href="$parent.baseUrl+'/gallery/participate'">
-                        participate
+    <div class="col-lg-12 gallery row">
+        <div class="item-wrapper col-lg-4 col-md-4 col-sm-6 col-xs-12" v-for="item in $parent.appItems">
+            <div class="item-inner-wrapper">
+                <div class="item-outter-wrapper">
+                    <a v-bind:href="$parent.baseUrl+'/gallery/item/show/'+item.id">
+
+                        <img class=""
+
+                             :src="$parent.pgItemUrl+item.item_data.photo">
+
                     </a>
                 </div>
-            </div>
-            <div class="component-body col-lg-12">
-                <div class="col-lg-12" style="padding:0">
-                    <div class="col-lg-12 ">
-                        <div class="item-wrapper col-lg-4 col-md-4 col-sm-6 col-xs-12"
-                             v-for="item in $parent.appItems">
-                            <div class="">
-                                <a v-bind:href="$parent.baseUrl+'/gallery/item/show/'+item.id">
-                                    <div class="">
-                                        <img class=""
-
-                                             :src="$parent.pgItemUrl+item.item_data.photo">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class=" ">
-                                <span :title="item.item_data.name"
-                                      class="item-username">{{item.item_data.name}}</span><br/>
-                                <span class="item-like" >
-                                     <span :id="item.item_data.item_id">
-                                Glasovi: {{item.likeCount}}
-                            </span>
-                                    <br/>
-                            <span class="vote-button" @click="calculateTop"
-                                  v-on:click="processLike(item.item_data.item_id)">vote</span>
-
-                        </span>
-                                <span class="item-like" >
-                                    <span :id="item.item_data.item_id">
-                                Glasovi: {{item.likeCount}}
-                            </span>
-                                    <br/>
-                            <span class="vote-button" style="opacity:0.5">vote</span>
-
-                        </span>
-                                <br/>
-                                <span class="item-share" v-on:click="fbShare(item.id)">share</span>
-                            </div>
+                <div class="">
+                    <div class="middle-block">
+                        <div class="date">
+                            <span class="item-date">{{modifyDateTime(item.created_at.date)}}</span>
                         </div>
+                        <div class="name">
+                            <span :title="item.item_data.name" class="item-username">{{item.item_data.name}}</span>
+                        </div>
+                    </div>
+                    <div class="bottom-block">
+                        <div class="vote">
+                    <span class="item-like" v-if="item.canLike">
+                            <span class="vote-button" @click="calculateTop"
+                                  v-on:click="processLike(item.item_data.item_id)"><img
+                                :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
 
+                        </span>
+                            <span class="item-like" v-else>
+                            <span class="vote-button" style="opacity:0.5"><img
+                                :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
+
+                        </span>
+                        </div>
+                        <div class="share">
+
+
+                            <span :id="item.item_data.item_id">
+                                Glasovi: {{item.likeCount}}
+                            </span>
+                            <span class="item-share" v-on:click="fbShare(item.id)"><img
+                                :src="$parent.baseUrl+'/images/btn_share.png'"></span>
+                            <div class="clear"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <mugen-scroll v-if="$parent.infScroll" :handler="fetchData" :should-handle="!loading">
+
+        <mugen-scroll class="col-lg-12" v-if="$parent.infScroll" :handler="fetchData" :should-handle="!loading">
             <div v-if="this.$parent.moreItems === 1 && this.$parent.appItems.length > 6">
                 <img style="max-width: 6.5rem" :src="$parent.baseUrl+'/images/loading.gif'">
             </div>
-            <div class="" v-else>
+            <div v-else>
                 Kraj podataka za prikaz.
             </div>
         </mugen-scroll>
@@ -97,8 +95,6 @@
                 this.fromTop = button.pageY;
             },
             showModal(msg) {
-
-
                 this.modalData = msg;
                 this.modalOpen = !this.modalOpen;
 
@@ -106,11 +102,9 @@
                     $(".modal-wrapper").css("top", this.fromTop + 'px');
                     console.log(this.fromTop);
                 });
-
-
             },
             processLike(item) {
-                console.log("LIKE - " + item)
+                console.log("LIKE - " + item);
                 this.$parent.likeItem(item, this.likeSuccess, this.likeError);
                 this.likedItemId = item;
             },
@@ -118,8 +112,8 @@
                 if (e) {
                     let baseUrl = this.$parent.baseUrl;
                     let array = {
-                        'type': '',
-                        'msg': "error"
+                        'type': 'error',
+                        'msg': "forbidden"
                     };
                     this.showModal(array);
                     this.$parent.forbidden = false;
@@ -132,8 +126,8 @@
                     this.$parent.updateFrontEndLike(id);
                     let baseUrl = this.$parent.baseUrl;
                     let array = {
-                        'type': '',
-                        'msg': "error"
+                        'type': 'error',
+                        'msg': "error general"
                     };
                     this.showModal(array);
                 }
@@ -149,27 +143,12 @@
                 this.loading = false;
                 this.initDataFetch = false;
             },
-            searchFetch() {
-
-                this.loading = true;
-                this.$parent.appItems = [];
-                this.$parent.currentOffset = -1;
-                this.$parent.startingOffset = -1;
-
-                let searchValue = $(".gallery-search").val();
-                //console.log(searchValue);
-                this.$parent.insertMoreDataToList(searchValue);
-                this.loading = false;
-            },
-            onRefresh: function () {
-                let self = this;
-                return new Promise(function (resolve, reject) {
-                    setTimeout(function () {
-                        self.$parent.loadNewData();
-                        resolve();
-                    }, 750);
-                });
-            },
+            modifyDateTime(dateTime) {
+                let dateFormat = require('dateformat');
+                let input = new Date(dateTime);
+                let output = dateFormat(input, "dd.mm.yyyy.");
+                return output;
+            }
         }
     }
 </script>

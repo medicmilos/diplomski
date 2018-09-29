@@ -26,7 +26,7 @@
                                 </div>
                                 <br>
                                 <div class="button-row">
-                                    <button type="submit" class="save scroll-top-button" id="show-modal">submit</button>
+                                    <button type="submit" class="save scroll-top-button" id="show-modal">Pošalji</button>
                                 </div>
                             </div>
                         </div>

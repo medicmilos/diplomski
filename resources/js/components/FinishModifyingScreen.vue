@@ -1,20 +1,13 @@
 <template>
-    <div class="col-lg-12 show-item-page">
+    <div class="col-lg-12 row modify-image-finish">
         <div class="container">
             <div class="bottom-wrapper col-lg-12">
-                <div class="item-wrapper show-bottom-wrap col-lg-6 col-md-6 col-sm-12 col-xs-12">
-
-                    <div class="rotate-wrapper">
-                        <div class="gallery-img-wrapper">
-                            <img class="gallery-item-image" v-bind:src="image">
-                        </div>
-                    </div>
+                <div class="col-center col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <img class="gallery-item-image" v-bind:src="image">
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 sub-description">
-                    <p class="thanks-message">Hvala na poslatoj fotografiji, nakon autorizacije će se naći u
-                        galeriji</p>
-                    <p><a v-bind:href="$parent.baseUrl+'/gallery/index'">link to gallery</a>
-                    </p>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <p class="thanks-message">Hvala na poslatoj fotografiji, nakon odobrenja administratora, naći će se
+                        u <a v-bind:href="$parent.baseUrl+'/gallery/index'">galeriji</a></p>
                 </div>
             </div>
         </div>
@@ -30,13 +23,13 @@
         },
         mounted() {
             $(".finishmodifyingimage-display").hide();
-            /*
+
             this.$parent.$on('successUpload', (image) => {
                 $(".modifyimage-display").hide();
                 $(".finishmodifyingimage-display").show();
                 this.image = URL.createObjectURL(image);
             });
-            */
+
         }
     }
 </script>

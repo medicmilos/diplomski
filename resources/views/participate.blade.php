@@ -1,16 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="container app-wrapper" id="app">
-                <div class="participate-container">
-                    <participate class="participate-display" style="padding-top: 4rem"></participate>
-                    <modifyimage class="modifyimage-display"></modifyimage>
-                    <finishmodifyingimage class="finishmodifyingimage-display"></finishmodifyingimage>
-                </div>
-            </div>
-        </div>
+    <div class="container app-wrapper" id="app">
+        <participate class="participate-display" style="padding-top: 4rem"></participate>
+        <modifyimage class="modifyimage-display"></modifyimage>
+        <finishmodifyingimage class="finishmodifyingimage-display"></finishmodifyingimage>
+
     </div>
 @endsection
 @push('scripts')
@@ -18,5 +13,5 @@
 @endpush
 
 @section('title_text')
-    prijavi rad
+    Prijavi rad | ICT galerija
 @endsection
