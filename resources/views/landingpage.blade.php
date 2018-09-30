@@ -16,7 +16,7 @@
                 <img src="{{asset("images/3.png")}}">
             </div>
             <div class="col-lg-7">
-                <img class="col-center" src="{{asset("images/zola.png")}}">
+                <img class="col-center" src="{{asset("images/example.png")}}">
             </div>
         </div>
     </div>

@@ -10,6 +10,7 @@ import participate from './components/Participate.vue';
 import modifyimage from './components/ModifyImage.vue';
 import registration from './components/RegistrationForm.vue';
 import finishmodifyingimage from './components/FinishModifyingScreen.vue';
+import winners from './components/Winners.vue';
 
 Vue.use(VueAxios, axios);
 
@@ -37,6 +38,7 @@ new Vue({
         loadingData: 0,
         dataReady: false,
         baseUrl: baseUrl,
+        endPoint: '',
         apiUrl: baseUrl + '/api/v1/',
         pgItemUrl: baseUrl + "/storage/gallery/preview/",
         resource_url: baseUrl + '/api/v1/gallery/index/paginate',

@@ -67,15 +67,13 @@ img {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.header {
-    background-color: #539a00;
+.header-wrap {
+    background: url("../images/ictheader-bg-big.jpg");
+    background-repeat: repeat-x;
 }
 
 .header .navbar {
-    background: url("../images/ictheader-bg-big.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+    background-color: transparent !important;
 }
 
 .header .navbar .nav-item.active a,
@@ -250,13 +248,18 @@ button {
 }
 
 @media only screen and (max-width: 991px) {
-    .header .navbar {
-        background: none;
-        background-color: #539a00 !important;
+    .header .navbar-nav {
+        text-align: center;
     }
 
     .header .navbar-nav {
-        text-align: center;
+        background-color: #4b8a00;
+        margin-top: 4rem;
+        width: 100%;
+    }
+
+    .navbar-toggler {
+        background: #fff;
     }
 }
 

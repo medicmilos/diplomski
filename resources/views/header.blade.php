@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header-wrap">
     <div class="container header">
         <div class="col-lg-12">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,7 +20,11 @@
                             <a class="nav-link" href="<?php  echo url('/'); ?>/gallery/winners">Pobednici</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/logout') }}">logout</a>
+                            @if (Auth::check())
+                                <a class="nav-link" href="{{ url('/logout') }}">Odjavi se</a>
+                            @else
+                                <a class="nav-link" href="{{ url('/login') }}">Prijava/Registracija</a>
+                            @endif
                         </li>
                     </ul>
                 </div>

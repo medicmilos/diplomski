@@ -1463,11 +1463,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RegistrationForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_RegistrationForm_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_FinishModifyingScreen_vue__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_FinishModifyingScreen_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_FinishModifyingScreen_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Winners_vue__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Winners_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_Winners_vue__);
 var Vue = __webpack_require__(16);
 window.Vue = Vue;
 
 var axios = __webpack_require__(2);
 var VueAxios = __webpack_require__(37);
+
 
 
 
@@ -1498,6 +1501,7 @@ new Vue({
         loadingData: 0,
         dataReady: false,
         baseUrl: baseUrl,
+        endPoint: '',
         apiUrl: baseUrl + '/api/v1/',
         pgItemUrl: baseUrl + "/storage/gallery/preview/",
         resource_url: baseUrl + '/api/v1/gallery/index/paginate',
@@ -17692,6 +17696,173 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(71)
+/* template */
+var __vue_template__ = __webpack_require__(72)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Winners.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3fef0779", Component.options)
+  } else {
+    hotAPI.reload("data-v-3fef0779", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'winners',
+    created: function created() {
+        this.$parent.endPoint = 'winners';
+        this.fetchData();
+    },
+
+    components: {},
+    data: function data() {
+        return {
+            loading: false
+        };
+    },
+
+    methods: {
+        fetchData: function fetchData() {
+            this.loading = true;
+            if (this.$parent.currentOffset !== 1) {
+                this.$parent.insertMoreDataToList();
+            }
+            this.loading = false;
+        },
+        modifyDateTime: function modifyDateTime(dateTime) {
+            var dateFormat = __webpack_require__(43);
+            var output = dateFormat(dateTime.replace(/-/g, "/"), "dd. mm. yyyy.");
+            return output;
+        },
+        convertLink: function convertLink(data) {
+            var substring = "http";
+            var isLink = data.includes(substring);
+            var finalData = "";
+
+            if (isLink) finalData = "<a href='" + data + "' target='_blank'>Link ka radu</a>";else finalData = data;
+
+            return finalData;
+        }
+    }
+});
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-lg-12 gallery-component-wrapper" }, [
+    _c(
+      "div",
+      { staticClass: "component-body col-lg-12 col-md-12 col-sm-12 col-xs-12" },
+      _vm._l(_vm.$parent.appItems, function(item) {
+        return _c(
+          "div",
+          { staticClass: "item-wrapper col-lg-4 col-md-6 col-sm-6 col-xs-12" },
+          [
+            _c("div", { staticClass: "item-inner-wrapper" }, [
+              _c("div", { staticClass: "item-outter-wrapper" }, [
+                _c("img", {
+                  attrs: { src: _vm.$parent.pgItemUrl + item.photo }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "middle-block" }, [
+                _c("div", [
+                  _vm._v(_vm._s(_vm.modifyDateTime(item.created_at)))
+                ]),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "itemTitleName",
+                  domProps: {
+                    innerHTML: _vm._s(_vm.convertLink(item.username))
+                  }
+                })
+              ])
+            ])
+          ]
+        )
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3fef0779", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
