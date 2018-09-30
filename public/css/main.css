@@ -26,6 +26,10 @@ img {
     max-width: 100%;
 }
 
+*:focus {
+    outline: none;
+}
+
 @font-face {
     font-family: KGSecondChancesSolid;
     src: url(../fonts/KGSecondChancesSolid.ttf);
@@ -333,4 +337,69 @@ button {
 
 .landing .title {
     margin-bottom: 3rem;
+}
+
+.login {
+    text-align: center;
+}
+
+.login .form-check {
+    text-align: left;
+}
+
+.login .page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 3rem;
+}
+
+.login .card {
+    background: none;
+    border: none;
+}
+
+.login .form-control {
+    background: transparent;
+    border: none;
+    min-height: 2rem;
+    outline: none;
+    box-shadow: none;
+    margin-left: 1rem;
+    width: 90%;
+    color: #000;
+    font-weight: bold;
+}
+
+.form-control:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.input-wrapper {
+    background: url("../images/input.png");
+    border: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-width: 25rem;
+    min-height: 3rem;
+    padding-top: 0.1rem;
+}
+
+.form-control:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    color: #000;
+    -webkit-text-fill-color: #000;
+    background-image: none;
+}
+
+.login .form-group {
+    color: #000000;
+    font-weight: bold;
+}
+
+.login .reg-link {
+    color: #539a00;
 }

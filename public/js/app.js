@@ -17273,6 +17273,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -17305,31 +17313,37 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-lg-12 show-item-page" }, [
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "bottom-wrapper col-lg-12 new-form-page" }, [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "form",
-            {
-              staticClass: "participate-form",
-              attrs: { id: "userForm", method: "POST" },
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.formValidateBeforeSubmit($event)
-                }
+    _c("div", { staticClass: "container login" }, [
+      _c("div", { staticClass: "col-lg-8 col-center" }, [
+        _c("p", { staticClass: "page-title" }, [_vm._v("Podaci o korisniku")]),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "participate-form",
+            attrs: { id: "userForm", method: "POST" },
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.formValidateBeforeSubmit($event)
               }
-            },
-            [
-              _c("input", {
-                attrs: { type: "hidden", name: "_token" },
-                domProps: { value: _vm.csrf }
-              }),
-              _vm._v(" "),
-              _vm._m(0)
-            ]
-          )
-        ])
+            }
+          },
+          [
+            _c("input", {
+              attrs: { type: "hidden", name: "_token" },
+              domProps: { value: _vm.csrf }
+            }),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3)
+          ]
+        )
       ])
     ])
   ])
@@ -17339,41 +17353,57 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-6 col-md-6 col-sm-12 col-center" }, [
-        _c("br"),
-        _vm._v(" "),
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-md-8 col-center" }, [
         _c("div", { staticClass: "input-wrapper" }, [
           _c("input", {
-            staticClass: "form-input firstName",
+            staticClass: "form-control form-input firstName",
             attrs: { name: "firstName", type: "text", placeholder: "Ime" }
           })
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-md-8 col-center" }, [
         _c("div", { staticClass: "input-wrapper" }, [
           _c("input", {
-            staticClass: "form-input lastName",
+            staticClass: "form-control form-input lastName",
             attrs: { name: "lastName", type: "text", placeholder: "Prezime" }
           })
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-md-8 col-center" }, [
         _c("div", { staticClass: "input-wrapper" }, [
           _c("input", {
-            staticClass: "form-input address",
+            staticClass: "form-control form-input address",
             attrs: {
               name: "livingPlace",
               type: "text",
               placeholder: "Mesto stanovanja"
             }
           })
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-md-8 col-center" }, [
         _c("div", { staticClass: "button-row" }, [
           _c(
             "button",
@@ -17381,7 +17411,7 @@ var staticRenderFns = [
               staticClass: "save scroll-top-button",
               attrs: { type: "submit", id: "show-modal" }
             },
-            [_vm._v("Pošalji")]
+            [_vm._v("Pošalji\n                            ")]
           )
         ])
       ])

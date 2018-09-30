@@ -11,5 +11,5 @@
     <script src="{{ asset('js/app.js') }}"></script>
 @endpush
 @section('title_text')
-    registruj se
+    Popuni podatke | ICT galerija
 @endsection

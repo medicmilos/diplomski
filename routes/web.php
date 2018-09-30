@@ -52,9 +52,9 @@ Route::group(['middleware' => 'web', 'prefix' => '/api/v1/gallery'], function ()
 
 Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function(){
     Route::get('show/{modelId}', 'GalleryApi@indexWithModalShown');
-    Route::get('index', 'GalleryApi@index');
-    Route::get('/', 'GalleryApi@index');
+    Route::get('index', 'GalleryApi@index')->name('galleryindex');
+    Route::get('/', 'GalleryApi@index')->name('galleryindex');
 
-    Route::get('/participate', 'GalleryApi@participate');
-    Route::get('/winners', 'GalleryApi@winners');//ToDo winners???
+    Route::get('/participate', 'GalleryApi@participate')->name('participate');
+    Route::get('/winners', 'GalleryApi@winners')->name('winners');//ToDo winners???
 });

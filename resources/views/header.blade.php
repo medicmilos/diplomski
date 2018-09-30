@@ -10,14 +10,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item active">
+                        <li class="nav-item {{ ((\Request::route()->getName() == 'participate')) ? 'active' : '' }}">
                             <a class="nav-link" href="<?php  echo url('/'); ?>/gallery/participate">Prijavi rad</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{ ((\Request::route()->getName() == 'galleryindex')) ? 'active' : '' }}">
                             <a class="nav-link" href="<?php  echo url('/'); ?>/gallery/index">Galerija</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php  echo url('/'); ?>/gallery/index">Pobednici</a>
+                        <li class="nav-item {{ ((\Request::route()->getName() == 'winners')) ? 'active' : '' }}">
+                            <a class="nav-link" href="<?php  echo url('/'); ?>/gallery/winners">Pobednici</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/logout') }}">logout</a>
