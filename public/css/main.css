@@ -350,11 +350,13 @@ button {
     text-align: left;
 }
 
-.login .page-title {
+.login .page-title,
+.winners .page-title {
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
     padding-top: 3rem;
+    margin: 0 auto;
 }
 
 .login .card {
@@ -405,4 +407,23 @@ button {
 
 .login .reg-link {
     color: #539a00;
+}
+
+.mugen-scroll div {
+    padding: 5rem;
+}
+
+.winners .middle-block p {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.winners .middle-block p a {
+    color: #539a00;
+    font-weight: bold;
+}
+
+.winners .middle-block {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
 }

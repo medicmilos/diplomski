@@ -61,6 +61,7 @@ new Vue({
         modifyimage,
         finishmodifyingimage,
         registration,
+        winners,
     },
     methods: {
         likeItem: function (id, success, fail) {
@@ -111,7 +112,6 @@ new Vue({
 
             let queryString = "?itemOffsetId=" + offset_id + "&itemLimit=" + limit;
 
-
             let self = this;
             this.loadData(queryString, function (json) {
                 if (json.length > 0) {
@@ -140,7 +140,9 @@ new Vue({
             if (queryString === null || queryString === undefined || queryString === '') {
                 return false;
             }
-            let apiUrl = this.apiUrl + "gallery/index";
+            let apiUrl = this.apiUrl + "gallery/" + this.endPoint;
+
+
 
             let url = apiUrl + queryString;
             this.get(url, null, success, error, refresh);

@@ -24,5 +24,6 @@
 13. Run npm install --save axios
 13. Run npm install --save vue-mugen-scroll
 13. Run npm install --save vue-picture-input
+14. Run npm install --save dateformat
 
 ## ADMIN PANEL (TBD)

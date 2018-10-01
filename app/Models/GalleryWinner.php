@@ -9,9 +9,9 @@
 namespace App\Models;
 
 
-use App\Models\GalleryModel;
+use Illuminate\Database\Eloquent\Model;
 
-class GalleryWinner extends GalleryModel
+class GalleryWinner extends Model
 {
 
     protected $table = 'gallery_winners';

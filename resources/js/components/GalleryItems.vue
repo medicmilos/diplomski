@@ -4,11 +4,7 @@
             <div class="item-inner-wrapper">
                 <div class="item-outter-wrapper">
                     <a v-bind:href="$parent.baseUrl+'/gallery/item/show/'+item.id">
-
-                        <img class=""
-
-                             :src="$parent.pgItemUrl+item.item_data.photo">
-
+                        <img :src="$parent.pgItemUrl+item.item_data.photo">
                     </a>
                 </div>
                 <div class="">
@@ -25,12 +21,12 @@
                     <span class="item-like" v-if="item.canLike">
                             <span class="vote-button" @click="calculateTop"
                                   v-on:click="processLike(item.item_data.item_id)"><img
-                                :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
+                                    :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
 
                         </span>
                             <span class="item-like" v-else>
                             <span class="vote-button" style="opacity:0.5"><img
-                                :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
+                                    :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
 
                         </span>
                         </div>
@@ -41,7 +37,7 @@
                                 Glasovi: {{item.likeCount}}
                             </span>
                             <span class="item-share" v-on:click="fbShare(item.id)"><img
-                                :src="$parent.baseUrl+'/images/btn_share.png'"></span>
+                                    :src="$parent.baseUrl+'/images/btn_share.png'"></span>
                             <div class="clear"></div>
                         </div>
                     </div>
@@ -76,6 +72,7 @@
     export default {
         name: 'appPagination',
         created() {
+            this.$parent.endPoint = 'index';
         },
         components: {
             MugenScroll

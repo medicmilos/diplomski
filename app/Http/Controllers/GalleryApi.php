@@ -75,7 +75,7 @@ class GalleryApi extends Controller
 
     public function apiWinners()
     {
-        return GalleryWinner::query()->where('approved', '=', 1)->orderBy('created_at', 'desc')->join('gallery_item_data', 'gallery_item_data.item_id', '=', 'gallery_winners.item_id')->get();
+        return GalleryWinner::query()->where('approved', '=', 1)->orderBy('gallery_winners.created_at', 'desc')->join('gallery_item_data', 'gallery_item_data.item_id', '=', 'gallery_winners.item_id')->get();
     }
 
     public function apiShow($id)
@@ -272,6 +272,7 @@ class GalleryApi extends Controller
     {
         return base_path(afw_service_config('gallery.uploadPath'));//ToDo paste relative path
     }
+
 
     protected function thumbsPath()
     {
