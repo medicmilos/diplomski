@@ -60,3 +60,30 @@ Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function () {
     Route::get('/winners', 'GalleryApi@winners')->name('winners');//ToDo winners???
 });
 
+//admin
+
+/*
+Route::get('admin/insert', 'UserController::@index');
+Route::post('store', 'UserController::@store');
+*/
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
+    Route::get('user', 'UserController@index');
+    Route::get('user/index', 'UserController@index');
+    Route::get('user/insert', 'UserController@insert');
+    Route::get('user/update/{id}', 'UserController@edit');
+    Route::post('user/store', 'UserController@store');
+    Route::patch('user/edit/{id}', 'UserController@update');
+    Route::get('user/delete/{id}', 'UserController@destroy');
+
+
+    Route::get('index', function () {
+        return view('admin/index');
+    });
+    Route::get('/', function () {
+        return view('admin/index');
+    });
+
+    Route::get('gallery', 'GalleryController@index');
+    Route::get('gallery/index', 'GalleryController@index');
+});
