@@ -17017,7 +17017,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.$parent.$emit('successUpload', blob);
                 _this.isDisabled = false;
                 $('.save').css("opacity", "1");
-                window.location.replace(self.$parent.baseUrl + '/gallery/item/hvala?id=' + response.data.item_data["item_id"]);
             }).catch(function (err) {
                 console.log("ne uspesan upload!");
 
@@ -17692,7 +17691,8 @@ var render = function() {
                 "a",
                 {
                   attrs: {
-                    href: _vm.$parent.baseUrl + "/gallery/item/show/" + item.id
+                    href:
+                      _vm.$parent.baseUrl + "/gallery/item/show/" + item.item_id
                   }
                 },
                 [

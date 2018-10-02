@@ -57,7 +57,7 @@ Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function () {
     Route::get('/', 'GalleryApi@index')->name('galleryindex');
 
     Route::get('/participate', 'GalleryApi@participate')->name('participate');
-    Route::get('/winners', 'GalleryApi@winners')->name('winners');//ToDo winners???
+    Route::get('/winners', 'GalleryApi@winners')->name('winners');
 });
 
 //admin
@@ -86,4 +86,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
 
     Route::get('gallery', 'GalleryController@index');
     Route::get('gallery/index', 'GalleryController@index');
+    Route::post('gallery/update', 'GalleryController@update');
+    Route::post('gallery/winner', 'GalleryController@winner');
+    Route::get('gallery/delete/{id}', 'GalleryController@destroy');
+
+
 });

@@ -114,13 +114,13 @@ class GalleryApi extends Controller
         } catch (\Exception $e) {
             $this->onException($e);
             throw $e;
-        } /*finally {
+        } finally {
             $this->afterStoreCallback($response);
             if (!$response) {
                 $response = response()->json(['message' => 'Doslo je do greske.'], 500);//ToDo fix this
             }
             return $response;
-        }*/
+        }
     }
 
     public function returnUploadedImage()
@@ -255,7 +255,7 @@ class GalleryApi extends Controller
 
     protected function afterStoreCallback($response)
     {
-        return;
+        return;//toDo remove unnessesery functions.. Like this one...
     }
 
     protected function beforeStoreCallback($request)

@@ -219,7 +219,6 @@
                         this.$parent.$emit('successUpload', blob);
                         this.isDisabled = false;
                         $('.save').css("opacity", "1");
-                        window.location.replace(self.$parent.baseUrl + '/gallery/item/hvala?id=' + response.data.item_data["item_id"]);
                     })
                     .catch(err => {
                         console.log("ne uspesan upload!");

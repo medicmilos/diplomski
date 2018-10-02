@@ -30,17 +30,75 @@
                     <td>{{$item->cycle_id}}</td>
                     <td>{{$item->created_at}}</td>
                     <td>{{$item->item_data->photo}}</td>
-                    <td>{{$item->approved}}</td>
-                    <td>{{$item->getIsWinnerAttribute()}}</td>
-                    <td><a href="#">edit</a> <a href="#">delete</a></td>
+                    <td><input type="checkbox" class="approved" value="{{$item->id}}"
+                               @if($item->approved) checked @endif ></td>
+
+
+                    <td><input type="checkbox" class="winner" value="{{$item->id}}"
+                                                                @if($item->getIsWinnerAttribute()) checked @endif ></td>
+                    <td><a href="delete/{{$item->id}}">delete</a></td>
 
                 </tr>
             @endforeach
             </tbody>
         </table>
-
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(".approved").change(function () {
+            let itemValue = $(this).is(":checked");
+            let itemId = $(this).val();
+            let id = itemValue ? 1 : 0;
+
+            let data = [];
+
+            data.push(itemId);
+            data.push(id);
+
+            $.ajax({
+                type: 'POST',
+                url: 'update',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {data: data},
+                success: function (data) {
+                    console.log("uspesno");
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+        });
+        $(".winner").change(function () {
+            let itemValue = $(this).is(":checked");
+            let itemId = $(this).val();
+            let id = itemValue ? 1 : 0;
+
+            let data = [];
+
+            data.push(itemId);
+            data.push(id);
+
+            $.ajax({
+                type: 'POST',
+                url: 'winner',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {data: data},
+                success: function (data) {
+                    console.log("uspesno");
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+        });
+
+    </script>
+@endpush
 
 @section('title_text')
     Pregled fotografija | ICT galerija

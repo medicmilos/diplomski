@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\GalleryItemData;
 use App\Models\GalleryItem;
+use App\Models\GalleryWinner;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,7 +33,7 @@ class GalleryController extends Controller
      */
     public function insert()
     {
-        return view("admin.user.insert");
+        //
     }
 
     public function create()
@@ -48,13 +49,7 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        $password = bcrypt($request['password']);
-        $request['password'] = $password;
-
-        User::create($request->all());
-
-        return redirect('admin/user/index');
-
+        //
     }
 
     /**
@@ -77,8 +72,7 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        $user = DB::table("users")->where('id', $id)->first();
-        return view('admin.user.update', compact('user'));
+        //
     }
 
     /**
@@ -88,12 +82,44 @@ class GalleryController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
+        $item = GalleryItem::findOrFail($request["data"][0]);
+        $item->approved = $request["data"][1];
+        $item->save();
 
-        return redirect('admin/user/index');
+        return redirect()->back();
+    }
+
+    public function winner(Request $request)
+    {
+        //toDo implement atuomatic approve of item after setting it to winner state
+        $is_winner = $request["data"][1];
+
+        $item_id = $request["data"][0];
+        $item = GalleryItem::findOrFail($item_id);
+        $user_id = $item["user_id"];
+        $created_at = $item["created_at"];
+        $cycle_id = Helper::getCurrentCycleId();
+
+        if ((bool)$is_winner) {
+            if (!(bool)$item['approved']) {
+                $item->approved = 1;
+                $item->save();
+            }
+            $winner = new GalleryWinner();
+            $winner->user_id = $user_id;
+            $winner->item_id = $item_id;
+            $winner->cycle_id = $cycle_id;
+            $winner->approved = 1;
+            $winner->created_at = $created_at;
+            $winner->save();
+        } else {
+            $winner = GalleryWinner::where('item_id', $item_id)->firstOrFail();
+            $winner->delete();
+        }
+
+        return back();
     }
 
     /**
@@ -104,8 +130,13 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return redirect('admin/user/index');
+        dd($id);
+
+        //toDo delete from all related tables
+
+        $item = GalleryItem::findOrFail($id);
+        $item->delete();
+        return redirect('admin/gallery/index');
+
     }
 }

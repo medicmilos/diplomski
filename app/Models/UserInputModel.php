@@ -23,14 +23,14 @@ class UserInputModel extends GalleryModel
             $model->user_id = Auth::user()->id;
             $model->cycle_id = Helper::getCurrentCycleId();//ToDo fix this
             if($model->cycle_id == -1){
-                abort(500, 'An error occured');//ToDo fix this
+                abort(500, 'Došlo je do greške.');//ToDo fix this
             }
             if (Schema::hasColumn($model->getTable(), 'approved')) {
                 $model->approved = config('settings.autoApprove', 0);//ToDo fix this
             }
             $cycle = Cycle::find(Helper::getCurrentCycleId());
             if($cycle && $cycle->allow_input == 0){
-                abort(403, 'This activity is now closed.');//ToDo fix this
+                abort(403, 'Aktivacija je završena.');//ToDo fix this
             }
             if ($cycle && $cycle->begun == 0) {
                 $cycle->begun = 1;
