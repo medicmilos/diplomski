@@ -91,35 +91,42 @@ class GalleryController extends Controller
         return redirect()->back();
     }
 
-    public function winner(Request $request)
+    public function updateToggle(Request $request)
     {
+        //  dd($request->all());
         //toDo implement atuomatic approve of item after setting it to winner state
-        $is_winner = $request["data"][1];
 
-        $item_id = $request["data"][0];
-        $item = GalleryItem::findOrFail($item_id);
-        $user_id = $item["user_id"];
-        $created_at = $item["created_at"];
-        $cycle_id = Helper::getCurrentCycleId();
+        $value = (int)$request->post('value');
+        $type = $request->post('type');
+        if (!is_numeric($value) || ($value != 0 && $value != 1)) abort(403);
+        $id = (int)$request->post('id');
+        if (!is_numeric($id)) abort(403);
+        $galleryItem = GalleryItem::findOrFail($id);
 
-        if ((bool)$is_winner) {
-            if (!(bool)$item['approved']) {
-                $item->approved = 1;
-                $item->save();
-            }
-            $winner = new GalleryWinner();
-            $winner->user_id = $user_id;
-            $winner->item_id = $item_id;
-            $winner->cycle_id = $cycle_id;
-            $winner->approved = 1;
-            $winner->created_at = $created_at;
-            $winner->save();
-        } else {
-            $winner = GalleryWinner::where('item_id', $item_id)->firstOrFail();
-            $winner->delete();
+        switch ($type) {
+            case 'winner' :
+                {
+                    $galleryWinner = GalleryWinner::where('item_id', $galleryItem->id)->first();
+                    if (!$galleryWinner) {
+                        $galleryWinner = new GalleryWinner();
+                        $galleryWinner->user_id = $galleryItem->user_id;
+                        $galleryWinner->item_id = $galleryItem->id;
+                        $galleryWinner->cycle_id = $galleryItem->cycle_id;
+                    }
+                    $galleryWinner->approved = $value;
+                    $galleryWinner->save();
+                    break;
+                }
+            case 'approve' :
+            default :
+                {
+                    $galleryItem->approved = $value;
+                    $galleryItem->save();
+                    break;
+                }
         }
 
-        return back();
+
     }
 
     /**

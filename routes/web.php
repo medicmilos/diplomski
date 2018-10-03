@@ -87,7 +87,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::get('gallery', 'GalleryController@index');
     Route::get('gallery/index', 'GalleryController@index');
     Route::post('gallery/update', 'GalleryController@update');
-    Route::post('gallery/winner', 'GalleryController@winner');
+    Route::post('gallery/updateToggle', 'GalleryController@updateToggle');
     Route::get('gallery/delete/{id}', 'GalleryController@destroy');
 
 

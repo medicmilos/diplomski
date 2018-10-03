@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
     <style>
         table, th, tr, td {
@@ -30,13 +30,48 @@
                     <td>{{$item->cycle_id}}</td>
                     <td>{{$item->created_at}}</td>
                     <td>{{$item->item_data->photo}}</td>
-                    <td><input type="checkbox" class="approved" value="{{$item->id}}"
-                               @if($item->approved) checked @endif ></td>
+                    <td>
 
 
-                    <td><input type="checkbox" class="winner" value="{{$item->id}}"
-                                                                @if($item->getIsWinnerAttribute()) checked @endif ></td>
-                    <td><a href="delete/{{$item->id}}">delete</a></td>
+                        <input type="checkbox"
+                               class="toggle-switch"
+                               @if($item->approved) checked @endif
+                               data-id="{{$item->id}}"
+                               value="{{$item->id}}"
+                               data-type="approve"
+                               data-toggle="toggle"
+                               data-on="Approved"
+                               data-off="Not approved"
+                               data-onstyle="success"
+                               data-offstyle="default"
+                        >
+
+                        {{--<div class="toggle-group">--}}
+                        {{--<label class="btn btn-success toggle-on">Approved</label>--}}
+                        {{--<label class="btn btn-default active toggle-off">Not approved</label>--}}
+                        {{--<span class="toggle-handle btn btn-default"></span>--}}
+                        {{--</div>--}}
+                    </td>
+
+
+                    <td>
+                        <input type="checkbox"
+                               class="toggle-switch"
+                               @if($item->getIsWinnerAttribute()) checked @endif
+                               value="{{$item->id}}"
+                               data-id="{{$item->id}}"
+                               data-type="winner"
+                               data-toggle="toggle"
+                               data-on="Winner"
+                               data-off="Not winner"
+                               data-onstyle="success"
+                               data-offstyle="default"
+                        >
+                    </td>
+                    <td><a class="btn btn-xs btn-default" href="delete/{{$item->id}}">delete</a>
+
+
+                    </td>
 
                 </tr>
             @endforeach
@@ -45,49 +80,20 @@
     </div>
 @endsection
 @push('scripts')
+    <script src="{{ asset('js/classie.js') }}"></script>
     <script>
-        $(".approved").change(function () {
-            let itemValue = $(this).is(":checked");
-            let itemId = $(this).val();
-            let id = itemValue ? 1 : 0;
-
-            let data = [];
-
-            data.push(itemId);
-            data.push(id);
+        $(".toggle-switch").change(function () {
+            let id = $(this).attr('data-id');
+            let value = $(this).prop('checked') === true ? 1 : 0;
+            let type = $(this).attr('data-type');
 
             $.ajax({
                 type: 'POST',
-                url: 'update',
+                url: 'updateToggle',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: {data: data},
-                success: function (data) {
-                    console.log("uspesno");
-                },
-                error: function (e) {
-                    console.log(e);
-                }
-            });
-        });
-        $(".winner").change(function () {
-            let itemValue = $(this).is(":checked");
-            let itemId = $(this).val();
-            let id = itemValue ? 1 : 0;
-
-            let data = [];
-
-            data.push(itemId);
-            data.push(id);
-
-            $.ajax({
-                type: 'POST',
-                url: 'winner',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {data: data},
+                data: {id: id, value: value, type: type},
                 success: function (data) {
                     console.log("uspesno");
                 },
@@ -97,6 +103,29 @@
             });
         });
 
+        let menuLeft = document.getElementById('cbp-spmenu-s1');
+        let showLeft = document.getElementById('showLeft');
+        let showLeftPush = document.getElementById('showLeftPush');
+        let body = document.body;
+
+        showLeftPush.onclick = function () {
+            classie.toggle(this, 'active');
+            classie.toggle(body, 'cbp-spmenu-push-toright');
+            classie.toggle(menuLeft, 'cbp-spmenu-open');
+            disableOther('showLeftPush');
+        };
+
+        showLeft.onclick = function () {
+            classie.toggle(this, 'active');
+            classie.toggle(menuLeft, 'cbp-spmenu-open');
+            disableOther('showLeft');
+        };
+
+        function disableOther(button) {
+            if (button !== 'showLeft') {
+                classie.toggle(showLeft, 'disabled');
+            }
+        }
     </script>
 @endpush
 
