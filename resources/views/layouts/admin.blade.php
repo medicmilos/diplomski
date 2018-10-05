@@ -9,8 +9,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title_text')</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
     <link href="{{ asset('css/main.css?v=1') }}" rel="stylesheet">
     <script>
         let baseUrl = '<?php echo url('/'); ?>';
@@ -19,19 +22,40 @@
 <body class="admin cbp-spmenu-push">
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
     <h3>Menu</h3>
-    <a href="#">Dashboard</a>
-    <a href="#">Users</a>
-    <a href="#">Gallery</a>
+    <a href="{{url("admin/index")}}">Dashboard</a>
+    <a href="{{url("admin/user/index")}}">Users</a>
+    <a href="{{url("admin/gallery/index")}}">Gallery</a>
 </nav>
-<div id="app">
+<div class="admin-wrap">
     @include('admin.header')
     @yield('content')
 </div>
 
 <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('js/classie.js') }}"></script>
 
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let menuLeft = document.getElementById('cbp-spmenu-s1');
+        let showLeftPush = document.getElementById('showLeftPush');
+        let body = document.body;
+
+        $(function () {
+            classie.toggle(showLeftPush, 'active');
+            classie.toggle(body, 'cbp-spmenu-push-toright');
+            classie.toggle(menuLeft, 'cbp-spmenu-open');
+        });
+
+        showLeftPush.onclick = function () {
+            classie.toggle(this, 'active');
+            classie.toggle(body, 'cbp-spmenu-push-toright');
+            classie.toggle(menuLeft, 'cbp-spmenu-open');
+        };
+    });
+
+
+</script>
 @stack('scripts')
 </body>
 </html>

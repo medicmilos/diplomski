@@ -5,8 +5,9 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button> 
-                <button id="showLeftPush">&#9776;</button>
+                </button>
+                <button id="showLeftPush" class="btn btn-primary">&#9776;</button>
+                <butto><a target="_blank" class="btn btn-primary" href="{{ url('/') }}">Aktivacija</a></butto>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">

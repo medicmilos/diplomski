@@ -20,10 +20,12 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $items = GalleryItem::with('item_data')->get();
+
+        $items = GalleryItem::with('item_data')->paginate(10);
+
 
         //dd($items->all());
-        return view("admin.gallery.index", compact('items'));
+        return view("admin.gallery.index", compact('items'), compact('perPage'));
     }
 
     /**

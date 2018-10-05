@@ -30,6 +30,20 @@ img {
 }
 
 @font-face {
+    font-family: 'FontAwesome';
+    src: url('../fonts/FontAwesome.otf');
+}
+
+.container.header {
+    max-width: 1470px;
+}
+
+.admin-wrap {
+    position: relative;
+    left: -15rem;
+}
+
+@font-face {
     font-family: KGSecondChancesSolid;
     src: url(../fonts/KGSecondChancesSolid.ttf);
 }
@@ -443,17 +457,23 @@ button {
     border-color: #8c8c8c;
 }
 
-table {
-    clear: both;
-    margin-top: 6px !important;
-    margin-bottom: 6px !important;
-    max-width: none !important;
-    border-collapse: separate !important;
-    border-spacing: 0;
-    border-bottom: 1px solid rgba(120, 130, 140, 0.13) !important;
-    box-sizing: content-box;
-    text-align: center !important;
-    word-wrap: break-word;
+table > tbody > tr:hover {
+
+    background-color: #f5f5f5;
+
+}
+
+.table-wrapper {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 10px;
+    background: #fff;
+}
+
+.pagination {
+    float: right;
 }
 
 /*----------------------------------------------------------*/
@@ -649,4 +669,33 @@ table {
 .admin .cbp-spmenu a {
     font-weight: 600;
     color: #444;
+}
+
+.cbp-spmenu h3 {
+    background: #1F9A00;
+}
+
+.cbp-spmenu a:hover {
+    background: #ecf0f5;
+    text-decoration: none;
+}
+
+.cbp-spmenu-vertical a {
+    border-bottom: 1px solid #1F9A00;
+
+}
+
+.far,
+.fas {
+    font-size: 3rem;
+}
+
+.admin-dash {
+    padding-top: 2rem;
+}
+
+#showLeftPush {
+    margin-right: 3rem;
+    background: #38c172;
+    border: none;
 }
