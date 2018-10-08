@@ -8,11 +8,16 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title_text')</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    @stack('css')
 
     <link href="{{ asset('css/main.css?v=1') }}" rel="stylesheet">
     <script>
@@ -22,9 +27,10 @@
 <body class="admin cbp-spmenu-push">
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
     <h3>Menu</h3>
-    <a href="{{url("admin/index")}}">Dashboard</a>
-    <a href="{{url("admin/user/index")}}">Users</a>
-    <a href="{{url("admin/gallery/index")}}">Gallery</a>
+    <a href="{{url("admin/index")}}"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp; Dashboard</a>
+    <a href="{{url("admin/cycle")}}"><i class="fa fa-calendar-times"></i>&nbsp;&nbsp; Cycles</a>
+    <a href="{{url("admin/user/index")}}"><i class="fas fa-users"></i>&nbsp;&nbsp; Users</a>
+    <a href="{{url("admin/gallery/index")}}"><i class="far fa-image"></i>&nbsp;&nbsp; Gallery</a>
 </nav>
 <div class="admin-wrap">
     @include('admin.header')
@@ -33,6 +39,7 @@
 
 <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+
 <script src="{{ asset('js/classie.js') }}"></script>
 
 <script>

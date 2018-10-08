@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@push('css')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endpush
 @section('content')
     <style>
         table, th, tr, td {

@@ -76,19 +76,21 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::patch('user/edit/{id}', 'UserController@update');
     Route::get('user/delete/{id}', 'UserController@destroy');
 
+    Route::get('cycle', 'CyclesController@index');
+    Route::get('cycle/index', 'CyclesController@index');
+    Route::get('cycle/insert', 'CyclesController@insert');
+    Route::get('cycle/update/{id}', 'CyclesController@edit');
+    Route::post('cycle/store', 'CyclesController@store');
+    Route::patch('cycle/edit/{id}', 'CyclesController@update');
+    Route::get('cycle/delete/{id}', 'CyclesController@destroy');
 
-    Route::get('index', function () {
-        return view('admin/index');
-    });
-    Route::get('/', function () {
-        return view('admin/index');
-    });
+
+    Route::get('', 'IndexController@index');
+    Route::get('index', 'IndexController@index');
 
     Route::get('gallery', 'GalleryController@index');
     Route::get('gallery/index', 'GalleryController@index');
     Route::post('gallery/update', 'GalleryController@update');
     Route::post('gallery/updateToggle', 'GalleryController@updateToggle');
     Route::get('gallery/delete/{id}', 'GalleryController@destroy');
-
-
 });

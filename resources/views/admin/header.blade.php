@@ -2,14 +2,11 @@
     <div class="container header">
         <div class="col-lg-12">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <button id="showLeftPush" class="btn btn-primary">&#9776;</button>
-                <butto><a target="_blank" class="btn btn-primary" href="{{ url('/') }}">Aktivacija</a></butto>
 
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <button id="showLeftPush" class="btn btn-primary">&#9776;</button>
+                <a target="_blank" class="btn btn-primary" href="{{ url('/') }}">Aktivacija</a>
+
+                <div class="navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             @if (Auth::check())

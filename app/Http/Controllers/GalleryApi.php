@@ -89,6 +89,7 @@ class GalleryApi extends Controller
         $galleryItem = null;
         $status = 0;
         $response = null;
+        //toDo salje 500 gresku kada je ciklus setovan na allow_input = 0;
         try {
             if ($this->disabled) {
                 $response = response()->json(['message' => 'Konkurs je zavrsen.'], $status = 403);//ToDo fix this

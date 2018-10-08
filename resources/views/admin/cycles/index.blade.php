@@ -14,8 +14,8 @@
     <div class="container">
         <br>
         <br>
-        <a href="{{url("admin/user/insert")}}">
-            <button type="button" class="btn btn-primary">Add new user</button>
+        <a href="{{url("admin/cycle/insert")}}">
+            <button type="button" class="btn btn-primary">Add new cycle</button>
         </a>
 
         <br>
@@ -29,8 +29,9 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
+                    <th>Lasts until</th>
+                    <th>begun</th>
+                    <th>allow_input</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -38,15 +39,16 @@
                 @php
                     $counter = 1
                 @endphp
-                @foreach($users as $user)
+                @foreach($items as $item)
                     <tr>
                         <td>{{$counter}}</td>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->password}}</td>
-                        <td><a class="btn btn-xs btn btn-default" href="update/{{$user->id}}">edit</a> <a
+                        <td>{{$item->name}}</td>
+                        <td>{{$item->lasts_until}}</td>
+                        <td>{{$item->begun}}</td>
+                        <td>{{$item->allow_input}}</td>
+                        <td><a class="btn btn-xs btn btn-default" href="update/{{$item->id}}">edit</a> <a
                                     class="btn btn-xs btn btn-danger" onclick="return confirm('Are you sure?')"
-                                    href="delete/{{$user->id}}">delete</a></td>
+                                    href="delete/{{$item->id}}">delete</a></td>
 
                     </tr>
                     @php
@@ -58,8 +60,9 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
+                    <th>Lasts until</th>
+                    <th>begun</th>
+                    <th>allow_input</th>
                     <th>Actions</th>
                 </tr>
                 </tfoot>
@@ -67,23 +70,22 @@
             <div class="row">
                 <div class="col-sm-5">
                     <div class="dataTables_info" id="crudTable_info" role="status" aria-live="polite">
-                        Prikazano {{($users->currentpage()-1)*$users->perpage()+1}}
-                        do {{$users->currentpage()*$users->perpage()}}
-                        od {{$users->total()}} unosa
+                        Prikazano {{($items->currentpage()-1)*$items->perpage()+1}}
+                        do {{$items->currentpage()*$items->perpage()}}
+                        od {{$items->total()}} unosa
 
                     </div>
                 </div>
                 <div class="col-sm-2"></div>
                 <div class="col-sm-5 hidden-print">
                     <div class="dataTables_paginate paging_simple_numbers" id="crudTable_paginate">
-                        {{ $users->links() }}
+                        {{ $items->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-
 @section('title_text')
-    Pregled korisnika | ICT galerija
+    Pregled ciklusa | ICT galerija
 @endsection

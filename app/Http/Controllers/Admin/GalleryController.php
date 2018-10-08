@@ -21,11 +21,11 @@ class GalleryController extends Controller
     public function index()
     {
 
-        $items = GalleryItem::with('item_data')->paginate(10);
+        $items = GalleryItem::with('item_data')->paginate(5);
 
 
         //dd($items->all());
-        return view("admin.gallery.index", compact('items'), compact('perPage'));
+        return view("admin.gallery.index", compact('items'));
     }
 
     /**

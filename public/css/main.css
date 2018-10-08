@@ -685,8 +685,9 @@ table > tbody > tr:hover {
 
 }
 
-.far,
-.fas {
+.admin-dash .far,
+.admin-dash .fas,
+.admin-dash .fa {
     font-size: 3rem;
 }
 
@@ -698,4 +699,113 @@ table > tbody > tr:hover {
     margin-right: 3rem;
     background: #38c172;
     border: none;
+}
+
+.collapse:not(.show) {
+
+    display: block;
+
+}
+
+.timepicker-picker div {
+    display: block !important;
+}
+
+.collapse.show {
+    height: 100%;
+}
+
+.box {
+    border-radius: 0;
+    border-top: 1px solid #d2d6de;
+}
+
+.box {
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 1px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 2rem;
+}
+
+.box-header.with-border {
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.box-header {
+    color: #444;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+
+.box-body {
+    display: flex;
+    flex-wrap: wrap;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.admin .col-xs-12 {
+    width: 100%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.admin label {
+    display: inline-block;
+    max-width: 100%;
+    font-weight: 700;
+}
+
+.admin .form-control {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #d2d6de;
+}
+
+.admin .form-control {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+}
+
+.admin .col-lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.admin .col-center {
+    float: none;
+    display: block;
+    margin: 0 auto;
+}
+
+.admin #saveActions {
+    text-align: center;
+}
+
+.admin .navbar-collapse {
+    float: right;
+}
+
+.admin ul {
+    list-style: none;
 }

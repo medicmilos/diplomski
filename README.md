@@ -11,6 +11,7 @@
 5. Run composer install --prefer-source
 5.1 Run composer require intervention/image
 5.2 Run composer require jenssegers/date
+5.3 Run composer require prologue/alerts
 6. Run npm install
 
 ## Setup Laravel
