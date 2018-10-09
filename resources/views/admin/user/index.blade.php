@@ -15,7 +15,7 @@
         <br>
         <br>
         <a href="{{url("admin/user/insert")}}">
-            <button type="button" class="btn btn-primary">Add new user</button>
+            <button type="button" class="btn btn-primary">Dodaj novog korisnika</button>
         </a>
 
         <br>
@@ -28,10 +28,10 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>Ime i prezime</th>
                     <th>Email</th>
-                    <th>Password</th>
-                    <th>Actions</th>
+                    <th>Lozinka</th>
+                    <th>Akcije</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,9 +44,9 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->password}}</td>
-                        <td><a class="btn btn-xs btn btn-default" href="update/{{$user->id}}">edit</a> <a
-                                    class="btn btn-xs btn btn-danger" onclick="return confirm('Are you sure?')"
-                                    href="delete/{{$user->id}}">delete</a></td>
+                        <td><a class="btn btn-xs btn btn-default" href="update/{{$user->id}}">uredi</a> <a
+                                    class="btn btn-xs btn btn-danger" onclick="return confirm('Da li ste sigurni?')"
+                                    href="delete/{{$user->id}}">obriši</a></td>
 
                     </tr>
                     @php
@@ -57,10 +57,10 @@
                 <tfoot>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>Ime i prezime</th>
                     <th>Email</th>
-                    <th>Password</th>
-                    <th>Actions</th>
+                    <th>Lozinka</th>
+                    <th>Akcije</th>
                 </tr>
                 </tfoot>
             </table>

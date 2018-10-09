@@ -15,7 +15,7 @@ class UserData extends GalleryModel
 
     protected $appends = ['name', 'email'];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function user()
     {

@@ -28,7 +28,24 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function userData(){
+    public function userData()
+    {
         return $this->hasOne('App\Models\UserData');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role', 'role_users', 'role_id');
+    }
+
+    public function isAdmin()
+    {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'Super Admin' || $role->name == 'Administrator') {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -21,13 +21,13 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>User name</th>
-                    <th>Cycle id</th>
-                    <th>Created at</th>
-                    <th>Photo</th>
-                    <th>Approved</th>
-                    <th>Winner</th>
-                    <th>Actions</th>
+                    <th>Ime i prezime</th>
+                    <th>Id ciklusa</th>
+                    <th>Kreirano</th>
+                    <th>Fotografija</th>
+                    <th>Odobreno</th>
+                    <th>Pobednik</th>
+                    <th>Akcije</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -55,8 +55,8 @@
                                    value="{{$item->id}}"
                                    data-type="approve"
                                    data-toggle="toggle"
-                                   data-on="Approved"
-                                   data-off="Not approved"
+                                   data-on="Odobreno"
+                                   data-off="Nije odobreno"
                                    data-onstyle="success"
                                    data-offstyle="default"
                             >
@@ -77,14 +77,14 @@
                                    data-id="{{$item->id}}"
                                    data-type="winner"
                                    data-toggle="toggle"
-                                   data-on="Winner"
-                                   data-off="Not winner"
+                                   data-on="Pobednik"
+                                   data-off="Nije pobednik"
                                    data-onstyle="success"
                                    data-offstyle="default"
                             >
                         </td>
                         <td><a class="btn btn-xs btn btn-danger" onclick="return confirm('Da li ste sigurni?')"
-                               href="delete/{{$item->id}}">delete</a>
+                               href="delete/{{$item->id}}">obriši</a>
 
 
                         </td>
@@ -97,14 +97,14 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th>User id</th>
-                    <th>User name</th>
-                    <th>Cycle id</th>
-                    <th>Created at</th>
-                    <th>Photo</th>
-                    <th>Approved</th>
-                    <th>Winner</th>
-                    <th>Actions</th>
+                    <th>Id</th>
+                    <th>Ime i prezime</th>
+                    <th>Id ciklusa</th>
+                    <th>Kreirano</th>
+                    <th>Fotografija</th>
+                    <th>Odobreno</th>
+                    <th>Pobednik</th>
+                    <th>Akcije</th>
                 </tr>
                 </tfoot>
             </table>

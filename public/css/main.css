@@ -43,6 +43,11 @@ img {
     left: -15rem;
 }
 
+.admin-wrap-toggle {
+    position: relative;
+    left: 0rem;
+}
+
 @font-face {
     font-family: KGSecondChancesSolid;
     src: url(../fonts/KGSecondChancesSolid.ttf);

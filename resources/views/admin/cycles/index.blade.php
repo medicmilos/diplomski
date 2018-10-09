@@ -15,7 +15,7 @@
         <br>
         <br>
         <a href="{{url("admin/cycle/insert")}}">
-            <button type="button" class="btn btn-primary">Add new cycle</button>
+            <button type="button" class="btn btn-primary">Dodaj novi ciklus</button>
         </a>
 
         <br>
@@ -28,11 +28,11 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
-                    <th>Lasts until</th>
-                    <th>begun</th>
-                    <th>allow_input</th>
-                    <th>Actions</th>
+                    <th>Ime i prezime</th>
+                    <th>Traje do</th>
+                    <th>Počeo</th>
+                    <th>Dozvoljen unos</th>
+                    <th>Akcije</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,9 +46,9 @@
                         <td>{{$item->lasts_until}}</td>
                         <td>{{$item->begun}}</td>
                         <td>{{$item->allow_input}}</td>
-                        <td><a class="btn btn-xs btn btn-default" href="update/{{$item->id}}">edit</a> <a
-                                    class="btn btn-xs btn btn-danger" onclick="return confirm('Are you sure?')"
-                                    href="delete/{{$item->id}}">delete</a></td>
+                        <td><a class="btn btn-xs btn btn-default" href="update/{{$item->id}}">uredi</a> <a
+                                    class="btn btn-xs btn btn-danger" onclick="return confirm('Da li ste sigurni?')"
+                                    href="delete/{{$item->id}}">obriši</a></td>
 
                     </tr>
                     @php
@@ -59,11 +59,11 @@
                 <tfoot>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
-                    <th>Lasts until</th>
-                    <th>begun</th>
-                    <th>allow_input</th>
-                    <th>Actions</th>
+                    <th>Ime i prezime</th>
+                    <th>Traje do</th>
+                    <th>Počeo</th>
+                    <th>Dozvoljen unos</th>
+                    <th>Akcije</th>
                 </tr>
                 </tfoot>
             </table>

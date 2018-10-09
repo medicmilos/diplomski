@@ -39,7 +39,8 @@ class GalleryApi extends Controller
             'show',
             'landing',
             'register',
-            'registerForm'
+            'registerForm',
+            'winners'
         ])) {
             $this->middleware('registered')->except(['getReport']);
         }

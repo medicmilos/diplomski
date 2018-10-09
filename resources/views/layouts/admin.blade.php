@@ -27,10 +27,10 @@
 <body class="admin cbp-spmenu-push">
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
     <h3>Menu</h3>
-    <a href="{{url("admin/index")}}"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp; Dashboard</a>
-    <a href="{{url("admin/cycle")}}"><i class="fa fa-calendar-times"></i>&nbsp;&nbsp; Cycles</a>
-    <a href="{{url("admin/user/index")}}"><i class="fas fa-users"></i>&nbsp;&nbsp; Users</a>
-    <a href="{{url("admin/gallery/index")}}"><i class="far fa-image"></i>&nbsp;&nbsp; Gallery</a>
+    <a href="{{url("admin/index")}}"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp; Pregled</a>
+    <a href="{{url("admin/cycle")}}"><i class="fa fa-calendar-times"></i>&nbsp;&nbsp; Ciklusi</a>
+    <a href="{{url("admin/user/index")}}"><i class="fas fa-users"></i>&nbsp;&nbsp; Korsinici</a>
+    <a href="{{url("admin/gallery/index")}}"><i class="far fa-image"></i>&nbsp;&nbsp; Galerija</a>
 </nav>
 <div class="admin-wrap">
     @include('admin.header')
@@ -58,6 +58,8 @@
             classie.toggle(this, 'active');
             classie.toggle(body, 'cbp-spmenu-push-toright');
             classie.toggle(menuLeft, 'cbp-spmenu-open');
+            $(".admin-wrap").toggleClass("admin-wrap-toggle");
+
         };
     });
 

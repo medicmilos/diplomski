@@ -14,7 +14,7 @@
                                     <i class="fas fa-users"></i>
                                 </div>
                                 <div class="media-body text-right">
-                                    <h3>156</h3>
+                                    <h3>{{$users}}</h3>
                                     <span>Users</span>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                     <i class="far fa-address-card"></i>
                                 </div>
                                 <div class="media-body text-right">
-                                    <h3>156</h3>
+                                    <h3>{{$usersInfo}}</h3>
                                     <span>Users with info</span>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                     <i class="far fa-images"></i>
                                 </div>
                                 <div class="media-body text-right">
-                                    <h3>156</h3>
+                                    <h3>{{$images}}</h3>
                                     <span>Images</span>
                                 </div>
                             </div>

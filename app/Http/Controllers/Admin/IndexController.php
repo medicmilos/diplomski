@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\UserData;
 use Illuminate\Http\Request;
 use App\Models\GalleryItemData;
 use App\Models\GalleryItem;
@@ -20,13 +21,11 @@ class IndexController extends Controller
      */
     public function index()
     {
-      //  $items = GalleryItem::with('item_data')->paginate(5);
+        $users = User::count();
+        $usersInfo = UserData::count();
+        $images = GalleryItem::count();
 
-        //dd($items->all());
-
-
-        return view("admin.index");
-        //return view("admin.index", compact('items'));
+        return view("admin.index", compact('users', 'usersInfo', 'images'));
     }
 
     /**
