@@ -87,6 +87,8 @@ Route::group(['middleware' => 'admin','namespace' => 'Admin', 'prefix' => 'admin
 
     Route::get('', 'IndexController@index');
     Route::get('index', 'IndexController@index');
+    Route::get('login', 'Auth\LoginController@login');
+
 
     Route::get('gallery', 'GalleryController@index');
     Route::get('gallery/index', 'GalleryController@index');

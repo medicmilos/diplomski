@@ -41,7 +41,7 @@
                         <td>{{$item->cycle_id}}</td>
                         <td>{{$item->created_at}}</td>
                         <td>
-                            <a href="#" target="_blank">
+                            <a href="{{asset("storage/gallery/uploads/".$item->item_data->photo)}}" target="_blank">
                                 <img src="{{asset("storage/gallery/thumbs/".$item->item_data->photo)}}">
                             </a>
                         </td>

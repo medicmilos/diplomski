@@ -30,6 +30,7 @@
                     <th>Id</th>
                     <th>Ime i prezime</th>
                     <th>Email</th>
+                    <th>Uloga</th>
                     <th>Lozinka</th>
                     <th>Akcije</th>
                 </tr>
@@ -43,6 +44,11 @@
                         <td>{{$counter}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>
+                            @foreach($user->roles as $role)
+                                {{$role->name}}
+                            @endforeach
+                        </td>
                         <td>{{$user->password}}</td>
                         <td><a class="btn btn-xs btn btn-default" href="update/{{$user->id}}">uredi</a> <a
                                     class="btn btn-xs btn btn-danger" onclick="return confirm('Da li ste sigurni?')"
@@ -59,6 +65,7 @@
                     <th>Id</th>
                     <th>Ime i prezime</th>
                     <th>Email</th>
+                    <th>Uloga</th>
                     <th>Lozinka</th>
                     <th>Akcije</th>
                 </tr>

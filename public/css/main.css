@@ -814,3 +814,8 @@ table > tbody > tr:hover {
 .admin ul {
     list-style: none;
 }
+
+.table th, .table td {
+    padding: 0.45rem;
+    text-align: center;
+}

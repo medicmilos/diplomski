@@ -21,6 +21,7 @@ use App\Models\GalleryWinner;
 use App\Models\UserData;
 use App\Http\Traits\FileUploadTrait;
 use App\Http\Helpers as Helper;
+use Illuminate\Support\Facades\Auth;
 
 
 class GalleryApi extends Controller
