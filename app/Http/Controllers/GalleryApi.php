@@ -126,7 +126,7 @@ class GalleryApi extends Controller
         }
     }
 
-    public function returnUploadedImage()
+    public function returnUploadedImage()//ToDo is this even working? nesessery?
     {
         if (!empty ($_GET['id'])) {
             $galleryItem = GalleryItem::query()->findOrFail($_GET['id']);
@@ -152,7 +152,7 @@ class GalleryApi extends Controller
         return response()->json(['message' => 'Trazena stavka nije pronadjena.'], 404);
     }
 
-    public function apiIsActive()
+    public function apiIsActive()//ToDo is this even working? nesessery?
     {
         $cycleId = getCurrentCycleId();
         return Cycle::query()->findOrFail($cycleId)->allow_input;
@@ -163,7 +163,7 @@ class GalleryApi extends Controller
         return view('index');
     }
 
-    public function indexWithModalShown($modelId)
+    public function indexWithModalShown($modelId)//ToDo is this even working? nesessery?
     {
         $model = GalleryItem::find($modelId);
         return view('index')->with(['modalData' => $model]);
@@ -175,7 +175,7 @@ class GalleryApi extends Controller
         return view('winners');
     }
 
-    protected function getSequentialPosition($itemId)
+    protected function getSequentialPosition($itemId)//ToDo is this even working? nesessery?
     {
         return DB::select(
             DB::raw('SELECT x.position
@@ -263,27 +263,27 @@ class GalleryApi extends Controller
 
     protected function beforeStoreCallback($request)
     {
-        return;
+        return;//toDo remove unnessesery functions.. Like this one...
     }
 
     protected function onException($e)
     {
-        return;
+        return;//toDo remove unnessesery functions.. Like this one...
     }
 
     protected function uploadPath()
     {
         return base_path(afw_service_config('gallery.uploadPath'));//ToDo paste relative path
-    }
+    }//toDo remove unnessesery functions.. Like this one...
 
 
     protected function thumbsPath()
     {
         return base_path(afw_service_config('gallery.thumbsPath'));//ToDo paste relative path
-    }
+    }//toDo remove unnessesery functions.. Like this one...
 
     protected function previewPath()
     {
         return base_path(afw_service_config('gallery.previewPath'));//ToDo paste relative path
-    }
+    }//toDo remove unnessesery functions.. Like this one...
 }
