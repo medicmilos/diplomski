@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with('roles')->paginate(5);
-         //dd($users->all());
+        //dd($users->all());
         return view("admin.user.index", compact('users'));
     }
 
@@ -47,7 +48,14 @@ class UserController extends Controller
         $password = bcrypt($request['password']);
         $request['password'] = $password;
 
-        User::create($request->all());
+        $user = User::create($request->all());
+
+        if (!empty($request->role)) {
+            DB::table('role_users')->insert(
+                ['role_id' => $request->role, 'user_id' => $user->id]
+            );
+        }
+
 
         return redirect('admin/user/index');
 
@@ -73,7 +81,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = DB::table("users")->where('id', $id)->first();
+        $user = User::with('roles')->where('id', $id)->first();
         return view('admin.user.update', compact('user'));
     }
 
@@ -86,6 +94,22 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $userRole = DB::table('role_users')->where('user_id', $id)->first();
+
+        if ($userRole) {
+            if (empty($request->role)) {
+                DB::table('role_users')->where('user_id', '=', $id)->delete();
+            } else {
+                DB::table('role_users')
+                    ->where('user_id', $id)
+                    ->update(['role_id' => $request->role]);
+            }
+        } else {
+            DB::table('role_users')->insert(
+                ['role_id' => $request->role, 'user_id' => $id]
+            );
+        }
+
         $user = User::findOrFail($id);
         $user->update($request->all());
 

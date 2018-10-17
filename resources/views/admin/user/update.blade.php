@@ -25,6 +25,23 @@
                         <input type="text" name="email" class="form-control" value="{{$user->email}}" id="email">
                     </div>
                     <div class="form-group col-xs-12">
+                        <label for="email">Uloge</label><br>
+
+                            @foreach($user->roles as $role)
+                                @php ($userRole = $role->name)
+                            @endforeach
+                        @if(isset($userRole))
+                            <input type="checkbox" name="role" value="1"
+                                   @if($userRole === "Super Admin") checked @endif> Super Admin
+                            <input type="checkbox" name="role" value="2"
+                                   @if($userRole === "Administrator") checked @endif> Administrator
+                        @else
+                            <input type="checkbox" name="role" value="1"> Super Admin
+                            <input type="checkbox" name="role" value="2"> Administrator
+                        @endif
+
+                    </div>
+                    <div class="form-group col-xs-12">
                         <label for="password">Lozinka</label>
                         <input type="password" name="password" class="form-control" value="{{$user->password}}"
                                id="password">

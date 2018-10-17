@@ -9,7 +9,6 @@
             border-collapse: collapse;
             padding: 5px;
         }
-
     </style>
     <div class="container">
         <br>
@@ -17,13 +16,9 @@
         <a href="{{url("admin/user/insert")}}">
             <button type="button" class="btn btn-primary">Dodaj novog korisnika</button>
         </a>
-
         <br>
         <br>
-
         <div class="table-wrapper">
-
-
             <table class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <tr>
@@ -53,7 +48,6 @@
                         <td><a class="btn btn-xs btn btn-default" href="update/{{$user->id}}">uredi</a> <a
                                     class="btn btn-xs btn btn-danger" onclick="return confirm('Da li ste sigurni?')"
                                     href="delete/{{$user->id}}">obriši</a></td>
-
                     </tr>
                     @php
                         $counter++
@@ -90,7 +84,6 @@
         </div>
     </div>
 @endsection
-
 @section('title_text')
     Pregled korisnika | ICT galerija
 @endsection

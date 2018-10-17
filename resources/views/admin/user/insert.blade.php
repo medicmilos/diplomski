@@ -25,6 +25,14 @@
                             <label for="email">Email</label>
                             <input type="text" name="email" class="form-control" value="" id="email">
                         </div>
+
+                        <div class="form-group col-xs-12">
+                            <label for="email">Uloge</label><br>
+                            <input type="checkbox" name="role" value="1"> Super Admin
+                            <input type="checkbox" name="role" value="2"> Administrator
+
+
+                        </div>
                         <div class="form-group col-xs-12">
                             <label for="password">Lozinka</label>
                             <input type="password" name="password" class="form-control" value="" id="password">

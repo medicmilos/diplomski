@@ -81,19 +81,4 @@ trait FileUploadTrait
 
         return $finalRequest;
     }
-
-    protected function uploadPath()
-    {
-        throw new \Exception('Method must be overriden');
-    }
-
-    protected function previewPath()
-    {
-        throw new \Exception('Method must be overriden');
-    }
-
-    protected function thumbsPath()
-    {
-        throw new \Exception('Method must be overriden');
-    }
 }
