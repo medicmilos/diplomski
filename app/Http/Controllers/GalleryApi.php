@@ -109,6 +109,7 @@ class GalleryApi extends Controller
         } catch (\Exception $e) {
             throw $e;
         } finally {
+
             if (!$response) {
                 $response = response()->json(['message' => 'Doslo je do greske.'], 500);//ToDo fix this
             }
