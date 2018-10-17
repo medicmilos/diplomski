@@ -15,7 +15,7 @@ class CreateGalleryItemData extends Migration
     {
         Schema::create('gallery_item_data', function (Blueprint $table) {
             $table->unsignedInteger('item_id');
-            $table->foreign('item_id')->references('id')->on('gallery_items');
+            $table->foreign('item_id')->references('id')->on('gallery_items')->onDelete('cascade');
             $table->primary('item_id');
             $table->string('name');
             $table->string('photo');

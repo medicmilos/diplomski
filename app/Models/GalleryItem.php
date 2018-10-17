@@ -31,7 +31,7 @@ class GalleryItem extends UserInputModel
 
     use Approvable;
     use Likeable;
-    use TimezonedTimestampsTrait;
+   // use TimezonedTimestampsTrait;
 
     protected $fillable = [
         'user_id',

@@ -14,14 +14,11 @@ use App\Http\Traits\TimezonedTimestampsTrait;
 
 class Cycle extends GalleryModel
 {
-    use TimezonedTimestampsTrait;
-
-
     protected $table = 'cycles';
     protected $guarded = ['id'];
 
     public function getLastsUntilAttribute() {
-        return  Date::parse($this->attributes['lasts_until'])->timezone(config('settings.app_timezone', 'UTC'));
+        return  Date::parse($this->attributes['lasts_until']);
     }
 
     public function setLastsUntilAttribute($value) {

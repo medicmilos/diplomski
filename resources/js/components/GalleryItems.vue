@@ -10,7 +10,7 @@
                 <div class="">
                     <div class="middle-block">
                         <div class="date">
-                            <span class="item-date">{{modifyDateTime(item.created_at.date)}}</span>
+                            <span class="item-date">{{modifyDateTime(item.created_at)}}</span>
                         </div>
                         <div class="name">
                             <span :title="item.item_data.name" class="item-username">{{item.item_data.name}}</span>

@@ -139,13 +139,8 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
-
-        //toDo delete from all related tables
-
         $item = GalleryItem::findOrFail($id);
         $item->delete();
         return redirect('admin/gallery/index');
-
     }
 }

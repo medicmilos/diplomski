@@ -15414,7 +15414,7 @@ var render = function() {
                 _c("div", { staticClass: "middle-block" }, [
                   _c("div", { staticClass: "date" }, [
                     _c("span", { staticClass: "item-date" }, [
-                      _vm._v(_vm._s(_vm.modifyDateTime(item.created_at.date)))
+                      _vm._v(_vm._s(_vm.modifyDateTime(item.created_at)))
                     ])
                   ]),
                   _vm._v(" "),

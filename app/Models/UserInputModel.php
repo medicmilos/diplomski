@@ -21,26 +21,22 @@ class UserInputModel extends GalleryModel
         parent::boot();
         self::creating(function ($model) {
             $model->user_id = Auth::user()->id;
-            $model->cycle_id = Helper::getCurrentCycleId();//ToDo fix this
-            if($model->cycle_id == -1){
-                abort(500, 'Došlo je do greške.');//ToDo fix this
+            $model->cycle_id = Helper::getCurrentCycleId();
+            if ($model->cycle_id == -1) {
+                abort(500, 'Došlo je do greške.');
             }
             if (Schema::hasColumn($model->getTable(), 'approved')) {
-                $model->approved = config('settings.autoApprove', 0);//ToDo fix this
+                $model->approved = 0;
             }
             $cycle = Cycle::find(Helper::getCurrentCycleId());
-            if($cycle && $cycle->allow_input == 0){
-                abort(403, 'Aktivacija je završena.');//ToDo fix this
+            if ($cycle && $cycle->allow_input == 0) {
+                abort(403, 'Aktivacija je završena.');
             }
             if ($cycle && $cycle->begun == 0) {
                 $cycle->begun = 1;
                 $cycle->save();
             }
         });
-    }
-
-    public function getCreatedAtAttribute() {
-        return  Date::parse($this->attributes['created_at'])->timezone(config('settings.app_timezone', 'UTC'))->toDateTimeString();
     }
 
     public function user()

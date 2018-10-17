@@ -29,7 +29,12 @@
     <h3>Menu</h3>
     <a href="{{url("admin/index")}}"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp; Pregled</a>
     <a href="{{url("admin/cycle")}}"><i class="fa fa-calendar-times"></i>&nbsp;&nbsp; Ciklusi</a>
-    <a href="{{url("admin/user/index")}}"><i class="fas fa-users"></i>&nbsp;&nbsp; Korsinici</a>
+    @foreach(Auth::user()->roles as $role)
+        @php ($userRole = $role->name)
+    @endforeach
+    @if($userRole === "Super Admin")
+        <a href="{{url("admin/user/index")}}"><i class="fas fa-users"></i>&nbsp;&nbsp; Korsinici</a>
+    @endif
     <a href="{{url("admin/gallery/index")}}"><i class="far fa-image"></i>&nbsp;&nbsp; Galerija</a>
 </nav>
 <div class="admin-wrap">

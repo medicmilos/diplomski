@@ -70,11 +70,6 @@ class GalleryApi extends Controller
         return response()->json($items, 200);
     }
 
-    public function apiIndexPaginate(Request $request)
-    {
-        return GalleryItem::query()->where('cycle_id', Helper::getCurrentCycleId())->where('approved', 1)->orderBy('created_at', 'desc')->orderBy('id', 'desc')->jsonPaginate(5);
-    }
-
     public function apiWinners()
     {
         return GalleryWinner::query()->where('approved', '=', 1)->orderBy('gallery_winners.created_at', 'desc')->join('gallery_item_data', 'gallery_item_data.item_id', '=', 'gallery_winners.item_id')->get();
@@ -97,16 +92,13 @@ class GalleryApi extends Controller
                 $response = response()->json(['message' => 'Konkurs je zavrsen.'], $status = 403);//ToDo fix this
                 throw new \Exception();
             }
-            $this->beforeStoreCallback($request);
 
             $this->validate($request, $this->validationRules());
 
             $request->request->add(['photo_max_width' => 1440, 'photo_max_height' => 1440]);
             $request = $this->saveFiles($request);
 
-
             $galleryItem = GalleryItem::create();
-
 
             $itemData = $this->createItemData($request, $galleryItem->id);
 
@@ -115,27 +107,14 @@ class GalleryApi extends Controller
 
             $response = response()->json($galleryItem, $status = 200);
         } catch (\Exception $e) {
-            $this->onException($e);
             throw $e;
         } finally {
-            $this->afterStoreCallback($response);
+
             if (!$response) {
                 $response = response()->json(['message' => 'Doslo je do greske.'], 500);//ToDo fix this
             }
             return $response;
         }
-    }
-
-    public function returnUploadedImage()//ToDo is this even working? nesessery?
-    {
-        if (!empty ($_GET['id'])) {
-            $galleryItem = GalleryItem::query()->findOrFail($_GET['id']);
-        } else {
-            $galleryItem = "error";
-            return view('hvala')->with(['galleryItem']);
-        }
-        return view('hvala')->with(['galleryItem' => $galleryItem->toArray()]);
-
     }
 
     public function apiLike($id)
@@ -152,28 +131,6 @@ class GalleryApi extends Controller
         return response()->json(['message' => 'Trazena stavka nije pronadjena.'], 404);
     }
 
-    public function apiIsActive()//ToDo is this even working? nesessery?
-    {
-        $cycleId = getCurrentCycleId();
-        return Cycle::query()->findOrFail($cycleId)->allow_input;
-    }
-
-    public function index()
-    {
-        return view('index');
-    }
-
-    public function indexWithModalShown($modelId)//ToDo is this even working? nesessery?
-    {
-        $model = GalleryItem::find($modelId);
-        return view('index')->with(['modalData' => $model]);
-    }
-
-
-    public function winners()
-    {
-        return view('winners');
-    }
 
     protected function getSequentialPosition($itemId)//ToDo is this even working? nesessery?
     {
@@ -195,7 +152,7 @@ class GalleryApi extends Controller
     protected function validationRules()
     {
         return [
-            'photo' => 'required|image|mimes:jpeg,png,jpg|max:10000'
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:10000'//toDo does it need more rules?
         ];
     }
 
@@ -207,11 +164,6 @@ class GalleryApi extends Controller
             'photo' => $request->photo,
             'name' => explode(' ', $user->name)[0] . " " . explode(' ', $user->name, 2)[1]
         ];
-    }
-
-    public function landing()
-    {
-        return view('landingpage');
     }
 
     public function register()
@@ -251,39 +203,23 @@ class GalleryApi extends Controller
         return redirect('home');
     }
 
+    public function index()
+    {
+        return view('index');
+    }
+
+    public function winners()
+    {
+        return view('winners');
+    }
+
+    public function landing()
+    {
+        return view('landingpage');
+    }
+
     public function participate()
     {
         return view('participate');
     }
-
-    protected function afterStoreCallback($response)
-    {
-        return;//toDo remove unnessesery functions.. Like this one...
-    }
-
-    protected function beforeStoreCallback($request)
-    {
-        return;//toDo remove unnessesery functions.. Like this one...
-    }
-
-    protected function onException($e)
-    {
-        return;//toDo remove unnessesery functions.. Like this one...
-    }
-
-    protected function uploadPath()
-    {
-        return base_path(afw_service_config('gallery.uploadPath'));//ToDo paste relative path
-    }//toDo remove unnessesery functions.. Like this one...
-
-
-    protected function thumbsPath()
-    {
-        return base_path(afw_service_config('gallery.thumbsPath'));//ToDo paste relative path
-    }//toDo remove unnessesery functions.. Like this one...
-
-    protected function previewPath()
-    {
-        return base_path(afw_service_config('gallery.previewPath'));//ToDo paste relative path
-    }//toDo remove unnessesery functions.. Like this one...
 }

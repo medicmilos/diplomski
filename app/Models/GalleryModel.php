@@ -22,24 +22,22 @@ class GalleryModel extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        if(isset($this->table) && !empty($this->table)){
+        if (isset($this->table) && !empty($this->table)) {
             $this->setTable($this->table);
         } else {
             //enable override method flag
             $this->setTableOverride = true;
         }
-
     }
 
     /**
      * Set the table associated with the model.
      *
      */
+
     public function setTable($table)
     {
-
         parent::setTable($table);
         return $this;
     }
-
 }

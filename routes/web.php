@@ -31,7 +31,6 @@ Route::post('/', 'GalleryApi@landing');
 
 Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function () {
     Route::get('item/show/{id}', 'GalleryApi@apiShow');
-    Route::get('item/hvala', 'GalleryApi@returnUploadedImage');
     Route::get('landing', 'GalleryApi@landing');
 
     Route::get('register', 'GalleryApi@register')->name('register');
@@ -44,15 +43,11 @@ Route::group(['middleware' => 'web', 'prefix' => '/api/v1/gallery'], function ()
     Route::post('like/{id}', 'GalleryApi@apiLike');
     Route::post('store', 'GalleryApi@apiStore');
     Route::get('index', 'GalleryApi@apiIndex')->name('gallery.index');
-    Route::get('index/paginate', 'GalleryApi@apiIndexPaginate');
     Route::get('show/{id}', 'GalleryApi@apiShow');
     Route::get('winners', 'GalleryApi@apiWinners');
-
-    Route::get('active', 'GalleryApi@apiIsActive');
 });
 
 Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function () {
-    Route::get('show/{modelId}', 'GalleryApi@indexWithModalShown');
     Route::get('index', 'GalleryApi@index')->name('galleryindex');
     Route::get('/', 'GalleryApi@index')->name('galleryindex');
 
@@ -84,10 +79,8 @@ Route::group(['middleware' => 'admin','namespace' => 'Admin', 'prefix' => 'admin
     Route::patch('cycle/edit/{id}', 'CyclesController@update');
     Route::get('cycle/delete/{id}', 'CyclesController@destroy');
 
-
     Route::get('', 'IndexController@index');
     Route::get('index', 'IndexController@index');
-
 
     Route::get('gallery', 'GalleryController@index');
     Route::get('gallery/index', 'GalleryController@index');

@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class GalleryWinner extends Model
 {
-
     protected $table = 'gallery_winners';
 
     public function getCreatedAtAttribute(){
@@ -23,5 +22,4 @@ class GalleryWinner extends Model
         }
         return $this->created_at;
     }
-
 }

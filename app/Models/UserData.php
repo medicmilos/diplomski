@@ -27,7 +27,6 @@ class UserData extends GalleryModel
         return $this->user()->email;
     }
 
-
     public function getNameAttribute()
     {
         return $this->user()->name;
