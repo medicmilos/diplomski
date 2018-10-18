@@ -46,7 +46,7 @@
                         <td>{{$item->lasts_until}}</td>
                         <td>{{$item->begun}}</td>
                         <td>{{$item->allow_input}}</td>
-                        <td><a class="btn btn-xs btn btn-default" href="update/{{$item->id}}">uredi</a> <a
+                        <td><a class="btn btn-xs btn btn-default" href="cycle/update/{{$item->id}}">uredi</a> <a
                                     class="btn btn-xs btn btn-danger" onclick="return confirm('Da li ste sigurni?')"
                                     href="delete/{{$item->id}}">obriši</a></td>
 

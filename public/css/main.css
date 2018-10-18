@@ -708,7 +708,7 @@ table > tbody > tr:hover {
 
 .collapse:not(.show) {
 
-    display: block;
+   /* display: block;*/
 
 }
 

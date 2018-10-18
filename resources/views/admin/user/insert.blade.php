@@ -28,8 +28,8 @@
 
                         <div class="form-group col-xs-12">
                             <label for="email">Uloge</label><br>
-                            <input type="checkbox" name="role" value="1"> Super Admin
-                            <input type="checkbox" name="role" value="2"> Administrator
+                            <input type="radio" name="role" value="1"> Super Admin
+                            <input type="radio" name="role" value="2"> Administrator
 
 
                         </div>

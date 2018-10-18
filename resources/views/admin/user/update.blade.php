@@ -31,13 +31,13 @@
                                 @php ($userRole = $role->name)
                             @endforeach
                         @if(isset($userRole))
-                            <input type="checkbox" name="role" value="1"
+                            <input type="radio" name="role" value="1"
                                    @if($userRole === "Super Admin") checked @endif> Super Admin
-                            <input type="checkbox" name="role" value="2"
+                            <input type="radio" name="role" value="2"
                                    @if($userRole === "Administrator") checked @endif> Administrator
                         @else
-                            <input type="checkbox" name="role" value="1"> Super Admin
-                            <input type="checkbox" name="role" value="2"> Administrator
+                            <input type="radio" name="role" value="1"> Super Admin
+                            <input type="radio" name="role" value="2"> Administrator
                         @endif
 
                     </div>

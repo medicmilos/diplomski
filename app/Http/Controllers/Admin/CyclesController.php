@@ -128,7 +128,7 @@ class CyclesController extends Controller
         $cycle = Cycle::findOrFail($id);
         $cycle->update($request->all());
 
-        return redirect('admin/cycle/index');
+        return redirect('admin/cycle');
     }
 
     /**

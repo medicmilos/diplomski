@@ -57,11 +57,6 @@ Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function () {
 
 //admin
 
-/*
-Route::get('admin/insert', 'UserController::@index');
-Route::post('store', 'UserController::@store');
-*/
-
 Route::group(['middleware' => 'admin','namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::get('user', 'UserController@index');
     Route::get('user/index', 'UserController@index');
