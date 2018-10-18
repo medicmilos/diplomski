@@ -4,7 +4,7 @@
             <div class="item-inner-wrapper">
                 <div class="item-outter-wrapper">
                     <a v-bind:href="$parent.baseUrl+'/gallery/item/show/'+item.id">
-                        <img :src="$parent.pgItemUrl+item.item_data.photo">
+                        <img :src="$parent.pItemUrl+item.item_data.photo">
                     </a>
                 </div>
                 <div class="">
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <mugen-scroll class="col-lg-12" v-if="$parent.infScroll" :handler="fetchData" :should-handle="!loading">
+        <mugen-scroll class="col-lg-12" :handler="fetchData" :should-handle="!loading">
             <div v-if="this.$parent.moreItems === 1 && this.$parent.appItems.length > 6">
                 <img style="max-width: 6.5rem" :src="$parent.baseUrl+'/images/loading.gif'">
             </div>
@@ -99,7 +99,6 @@
                         'msg': "Morate biti prijavljeni kako biste glasali."
                     };
                     this.showModal(array);
-                    this.$parent.forbidden = false;
                 }
             },
             likeSuccess: function (id) {

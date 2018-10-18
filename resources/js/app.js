@@ -34,26 +34,11 @@ new Vue({
         startingOffset: -1,
         limit: 4,
         moreItems: 1,
-        newItems: 1,
         loadingData: 0,
-        dataReady: false,
         baseUrl: baseUrl,
         endPoint: '',
         apiUrl: baseUrl + '/api/v1/',
-        pgItemUrl: baseUrl + "/storage/gallery/preview/",
-        resource_url: baseUrl + '/api/v1/gallery/index/paginate',
-        infScroll: true,
-        pagination: false,
-        forbidden: false
-    },
-    mounted() {
-        if ($(window).width() < 768) {
-            this.infScroll = true;
-            this.pagination = false;
-        } else {
-            this.infScroll = true;
-            this.pagination = false;
-        }
+        pItemUrl: baseUrl + "/storage/gallery/preview/"
     },
     components: {
         galleryItems,
@@ -69,31 +54,24 @@ new Vue({
             let apiEndpoint = this.apiUrl + 'gallery/like/' + id;
             this.post(apiEndpoint, null, success, fail);
         },
+        updateFrontEndLike: function (id) {
+            for (let i = 0; i < this.appItems.length; i++) {
+                if (this.appItems[i].item_data.item_id === id) {
+                    this.appItems[i].likeCount += 1;
+                    this.appItems[i].canLike = false;
+                    break;
+                }
+            }
+        },
         shareItem: function (id, success, fail) {
             console.log('Gallery - share item ' + id);
             let apiEndpoint = this.apiUrl + 'gallery/share/' + id;
             this.post(apiEndpoint, null, success, fail);
         },
-        uploadItem: function (item, success, fail) {
-            console.log('Gallery - upload item ' + item);
-            let apiEndpoint = this.apiUrl + 'gallery/store/' + item;
-            this.post(apiEndpoint, null, success, fail);
-        },
-        updateResource(data) {
-            let self = this;
-            this.appItems = data;
-            this.$nextTick(function () {
-                self.dataReady = true;
-            });
-            self.dataReady = false;
-
-        },
         insertMoreDataToList: function () {
             console.log('Gallery - insertMoreDataToList');
 
-
             let self = this;
-            //if (this.moreItems === 1 && this.loadingData === 0) {
             if (this.loadingData === 0) {
                 this.loadingData = 1;
 
@@ -142,61 +120,9 @@ new Vue({
             let apiUrl = this.apiUrl + "gallery/" + this.endPoint;
 
 
-
             let url = apiUrl + queryString;
             this.get(url, null, success, error, refresh);
         },
-
-        updateFrontEndLike: function (id) {
-            for (let i = 0; i < this.appItems.length; i++) {
-                if (this.appItems[i].item_data.item_id === id) {
-                    this.appItems[i].likeCount += 1;
-                    this.appItems[i].canLike = false;
-                    break;
-                }
-            }
-        },
-
-        getItemWithId: function (id) {
-            for (let i = 0; i < this.appItems.length; i++) {
-                if (this.appItems[i].id === id) {
-                    return this.appItems[i];
-                }
-            }
-
-
-        },
-
-        prepareNewData: function (success, error, refresh) {
-            console.log('Gallery - prepareNewData');
-            let limit_id = this.startingOffset;
-            let queryString = "?itemLimitId=" + limit_id;
-            let self = this;
-            this.loadData(queryString, function (json) {
-                if (json.length > 0) {
-                    self.startingOffset = json[0].id; //update startin offset
-                    self.items = json.concat(self.items);
-
-                } else {
-                    self.newItems = 0;
-                    setTimeout(function () {
-                        self.newItems = 1;
-                    }, 1000 * 10);
-                    //Gallery.hidePreloader();
-                }
-                success(json);
-
-            }, function (json, xhr, status) {
-                error(xhr.response);
-            }, refresh)
-        },
-        loadNewData: function () {
-            console.log('Gallery - loadNewData');
-            let refresh = 1;
-            this.prepareNewData(function (errorText) {
-            }, null, refresh);
-        },
-
         get: function (url, data, success, error, refresh) {
             let self = this;
             axios.get(url)
@@ -220,7 +146,6 @@ new Vue({
         },
 
         post: function (url, data, success, error) {
-            let self = this;
             axios.post(url)
                 .then(response => {
                     // JSON responses are automatically parsed.
@@ -233,7 +158,6 @@ new Vue({
                 .catch(e => {
                     let endStatus = true;
                     error(endStatus, status);
-                    self.forbidden = true;
                 })
         },
         alert: function (message) {

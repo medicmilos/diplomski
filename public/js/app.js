@@ -1733,28 +1733,12 @@ new Vue({
         startingOffset: -1,
         limit: 4,
         moreItems: 1,
-        newItems: 1,
         loadingData: 0,
-        dataReady: false,
         baseUrl: baseUrl,
         endPoint: '',
         apiUrl: baseUrl + '/api/v1/',
-        pgItemUrl: baseUrl + "/storage/gallery/preview/",
-        resource_url: baseUrl + '/api/v1/gallery/index/paginate',
-        infScroll: true,
-        pagination: false,
-        forbidden: false
+        pItemUrl: baseUrl + "/storage/gallery/preview/"
     },
-    mounted: function mounted() {
-        if ($(window).width() < 768) {
-            this.infScroll = true;
-            this.pagination = false;
-        } else {
-            this.infScroll = true;
-            this.pagination = false;
-        }
-    },
-
     components: {
         galleryItems: __WEBPACK_IMPORTED_MODULE_1__components_GalleryItems_vue___default.a,
         participate: __WEBPACK_IMPORTED_MODULE_2__components_Participate_vue___default.a,
@@ -1769,30 +1753,24 @@ new Vue({
             var apiEndpoint = this.apiUrl + 'gallery/like/' + id;
             this.post(apiEndpoint, null, success, fail);
         },
+        updateFrontEndLike: function updateFrontEndLike(id) {
+            for (var i = 0; i < this.appItems.length; i++) {
+                if (this.appItems[i].item_data.item_id === id) {
+                    this.appItems[i].likeCount += 1;
+                    this.appItems[i].canLike = false;
+                    break;
+                }
+            }
+        },
         shareItem: function shareItem(id, success, fail) {
             console.log('Gallery - share item ' + id);
             var apiEndpoint = this.apiUrl + 'gallery/share/' + id;
             this.post(apiEndpoint, null, success, fail);
         },
-        uploadItem: function uploadItem(item, success, fail) {
-            console.log('Gallery - upload item ' + item);
-            var apiEndpoint = this.apiUrl + 'gallery/store/' + item;
-            this.post(apiEndpoint, null, success, fail);
-        },
-        updateResource: function updateResource(data) {
-            var self = this;
-            this.appItems = data;
-            this.$nextTick(function () {
-                self.dataReady = true;
-            });
-            self.dataReady = false;
-        },
-
         insertMoreDataToList: function insertMoreDataToList() {
             console.log('Gallery - insertMoreDataToList');
 
             var self = this;
-            //if (this.moreItems === 1 && this.loadingData === 0) {
             if (this.loadingData === 0) {
                 this.loadingData = 1;
 
@@ -1841,52 +1819,6 @@ new Vue({
             var url = apiUrl + queryString;
             this.get(url, null, success, error, refresh);
         },
-
-        updateFrontEndLike: function updateFrontEndLike(id) {
-            for (var i = 0; i < this.appItems.length; i++) {
-                if (this.appItems[i].item_data.item_id === id) {
-                    this.appItems[i].likeCount += 1;
-                    this.appItems[i].canLike = false;
-                    break;
-                }
-            }
-        },
-
-        getItemWithId: function getItemWithId(id) {
-            for (var i = 0; i < this.appItems.length; i++) {
-                if (this.appItems[i].id === id) {
-                    return this.appItems[i];
-                }
-            }
-        },
-
-        prepareNewData: function prepareNewData(success, error, refresh) {
-            console.log('Gallery - prepareNewData');
-            var limit_id = this.startingOffset;
-            var queryString = "?itemLimitId=" + limit_id;
-            var self = this;
-            this.loadData(queryString, function (json) {
-                if (json.length > 0) {
-                    self.startingOffset = json[0].id; //update startin offset
-                    self.items = json.concat(self.items);
-                } else {
-                    self.newItems = 0;
-                    setTimeout(function () {
-                        self.newItems = 1;
-                    }, 1000 * 10);
-                    //Gallery.hidePreloader();
-                }
-                success(json);
-            }, function (json, xhr, status) {
-                error(xhr.response);
-            }, refresh);
-        },
-        loadNewData: function loadNewData() {
-            console.log('Gallery - loadNewData');
-            var refresh = 1;
-            this.prepareNewData(function (errorText) {}, null, refresh);
-        },
-
         get: function get(url, data, success, error, refresh) {
             var self = this;
             axios.get(url).then(function (response) {
@@ -1908,7 +1840,6 @@ new Vue({
         },
 
         post: function post(url, data, success, error) {
-            var self = this;
             axios.post(url).then(function (response) {
                 // JSON responses are automatically parsed.
                 if (success != null) {
@@ -1919,7 +1850,6 @@ new Vue({
             }).catch(function (e) {
                 var endStatus = true;
                 error(endStatus, status);
-                self.forbidden = true;
             });
         },
         alert: function (_alert) {
@@ -15161,7 +15091,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'msg': "Morate biti prijavljeni kako biste glasali."
                 };
                 this.showModal(array);
-                this.$parent.forbidden = false;
             }
         },
         likeSuccess: function likeSuccess(id) {
@@ -15392,7 +15321,7 @@ var render = function() {
                   [
                     _c("img", {
                       attrs: {
-                        src: _vm.$parent.pgItemUrl + item.item_data.photo
+                        src: _vm.$parent.pItemUrl + item.item_data.photo
                       }
                     })
                   ]
@@ -15501,29 +15430,25 @@ var render = function() {
         )
       }),
       _vm._v(" "),
-      _vm.$parent.infScroll
-        ? _c(
-            "mugen-scroll",
-            {
-              staticClass: "col-lg-12",
-              attrs: { handler: _vm.fetchData, "should-handle": !_vm.loading }
-            },
-            [
-              this.$parent.moreItems === 1 && this.$parent.appItems.length > 6
-                ? _c("div", [
-                    _c("img", {
-                      staticStyle: { "max-width": "6.5rem" },
-                      attrs: {
-                        src: _vm.$parent.baseUrl + "/images/loading.gif"
-                      }
-                    })
-                  ])
-                : _c("div", [
-                    _vm._v("\n            Kraj podataka za prikaz.\n        ")
-                  ])
-            ]
-          )
-        : _vm._e(),
+      _c(
+        "mugen-scroll",
+        {
+          staticClass: "col-lg-12",
+          attrs: { handler: _vm.fetchData, "should-handle": !_vm.loading }
+        },
+        [
+          this.$parent.moreItems === 1 && this.$parent.appItems.length > 6
+            ? _c("div", [
+                _c("img", {
+                  staticStyle: { "max-width": "6.5rem" },
+                  attrs: { src: _vm.$parent.baseUrl + "/images/loading.gif" }
+                })
+              ])
+            : _c("div", [
+                _vm._v("\n            Kraj podataka za prikaz.\n        ")
+              ])
+        ]
+      ),
       _vm._v(" "),
       this.modalOpen
         ? _c(
@@ -17676,13 +17601,13 @@ var render = function() {
                 "a",
                 {
                   attrs: {
-                    href: _vm.$parent.pgItemUrl + item.photo,
+                    href: _vm.$parent.pItemUrl + item.photo,
                     target: "_blank"
                   }
                 },
                 [
                   _c("img", {
-                    attrs: { src: _vm.$parent.pgItemUrl + item.photo }
+                    attrs: { src: _vm.$parent.pItemUrl + item.photo }
                   })
                 ]
               )
