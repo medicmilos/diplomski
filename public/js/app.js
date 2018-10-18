@@ -1797,7 +1797,6 @@ new Vue({
                 this.loadingData = 1;
 
                 this.loadMoreData(function (errorText) {
-                    //console.log(errorText);
                     self.loadingData = 0;
                 });
             }
@@ -1885,9 +1884,7 @@ new Vue({
         loadNewData: function loadNewData() {
             console.log('Gallery - loadNewData');
             var refresh = 1;
-            this.prepareNewData(function (errorText) {
-                //console.log(errorText);
-            }, null, refresh);
+            this.prepareNewData(function (errorText) {}, null, refresh);
         },
 
         get: function get(url, data, success, error, refresh) {
@@ -1905,7 +1902,6 @@ new Vue({
                 } else {
                     self.appItems = self.appItems.concat(response.data);
                 }
-                console.log(self.appItems);
             }).catch(function (e) {
                 console.log(e);
             });
@@ -1914,7 +1910,6 @@ new Vue({
         post: function post(url, data, success, error) {
             var self = this;
             axios.post(url).then(function (response) {
-                console.log('response');
                 // JSON responses are automatically parsed.
                 if (success != null) {
                     var json = response.data;
@@ -1922,7 +1917,6 @@ new Vue({
                 }
                 return response.data;
             }).catch(function (e) {
-                console.log(e);
                 var endStatus = true;
                 error(endStatus, status);
                 self.forbidden = true;
@@ -15128,9 +15122,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -15159,7 +15150,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.modalOpen = !this.modalOpen;
         },
         processLike: function processLike(item) {
-            console.log("LIKE - " + item);
             this.$parent.likeItem(item, this.likeSuccess, this.likeError);
             this.likedItemId = item;
         },
@@ -15167,8 +15157,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         likeError: function likeError(e) {
             if (e) {
                 var array = {
-                    'type': 'error',
-                    'msg': "forbidden"
+                    'type': 'Greška!',
+                    'msg': "Morate biti prijavljeni kako biste glasali."
                 };
                 this.showModal(array);
                 this.$parent.forbidden = false;
@@ -15180,14 +15170,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 this.$parent.updateFrontEndLike(id);
                 var array = {
-                    'type': 'error',
-                    'msg': "error general"
+                    'type': 'Greška!',
+                    'msg': "Operacija nije dozvoljena."
                 };
                 this.showModal(array);
             }
         },
         fbShare: function fbShare(id) {
-            //toDo fix mby this?
             var url = baseUrl + "/gallery/share/" + id;
             var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, "pop", "width=600, height=400, scrollbars=no");
             this.$parent.shareItem(id);
@@ -15541,18 +15530,28 @@ var render = function() {
             "modal",
             { attrs: { id: "testmodal" }, on: { close: _vm.showModal } },
             [
-              _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "modal-default-button",
-                    on: { click: _vm.showModal }
-                  },
-                  [_vm._v("X")]
-                ),
-                _vm._v(" "),
-                _c("div", [_vm._v(_vm._s(_vm.modalData.type))])
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass: "modal-head",
+                  attrs: { slot: "header" },
+                  slot: "header"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "modal-default-button",
+                      on: { click: _vm.showModal }
+                    },
+                    [_vm._v("X")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticStyle: { clear: "both" } }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v(_vm._s(_vm.modalData.type))])
+                ]
+              ),
               _vm._v(" "),
               _c("div", { attrs: { slot: "body" }, slot: "body" }, [
                 _c("span", {
@@ -15707,7 +15706,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.modalOpen = !this.modalOpen;
         },
         onChanged: function onChanged() {
-            console.log("New picture loaded");
             if (this.$refs.pictureInput.file) {
                 this.image = this.$refs.pictureInput.file;
                 $(".image-check").removeClass("image-check-show");
@@ -15729,7 +15727,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         error: function error(e) {
             var array = {
                 'type': '',
-                'msg': e.message
+                'msg': "Došlo je do greške. Pokušajte kasnije."
             };
             this.showModal(array);
         }
@@ -16827,9 +16825,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -16861,7 +16856,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             $(".modifyimage-display").show();
 
             var uploadedImage = image;
-
             var containerWidth = $(".canvas-wrapper").width();
             var containerHeight = $(".canvas-wrapper").height();
 
@@ -16992,20 +16986,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('photo', blob);
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post(this.$parent.apiUrl + 'gallery/store', formData, config).then(function (response) {
-                console.log("uspesan upload!");
                 _this.button = 'Upload';
                 _this.image = '';
                 _this.$parent.$emit('successUpload', blob);
                 _this.isDisabled = false;
                 $('.save').css("opacity", "1");
-            }).catch(function (err) {
-                console.log("ne uspesan upload!");
-
+            }).catch(function (e) {
                 _this.isDisabled = false;
                 $('.save').css("opacity", "1");
                 var array = {
-                    'type': 'error',
-                    'msg': err
+                    'type': 'Greška!',
+                    'msg': e.response.data.message
                 };
                 _this.showModal(array);
             });
@@ -17114,18 +17105,26 @@ var render = function() {
       _vm._v(" "),
       this.modalOpen
         ? _c("modal", { on: { close: _vm.showModal } }, [
-            _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "modal-default-button",
-                  on: { click: _vm.showModal }
-                },
-                [_vm._v("X")]
-              ),
-              _vm._v(" "),
-              _c("div", [_vm._v(_vm._s(_vm.modalData.type))])
-            ]),
+            _c(
+              "div",
+              {
+                staticClass: "modal-head",
+                attrs: { slot: "header" },
+                slot: "header"
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "modal-default-button",
+                    on: { click: _vm.showModal }
+                  },
+                  [_vm._v("X")]
+                ),
+                _vm._v(" "),
+                _c("div", [_vm._v(_vm._s(_vm.modalData.type))])
+              ]
+            ),
             _vm._v(" "),
             _c("div", { attrs: { slot: "body" }, slot: "body" }, [
               _c("span", { domProps: { innerHTML: _vm._s(_vm.modalData.msg) } })
@@ -17263,7 +17262,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -17277,11 +17275,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         };
     },
-    mounted: function mounted() {},
-
     methods: {
         formValidateBeforeSubmit: function formValidateBeforeSubmit() {
-
             document.querySelector('#userForm').submit();
         }
     }
@@ -17341,7 +17336,15 @@ var staticRenderFns = [
         _c("div", { staticClass: "input-wrapper" }, [
           _c("input", {
             staticClass: "form-control form-input firstName",
-            attrs: { name: "firstName", type: "text", placeholder: "Ime" }
+            attrs: {
+              name: "firstName",
+              type: "text",
+              placeholder: "Ime",
+              maxlength: "30",
+              minlength: "2",
+              pattern: "^[a-zA-Z\\s]*$",
+              required: ""
+            }
           })
         ])
       ])
@@ -17356,7 +17359,15 @@ var staticRenderFns = [
         _c("div", { staticClass: "input-wrapper" }, [
           _c("input", {
             staticClass: "form-control form-input lastName",
-            attrs: { name: "lastName", type: "text", placeholder: "Prezime" }
+            attrs: {
+              name: "lastName",
+              type: "text",
+              placeholder: "Prezime",
+              maxlength: "30",
+              minlength: "2",
+              pattern: "^[a-zA-Z\\s]*$",
+              required: ""
+            }
           })
         ])
       ])
@@ -17374,7 +17385,11 @@ var staticRenderFns = [
             attrs: {
               name: "livingPlace",
               type: "text",
-              placeholder: "Mesto stanovanja"
+              placeholder: "Mesto stanovanja",
+              maxlength: "60",
+              minlength: "2",
+              pattern: "^[a-zA-Z0-9\\s\\/,-]*$",
+              required: ""
             }
           })
         ])
@@ -17626,20 +17641,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.fetchData();
     },
 
-    components: {},
-    data: function data() {
-        return {
-            loading: false
-        };
-    },
-
     methods: {
         fetchData: function fetchData() {
-            this.loading = true;
-            //if (this.$parent.currentOffset !== 1) {
             this.$parent.insertMoreDataToList();
-            // }
-            this.loading = false;
         },
         modifyDateTime: function modifyDateTime(dateTime) {
             var dateFormat = __webpack_require__(11);
@@ -17672,8 +17676,8 @@ var render = function() {
                 "a",
                 {
                   attrs: {
-                    href:
-                      _vm.$parent.baseUrl + "/gallery/item/show/" + item.item_id
+                    href: _vm.$parent.pgItemUrl + item.photo,
+                    target: "_blank"
                   }
                 },
                 [
@@ -17795,7 +17799,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-mask[data-v-53ab54d2] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    -webkit-transition: opacity .3s ease;\n    transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-53ab54d2] {\n    width: 300px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n            box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    -webkit-transition: all .3s ease;\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-53ab54d2] {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body[data-v-53ab54d2] {\n    margin: 20px 0;\n}\n.modal-default-button[data-v-53ab54d2] {\n    float: right;\n}\n.modal-enter[data-v-53ab54d2] {\n    opacity: 0;\n}\n.modal-leave-active[data-v-53ab54d2] {\n    opacity: 0;\n}\n.modal-enter .modal-container[data-v-53ab54d2],\n.modal-leave-active .modal-container[data-v-53ab54d2] {\n    -webkit-transform: scale(1.1);\n    transform: scale(1.1);\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-mask[data-v-53ab54d2] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    -webkit-transition: opacity .3s ease;\n    transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-53ab54d2] {\n    width: 300px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n            box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    -webkit-transition: all .3s ease;\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-53ab54d2] {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body[data-v-53ab54d2] {\n    margin: 20px 0;\n}\n.modal-default-button[data-v-53ab54d2] {\n    float: right;\n}\n.modal-enter[data-v-53ab54d2] {\n    opacity: 0;\n}\n.modal-leave-active[data-v-53ab54d2] {\n    opacity: 0;\n}\n.modal-enter .modal-container[data-v-53ab54d2],\n.modal-leave-active .modal-container[data-v-53ab54d2] {\n    -webkit-transform: scale(1.1);\n    transform: scale(1.1);\n}\n", ""]);
 
 // exports
 

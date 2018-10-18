@@ -11,21 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
-//
-//Route::get('/', 'HomeController@index');
-//Route::post('/', 'HomeController@index');
-
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
 Route::get('/home', 'GalleryApi@landing')->name('home');
-
 Route::get('/', 'GalleryApi@landing');
 Route::post('/', 'GalleryApi@landing');
 
@@ -47,17 +36,18 @@ Route::group(['middleware' => 'web', 'prefix' => '/api/v1/gallery'], function ()
     Route::get('winners', 'GalleryApi@apiWinners');
 });
 
+//web gallery
+
 Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function () {
     Route::get('index', 'GalleryApi@index')->name('galleryindex');
     Route::get('/', 'GalleryApi@index')->name('galleryindex');
-
     Route::get('/participate', 'GalleryApi@participate')->name('participate');
     Route::get('/winners', 'GalleryApi@winners')->name('winners');
 });
 
 //admin
 
-Route::group(['middleware' => 'admin','namespace' => 'Admin', 'prefix' => 'admin'], function() {
+Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('user', 'UserController@index');
     Route::get('user/index', 'UserController@index');
     Route::get('user/insert', 'UserController@insert');

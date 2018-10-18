@@ -3,7 +3,6 @@
         <div class="modal-mask">
             <div class="modal-wrapper">
                 <div class="modal-container">
-
                     <div class="modal-header">
                         <slot name="header"></slot>
                     </div>
@@ -19,7 +18,6 @@
         </div>
     </transition>
 </template>
-
 
 <style scoped>
     .modal-mask {
@@ -76,5 +74,4 @@
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
     }
-
 </style>

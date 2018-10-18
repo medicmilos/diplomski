@@ -22,17 +22,13 @@
                             <span class="vote-button"
                                   v-on:click="processLike(item.item_data.item_id)"><img
                                     :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
-
                         </span>
                             <span class="item-like" v-else>
                             <span class="vote-button" style="opacity:0.5"><img
                                     :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
-
                         </span>
                         </div>
                         <div class="share">
-
-
                             <span :id="item.item_data.item_id">
                                 Glasovi: {{item.likeCount}}
                             </span>
@@ -54,8 +50,9 @@
             </div>
         </mugen-scroll>
         <modal v-if="this.modalOpen" id="testmodal" @close="showModal">
-            <div slot="header">
+            <div class="modal-head" slot="header">
                 <button class="modal-default-button" @click="showModal">X</button>
+                <div style="clear: both;"></div>
                 <div>{{modalData.type}}</div>
             </div>
             <div slot='body'>
@@ -92,15 +89,14 @@
                 this.modalOpen = !this.modalOpen;
             },
             processLike(item) {
-                console.log("LIKE - " + item);
                 this.$parent.likeItem(item, this.likeSuccess, this.likeError);
                 this.likedItemId = item;
             },
             likeError: function (e) {
                 if (e) {
                     let array = {
-                        'type': 'error',
-                        'msg': "forbidden"
+                        'type': 'Greška!',
+                        'msg': "Morate biti prijavljeni kako biste glasali."
                     };
                     this.showModal(array);
                     this.$parent.forbidden = false;
@@ -112,13 +108,13 @@
                 } else {
                     this.$parent.updateFrontEndLike(id);
                     let array = {
-                        'type': 'error',
-                        'msg': "error general"
+                        'type': 'Greška!',
+                        'msg': "Operacija nije dozvoljena."
                     };
                     this.showModal(array);
                 }
             },
-            fbShare(id) {//toDo fix mby this?
+            fbShare(id) {
                 let url = baseUrl + "/gallery/share/" + id;
                 let fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, "pop", "width=600, height=400, scrollbars=no");
                 this.$parent.shareItem(id);

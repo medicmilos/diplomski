@@ -37,11 +37,14 @@ class GalleryApi extends Controller
         if (!in_array($route->getActionMethod(), [
             'apiIndex',
             'index',
+            'apiShow',
             'show',
             'landing',
             'register',
             'registerForm',
-            'winners'
+            'apiWinners',
+            'winners',
+            'apiLike'
         ])) {
             $this->middleware('registered')->except(['getReport']);
         }
@@ -86,10 +89,9 @@ class GalleryApi extends Controller
         $galleryItem = null;
         $status = 0;
         $response = null;
-        //toDo salje 500 gresku kada je ciklus setovan na allow_input = 0;
         try {
             if ($this->disabled) {
-                $response = response()->json(['message' => 'Konkurs je zavrsen.'], $status = 403);//ToDo fix this
+                $response = response()->json(['message' => 'Konkurs je zavrsen.'], $status = 403);
                 throw new \Exception();
             }
 
@@ -109,9 +111,8 @@ class GalleryApi extends Controller
         } catch (\Exception $e) {
             throw $e;
         } finally {
-
             if (!$response) {
-                $response = response()->json(['message' => 'Doslo je do greske.'], 500);//ToDo fix this
+                $response = response()->json(['message' => 'Aktivacija nije aktivna.'], 403);
             }
             return $response;
         }
@@ -119,8 +120,9 @@ class GalleryApi extends Controller
 
     public function apiLike($id)
     {
+        if(!auth()->user())
+            return response()->json(['message' => 'Morate biti prijavljeni kako biste glasali.'], 403);
         $galleryItem = GalleryItem::findOrFail($id);
-        $user = auth()->user();
         if ($galleryItem) {
 
             if ($like = $galleryItem->addLike()) {
@@ -132,7 +134,7 @@ class GalleryApi extends Controller
     }
 
 
-    protected function getSequentialPosition($itemId)//ToDo is this even working? nesessery?
+    protected function getSequentialPosition($itemId)
     {
         return DB::select(
             DB::raw('SELECT x.position
@@ -152,7 +154,7 @@ class GalleryApi extends Controller
     protected function validationRules()
     {
         return [
-            'photo' => 'required|image|mimes:jpeg,png,jpg|max:10000'//toDo does it need more rules?
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:10000',
         ];
     }
 

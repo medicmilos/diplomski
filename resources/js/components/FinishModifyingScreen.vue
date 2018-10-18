@@ -29,7 +29,6 @@
                 $(".finishmodifyingimage-display").show();
                 this.image = URL.createObjectURL(image);
             });
-
         }
     }
 </script>

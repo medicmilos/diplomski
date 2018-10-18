@@ -3,7 +3,7 @@
         <div class="item-wrapper col-lg-4 col-md-4 col-sm-6 col-xs-12" v-for="item in $parent.appItems">
             <div class="item-inner-wrapper">
                 <div class="item-outter-wrapper">
-                    <a v-bind:href="$parent.baseUrl+'/gallery/item/show/'+item.item_id">
+                    <a v-bind:href="$parent.pgItemUrl+item.photo" target="_blank">
                         <img :src="$parent.pgItemUrl+item.photo">
                     </a>
                 </div>
@@ -23,19 +23,9 @@
             this.$parent.endPoint = 'winners';
             this.fetchData();
         },
-        components: {},
-        data() {
-            return {
-                loading: false
-            }
-        },
         methods: {
             fetchData() {
-                this.loading = true;
-                //if (this.$parent.currentOffset !== 1) {
                 this.$parent.insertMoreDataToList();
-                // }
-                this.loading = false;
             },
             modifyDateTime(dateTime) {
                 let dateFormat = require('dateformat');
@@ -46,4 +36,3 @@
         }
     }
 </script>
-

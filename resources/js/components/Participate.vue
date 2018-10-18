@@ -69,7 +69,6 @@
                 this.modalOpen = !this.modalOpen;
             },
             onChanged() {
-                console.log("New picture loaded");
                 if (this.$refs.pictureInput.file) {
                     this.image = this.$refs.pictureInput.file;
                     $(".image-check").removeClass("image-check-show");
@@ -90,7 +89,7 @@
             error: function (e) {
                 let array = {
                     'type': '',
-                    'msg': e.message
+                    'msg': "Došlo je do greške. Pokušajte kasnije."
                 };
                 this.showModal(array);
             }

@@ -1,4 +1,4 @@
-var Vue = require('vue');
+let Vue = require('vue');
 window.Vue = Vue;
 
 let axios = require('axios');
@@ -99,7 +99,6 @@ new Vue({
 
                 this.loadMoreData(
                     function (errorText) {
-                        //console.log(errorText);
                         self.loadingData = 0;
                     });
             }
@@ -195,7 +194,6 @@ new Vue({
             console.log('Gallery - loadNewData');
             let refresh = 1;
             this.prepareNewData(function (errorText) {
-                //console.log(errorText);
             }, null, refresh);
         },
 
@@ -215,7 +213,6 @@ new Vue({
                     } else {
                         self.appItems = self.appItems.concat(response.data);
                     }
-                    console.log(self.appItems);
                 })
                 .catch(e => {
                     console.log(e);
@@ -226,7 +223,6 @@ new Vue({
             let self = this;
             axios.post(url)
                 .then(response => {
-                    console.log('response');
                     // JSON responses are automatically parsed.
                     if (success != null) {
                         let json = response.data;
@@ -235,7 +231,6 @@ new Vue({
                     return response.data;
                 })
                 .catch(e => {
-                    console.log(e);
                     let endStatus = true;
                     error(endStatus, status);
                     self.forbidden = true;

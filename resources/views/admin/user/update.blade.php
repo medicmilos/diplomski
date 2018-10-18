@@ -27,19 +27,19 @@
                     <div class="form-group col-xs-12">
                         <label for="email">Uloge</label><br>
 
-                            @foreach($user->roles as $role)
-                                @php ($userRole = $role->name)
-                            @endforeach
+                        @foreach($user->roles as $role)
+                            @php ($userRole = $role->name)
+                        @endforeach
                         @if(isset($userRole))
-                            <input type="radio" name="role" value="1"
-                                   @if($userRole === "Super Admin") checked @endif> Super Admin
-                            <input type="radio" name="role" value="2"
-                                   @if($userRole === "Administrator") checked @endif> Administrator
+                            <input type="radio" id="sub1" name="role" value="1"
+                                   @if($userRole === "Super Admin") checked @endif> Super Admin<br>
+                            <input type="radio" id="sub2" name="role" value="2"
+                                   @if($userRole === "Administrator") checked @endif> Administrator<br>
                         @else
-                            <input type="radio" name="role" value="1"> Super Admin
-                            <input type="radio" name="role" value="2"> Administrator
+                            <input type="radio" id="sub1" name="role" value="1"> Super Admin
+                            <input type="radio" id="sub2" name="role" value="2"> Administrator
                         @endif
-
+                        <button class="btn btn-default disableRoles" type="button">Bez uloge</button>
                     </div>
                     <div class="form-group col-xs-12">
                         <label for="password">Lozinka</label>
@@ -62,6 +62,14 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(".disableRoles").click(function () {
+            document.getElementById("sub1").checked = false;
+            document.getElementById("sub2").checked = false;
+        });
+    </script>
+@endpush
 
 @section('title_text')
     Izmeni korisnika | ICT galerija

@@ -95,9 +95,6 @@ class GalleryController extends Controller
 
     public function updateToggle(Request $request)
     {
-        //  dd($request->all());
-        //toDo implement atuomatic approve of item after setting it to winner state
-
         $value = (int)$request->post('value');
         $type = $request->post('type');
         if (!is_numeric($value) || ($value != 0 && $value != 1)) abort(403);

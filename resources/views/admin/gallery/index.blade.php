@@ -144,7 +144,6 @@
                 },
                 data: {id: id, value: value, type: type},
                 success: function (data) {
-                    console.log("uspesno");
                 },
                 error: function (e) {
                     console.log(e);

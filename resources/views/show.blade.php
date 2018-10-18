@@ -23,7 +23,21 @@
             </div>
         </div>
     </div>
-
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Greška!</h5>
+                    <button type="button" class="modal-default-button close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -51,14 +65,14 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (output) {
-                    console.log("ajax test");
                     console.log(output);
                     let newVal = parseInt($(".show-like-count").html()) + +1;
                     $(".show-like-count").html(newVal);
                     $(".show-like").css("opacity", "0.5");
                 },
                 error: function (e) {
-                    console.log(e);
+                    $(".modal").modal('show');
+                    $(".modal-body").html("Morate biti prijavljeni kako biste glasali.");
                 },
             });
         });

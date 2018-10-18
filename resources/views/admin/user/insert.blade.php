@@ -28,10 +28,9 @@
 
                         <div class="form-group col-xs-12">
                             <label for="email">Uloge</label><br>
-                            <input type="radio" name="role" value="1"> Super Admin
-                            <input type="radio" name="role" value="2"> Administrator
-
-
+                            <input type="radio" name="role" value="1"> Super Admin<br>
+                            <input type="radio" name="role" value="2"> Administrator<br>
+                            <button class="btn btn-default disableRoles" type="button">Bez uloge</button>
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="password">Lozinka</label>
@@ -54,7 +53,14 @@
         </div>
     </div>
 @endsection
-
+@push('scripts')
+    <script>
+        $(".disableRoles").click(function () {
+            document.getElementById("sub1").checked = false;
+            document.getElementById("sub2").checked = false;
+        });
+    </script>
+@endpush
 @section('title_text')
     Dodaj korisnika | ICT galerija
 @endsection

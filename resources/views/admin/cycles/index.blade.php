@@ -48,7 +48,7 @@
                         <td>{{$item->allow_input}}</td>
                         <td><a class="btn btn-xs btn btn-default" href="cycle/update/{{$item->id}}">uredi</a> <a
                                     class="btn btn-xs btn btn-danger" onclick="return confirm('Da li ste sigurni?')"
-                                    href="delete/{{$item->id}}">obriši</a></td>
+                                    href="cycle/delete/{{$item->id}}">obriši</a></td>
 
                     </tr>
                     @php

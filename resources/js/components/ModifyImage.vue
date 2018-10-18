@@ -9,9 +9,7 @@
             <div class="col-lg-12 col-centered col-sm-12 col-md-12 col-xs-12 remove-sticker">
                 <button @click="removeSticker" class="delete">Obriši selektovani stiker</button>
             </div>
-
             <div class="col-lg-12 col-md-12 col-sm-12 choose-sticker">
-
                 <img class="img-responsive" @click="selectSticker($parent.baseUrl + '/images/stickers/logo.png')"
                      v-bind:src="$parent.baseUrl + '/images/stickers/logo.png'"/>
                 <img class="img-responsive" @click="selectSticker($parent.baseUrl + '/images/stickers/vue.png')"
@@ -28,9 +26,8 @@
             </div>
         </div>
 
-
         <modal v-if="this.modalOpen" @close="showModal">
-            <div slot="header">
+            <div class="modal-head" slot="header">
                 <button class="modal-default-button" @click="showModal">X</button>
                 <div>{{modalData.type}}</div>
             </div>
@@ -73,11 +70,8 @@
                 $(".modifyimage-display").show();
 
                 let uploadedImage = image;
-
-
                 const containerWidth = $(".canvas-wrapper").width();
                 const containerHeight = $(".canvas-wrapper").height();
-
 
                 self.canvas = new fabric.Canvas('canvasMain', {
                     preserveObjectStacking: true
@@ -130,8 +124,6 @@
                         rotatingPointOffset: cornerSize * 2,
                         transparentCorners: false
                     });
-
-
                 });
             });
         },
@@ -166,7 +158,7 @@
             removeSticker() {
                 const self = this;
                 if (self.canvas.getActiveObject().id !== "user_image") {
-                    var activeObject = self.canvas.getActiveObject();
+                    let activeObject = self.canvas.getActiveObject();
                     self.canvas.remove(activeObject);
                 }
             },
@@ -199,7 +191,6 @@
                 let dataURL = self.canvas.toDataURL("image/png");
                 let blob = dataURItoBlob(dataURL);
 
-
                 const config = {
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -213,21 +204,18 @@
 
                 axios.post(this.$parent.apiUrl + 'gallery/store', formData, config)
                     .then(response => {
-                        console.log("uspesan upload!");
                         this.button = 'Upload';
                         this.image = '';
                         this.$parent.$emit('successUpload', blob);
                         this.isDisabled = false;
                         $('.save').css("opacity", "1");
                     })
-                    .catch(err => {
-                        console.log("ne uspesan upload!");
-
+                    .catch(e => {
                         this.isDisabled = false;
                         $('.save').css("opacity", "1");
                         let array = {
-                            'type': 'error',
-                            'msg': err
+                            'type': 'Greška!',
+                            'msg': e.response.data.message
                         };
                         this.showModal(array);
                     })
@@ -235,6 +223,3 @@
         }
     }
 </script>
-
-
-

@@ -18,7 +18,7 @@ class GalleryItemData extends GalleryModel
 
     protected $primaryKey = 'item_id';
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function item()
     {

@@ -56,7 +56,7 @@ class CyclesController extends Controller
         $time = \Carbon\Carbon::instance(new \DateTime($request->lasts_until));
 
         if (Carbon::now($tz)->gte($time)) {
-            Session::flash('message', 'Lasts until value ' . $time . ' must be greater than current time ' . Carbon::now($tz) . '.');
+            Session::flash('message', 'Traje do vrednost ' . $time . ' mora biti veća od trenutnog vremena ' . Carbon::now($tz) . '.');
             return redirect()->back();
         }
 
@@ -69,7 +69,7 @@ class CyclesController extends Controller
 
             if ($currentCycleTime->gte($requestTime)) {
                 if ($currentCycle->begun == 1) {
-                    Session::flash('message', 'Timespan for this cycle intersects with another cycle that was already started.');
+                    Session::flash('message', 'Vremenski raspon za ovaj ciklus se preseca sa još jednim ciklusom koji je već započeo.');
 
                     return redirect()->back();
                 }
@@ -114,12 +114,11 @@ class CyclesController extends Controller
     public function update(Request $request, $id)
     {
         //check if new cycle is slicing current cycle
-        //TODO: this should work
         $currentCycleId = Helper::getCurrentCycleId();
         $currentCycle = Cycle::find($currentCycleId);
         if ($request->lasts_until < $currentCycle->lasts_until) {
             if ($currentCycle->begun == 1) {
-                Session::flash('message', 'Timespan for this cycle intersects with another cycle that was already started.');
+                Session::flash('message', 'Vremenski raspon za ovaj ciklus se preseca sa još jednim ciklusom koji je već započeo.');
 
                 return redirect()->back();
             }
@@ -141,6 +140,6 @@ class CyclesController extends Controller
     {
         $cycle = Cycle::findOrFail($id);
         $cycle->delete();
-        return redirect('admin/cycle/index');
+        return redirect('admin/cycle');
     }
 }

@@ -708,7 +708,7 @@ table > tbody > tr:hover {
 
 .collapse:not(.show) {
 
-   /* display: block;*/
+    /* display: block;*/
 
 }
 
@@ -818,4 +818,23 @@ table > tbody > tr:hover {
 .table th, .table td {
     padding: 0.45rem;
     text-align: center;
+}
+
+.modal-head {
+    width: 100%;
+}
+
+.modal-head button {
+    float: right;
+    padding: 0;
+    margin: 0;
+    width: 30px;
+}
+
+.modal-head div {
+    float: left;
+}
+
+.modal-open .modal {
+    background-color: rgba(0, 0, 0, 0.5);
 }
