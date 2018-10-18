@@ -37,15 +37,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    /*
+        public function showLoginForm()
+        {
+            session(['link' => url()->previous()]);
+            return view('auth.login');
+        }
 
-    public function showLoginForm()
-    {
-        session(['link' => url()->previous()]);
-        return view('auth.login');
-    }
-
-    protected function authenticated(Request $request, $user)
-    {
-        return redirect(session('link'));
-    }
+        protected function authenticated(Request $request, $user)
+        {
+            return redirect(session('link'));
+        }
+        */
 }

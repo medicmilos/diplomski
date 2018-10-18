@@ -1919,7 +1919,6 @@ new Vue({
                 if (success != null) {
                     var json = response.data;
                     success(json, status);
-                    //console.log(json);
                 }
                 return response.data;
             }).catch(function (e) {
@@ -15150,25 +15149,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             modalOpen: false,
             loading: false,
             initDataFetch: true,
-            likedItemId: 0,
-            fromTop: 300
+            likedItemId: 0
         };
     },
 
     methods: {
-        calculateTop: function calculateTop(button) {
-            this.fromTop = button.pageY;
-        },
         showModal: function showModal(msg) {
-            var _this = this;
-
             this.modalData = msg;
             this.modalOpen = !this.modalOpen;
-
-            this.$nextTick(function () {
-                $(".modal-wrapper").css("top", _this.fromTop + 'px');
-                console.log(_this.fromTop);
-            });
         },
         processLike: function processLike(item) {
             console.log("LIKE - " + item);
@@ -15178,7 +15166,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         likeError: function likeError(e) {
             if (e) {
-                var _baseUrl = this.$parent.baseUrl;
                 var array = {
                     'type': 'error',
                     'msg': "forbidden"
@@ -15192,7 +15179,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.$parent.updateFrontEndLike(this.likedItemId);
             } else {
                 this.$parent.updateFrontEndLike(id);
-                var _baseUrl2 = this.$parent.baseUrl;
                 var array = {
                     'type': 'error',
                     'msg': "error general"
@@ -15201,21 +15187,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         fbShare: function fbShare(id) {
+            //toDo fix mby this?
             var url = baseUrl + "/gallery/share/" + id;
             var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, "pop", "width=600, height=400, scrollbars=no");
             this.$parent.shareItem(id);
         },
         fetchData: function fetchData() {
-            this.loading = true;
             this.$parent.insertMoreDataToList();
-            this.loading = false;
             this.initDataFetch = false;
         },
         modifyDateTime: function modifyDateTime(dateTime) {
             var dateFormat = __webpack_require__(11);
             var input = new Date(dateTime);
-            var output = dateFormat(input, "dd.mm.yyyy.");
-            return output;
+            return dateFormat(input, "dd.mm.yyyy.");
         }
     }
 });
@@ -15455,12 +15439,9 @@ var render = function() {
                             {
                               staticClass: "vote-button",
                               on: {
-                                click: [
-                                  _vm.calculateTop,
-                                  function($event) {
-                                    _vm.processLike(item.item_data.item_id)
-                                  }
-                                ]
+                                click: function($event) {
+                                  _vm.processLike(item.item_data.item_id)
+                                }
                               }
                             },
                             [

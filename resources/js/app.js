@@ -231,7 +231,6 @@ new Vue({
                     if (success != null) {
                         let json = response.data;
                         success(json, status);
-                        //console.log(json);
                     }
                     return response.data;
                 })

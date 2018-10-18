@@ -19,7 +19,7 @@
                     <div class="bottom-block">
                         <div class="vote">
                     <span class="item-like" v-if="item.canLike">
-                            <span class="vote-button" @click="calculateTop"
+                            <span class="vote-button"
                                   v-on:click="processLike(item.item_data.item_id)"><img
                                     :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
 
@@ -83,22 +83,13 @@
                 modalOpen: false,
                 loading: false,
                 initDataFetch: true,
-                likedItemId: 0,
-                fromTop: 300
+                likedItemId: 0
             }
         },
         methods: {
-            calculateTop(button) {
-                this.fromTop = button.pageY;
-            },
             showModal(msg) {
                 this.modalData = msg;
                 this.modalOpen = !this.modalOpen;
-
-                this.$nextTick(() => {
-                    $(".modal-wrapper").css("top", this.fromTop + 'px');
-                    console.log(this.fromTop);
-                });
             },
             processLike(item) {
                 console.log("LIKE - " + item);
@@ -107,7 +98,6 @@
             },
             likeError: function (e) {
                 if (e) {
-                    let baseUrl = this.$parent.baseUrl;
                     let array = {
                         'type': 'error',
                         'msg': "forbidden"
@@ -121,7 +111,6 @@
                     this.$parent.updateFrontEndLike(this.likedItemId);
                 } else {
                     this.$parent.updateFrontEndLike(id);
-                    let baseUrl = this.$parent.baseUrl;
                     let array = {
                         'type': 'error',
                         'msg': "error general"
@@ -129,22 +118,19 @@
                     this.showModal(array);
                 }
             },
-            fbShare(id) {
+            fbShare(id) {//toDo fix mby this?
                 let url = baseUrl + "/gallery/share/" + id;
                 let fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, "pop", "width=600, height=400, scrollbars=no");
                 this.$parent.shareItem(id);
             },
             fetchData() {
-                this.loading = true;
                 this.$parent.insertMoreDataToList();
-                this.loading = false;
                 this.initDataFetch = false;
             },
             modifyDateTime(dateTime) {
                 let dateFormat = require('dateformat');
                 let input = new Date(dateTime);
-                let output = dateFormat(input, "dd.mm.yyyy.");
-                return output;
+                return dateFormat(input, "dd.mm.yyyy.");
             }
         }
     }
