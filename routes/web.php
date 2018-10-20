@@ -73,3 +73,11 @@ Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admi
     Route::post('gallery/updateToggle', 'GalleryController@updateToggle');
     Route::get('gallery/delete/{id}', 'GalleryController@destroy');
 });
+
+
+
+//fix this route
+
+Route::group(['middleware' => 'web', 'prefix' => '/gallery/share', 'namespace' => 'App\Http\Controllers'], function(){
+    Route::get('/{modelId}', 'GalleryShareController@index');
+});

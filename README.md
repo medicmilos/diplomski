@@ -12,6 +12,7 @@
 5.1 Run composer require intervention/image
 5.2 Run composer require jenssegers/date
 5.3 Run composer require prologue/alerts
+5.4 Run composer require jenssegers/agent
 6. Run npm install
 
 ## Setup Laravel
