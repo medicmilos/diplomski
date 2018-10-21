@@ -15,8 +15,15 @@
                     <p class="">{{$galleryItem['item_data']['name']}}</p>
                     <p class="">Glasovi: <span
                             class="show-like-count">{{$galleryItem['likeCount']}}</span></p>
-                    <p class="show-like"><img
-                            src="{{asset("images/btn_glasaj.png")}}"></p>
+                    @if($galleryItem['canLike'])
+                        <p class="show-like show-like-img"><img
+                                src="{{asset("images/btn_glasaj.png")}}"></p>
+                    @else
+                        <p class="show-like-img"><img style="opacity: 0.5"
+                                                      src="{{asset("images/btn_glasaj.png")}}"></p>
+                    @endif
+                    <p class="show-like-after show-like-img"><img style="opacity: 0.5"
+                                                                  src="{{asset("images/btn_glasaj.png")}}"></p>
                     <p onclick="fbShare({{$galleryItem['id']}})"><img class="item-share"
                                                                       src="{{asset("images/btn_share.png")}}"></p>
                 </div>
@@ -24,7 +31,8 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -49,10 +57,11 @@
             if (!canLike)
                 $(".show-like").css("opacity", "0.5");
 
+            $(".show-like-after").hide();
+
         });
 
         $(".show-like").on("click", function () {
-
             let id = "<?php print_r($galleryItem['id']); ?>";
 
             let baseUrl = "<?php  echo url('/'); ?>";
@@ -65,10 +74,11 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (output) {
-                    console.log(output);
                     let newVal = parseInt($(".show-like-count").html()) + +1;
                     $(".show-like-count").html(newVal);
                     $(".show-like").css("opacity", "0.5");
+                    $(".show-like").hide();
+                    $(".show-like-after").show();
                 },
                 error: function (e) {
                     $(".modal").modal('show');

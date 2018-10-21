@@ -334,7 +334,7 @@ button {
     line-height: 1;
 }
 
-.show-page .show-like img {
+.show-page .show-like-img img {
     max-width: 10rem;
     cursor: pointer;
 }

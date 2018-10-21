@@ -1756,7 +1756,7 @@ new Vue({
         updateFrontEndLike: function updateFrontEndLike(id) {
             for (var i = 0; i < this.appItems.length; i++) {
                 if (this.appItems[i].item_data.item_id === id) {
-                    this.appItems[i].likeCount += 1;
+                    this.appItems[i].likeCount += +1;
                     this.appItems[i].canLike = false;
                     break;
                 }
@@ -17019,7 +17019,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "button-upload",
+              staticClass: "button-upload save",
               attrs: { disabled: _vm.isDisabled },
               on: { click: _vm.uploadModitiedImage }
             },

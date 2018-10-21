@@ -20,7 +20,7 @@
                      v-bind:src="$parent.baseUrl + '/images/stickers/bill.png'"/>
             </div>
             <div class="col-sm-12 modify-buttons-wrapper">
-                <button :disabled="isDisabled" class="button-upload" @click="uploadModitiedImage">
+                <button :disabled="isDisabled" class="button-upload save" @click="uploadModitiedImage">
                     Pošalji
                 </button>
             </div>
