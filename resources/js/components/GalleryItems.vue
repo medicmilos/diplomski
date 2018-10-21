@@ -114,7 +114,7 @@
                 }
             },
             fbShare(id) {
-                let url = baseUrl + "/gallery/share/" + id;
+                let url = baseUrl + "/gallery/item/show/" + id;
                 let fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, "pop", "width=600, height=400, scrollbars=no");
                 this.$parent.shareItem(id);
             },

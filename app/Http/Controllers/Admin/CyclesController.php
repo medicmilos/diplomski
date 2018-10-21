@@ -50,6 +50,13 @@ class CyclesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:30',
+            'lasts_until' => 'required',
+            'begun' => 'required|max:1',
+            'allow_input' => 'required|max:1'
+        ]);
+
         //check if last_until is after now()
         $tz = new \DateTime($request->lasts_until);
         $tz = $tz->getTimezone();
@@ -127,7 +134,7 @@ class CyclesController extends Controller
         $cycle = Cycle::findOrFail($id);
         $cycle->update($request->all());
 
-        return redirect('admin/cycle');
+        return redirect('admin/cycle/index');
     }
 
     /**
@@ -140,6 +147,6 @@ class CyclesController extends Controller
     {
         $cycle = Cycle::findOrFail($id);
         $cycle->delete();
-        return redirect('admin/cycle');
+        return redirect('admin/cycle/index');
     }
 }

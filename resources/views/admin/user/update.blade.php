@@ -18,11 +18,11 @@
 
                     <div class="form-group col-xs-12">
                         <label for="name">Ime i prezime</label>
-                        <input type="text" name="name" class="form-control" value="{{$user->name}}" id="name">
+                        <input type="text" name="name" class="form-control" value="{{$user->name}}" id="name"  maxlength="45" minlength="2" pattern="^[A-z0-9\s]*$" required>
                     </div>
                     <div class="form-group col-xs-12">
                         <label for="email">Email</label>
-                        <input type="text" name="email" class="form-control" value="{{$user->email}}" id="email">
+                        <input type="email" name="email" class="form-control" value="{{$user->email}}" id="email" maxlength="65" minlength="2" required>
                     </div>
                     <div class="form-group col-xs-12">
                         <label for="email">Uloge</label><br>
@@ -44,7 +44,7 @@
                     <div class="form-group col-xs-12">
                         <label for="password">Lozinka</label>
                         <input type="password" name="password" class="form-control" value="{{$user->password}}"
-                               id="password">
+                               id="password" maxlength="45" minlength="4" required>
                     </div>
 
                     <div id="saveActions" class="form-group">

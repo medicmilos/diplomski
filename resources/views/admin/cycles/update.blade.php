@@ -33,13 +33,13 @@
 
                         <div class="form-group col-xs-12">
                             <label for="name">Naziv</label>
-                            <input type="text" name="name"  class="form-control" value="{{$cycle->name}}" id="name">
+                            <input type="text" name="name"  class="form-control" value="{{$cycle->name}}" id="name" maxlength="30" minlength="2" pattern="^[A-z0-9\s\-\/]*$" required>
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="email">Traje do</label>
 
                             <div id="datetimepicker1" class="col-lg-4 input-append date">
-                                <input name="lasts_until"  class="form-control" value="{{$cycle->lasts_until}}" type="text">
+                                <input name="lasts_until"  class="form-control" value="{{$cycle->lasts_until}}" type="text" required>
                                 <span class="add-on">
                       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                       </i>
@@ -48,11 +48,11 @@
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="password">Počeo</label>
-                            <input type="text" name="begun"  class="form-control" value="{{$cycle->begun}}" id="password">
+                            <input type="text" name="begun"  class="form-control" value="{{$cycle->begun}}" id="password"  maxlength="1" minlength="1" pattern="^[0|1]$" required>
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="password">Dozvoli unos</label>
-                            <input type="text" name="allow_input"  class="form-control" value="{{$cycle->allow_input}}" id="password">
+                            <input type="text" name="allow_input"  class="form-control" value="{{$cycle->allow_input}}" id="password"  maxlength="1" minlength="1" pattern="^[0|1]$" required>
                         </div>
 
 

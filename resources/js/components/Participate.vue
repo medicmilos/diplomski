@@ -88,8 +88,8 @@
             },
             error: function (e) {
                 let array = {
-                    'type': '',
-                    'msg': "Došlo je do greške. Pokušajte kasnije."
+                    'type': 'Greška!',
+                    'msg': "Pogrešan format fajla (podržani formati slike: jpg, jpeg, png)."
                 };
                 this.showModal(array);
             }

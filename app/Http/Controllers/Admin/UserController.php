@@ -45,6 +45,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:45',
+            'email' => 'required|email|max:65',
+            'password' => 'required|max:35',
+        ]);
+
         $password = bcrypt($request['password']);
         $request['password'] = $password;
 

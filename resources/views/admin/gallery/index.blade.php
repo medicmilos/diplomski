@@ -60,12 +60,6 @@
                                    data-onstyle="success"
                                    data-offstyle="default"
                             >
-
-                            {{--<div class="toggle-group">--}}
-                            {{--<label class="btn btn-success toggle-on">Approved</label>--}}
-                            {{--<label class="btn btn-default active toggle-off">Not approved</label>--}}
-                            {{--<span class="toggle-handle btn btn-default"></span>--}}
-                            {{--</div>--}}
                         </td>
 
 

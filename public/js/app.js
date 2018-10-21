@@ -15106,7 +15106,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         fbShare: function fbShare(id) {
-            var url = baseUrl + "/gallery/share/" + id;
+            var url = baseUrl + "/gallery/item/show/" + id;
             var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, "pop", "width=600, height=400, scrollbars=no");
             this.$parent.shareItem(id);
         },
@@ -15651,8 +15651,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         error: function error(e) {
             var array = {
-                'type': '',
-                'msg': "Došlo je do greške. Pokušajte kasnije."
+                'type': 'Greška!',
+                'msg': "Pogrešan format fajla (podržani formati slike: jpg, jpeg, png)."
             };
             this.showModal(array);
         }
