@@ -22,7 +22,7 @@ Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function () {
     Route::get('item/show/{id}', 'GalleryApi@apiShow');
     Route::get('landing', 'GalleryApi@landing');
 
-    Route::get('register', 'GalleryApi@register')->name('register');
+    Route::get('register', 'GalleryApi@register')->name('registeruser');
     Route::post('register', 'GalleryApi@registerForm');
 });
 

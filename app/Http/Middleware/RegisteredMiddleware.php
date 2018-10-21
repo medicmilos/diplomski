@@ -28,7 +28,7 @@ class RegisteredMiddleware
             if ($userData && $userData->completed == 1) {
                 return $next($request);
             } else {
-                return redirect(route('register'));
+                return redirect(route('registeruser'));
             }
         }
         return redirect(route('login'));
