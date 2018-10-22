@@ -14,36 +14,24 @@
 Auth::routes();
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Route::get('/home', 'GalleryApi@landing')->name('home');
-Route::get('/', 'GalleryApi@landing');
-Route::post('/', 'GalleryApi@landing');
+
+Route::get('/home', 'HomeController@landing')->name('home');
+Route::get('/', 'HomeController@landing');
+Route::post('/', 'HomeController@landing');
 
 Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function () {
-    Route::get('item/show/{id}', 'GalleryApi@apiShow');
-    Route::get('landing', 'GalleryApi@landing');
-
-    Route::get('register', 'GalleryApi@register')->name('registeruser');
-    Route::post('register', 'GalleryApi@registerForm');
+    Route::get('index', 'HomeController@index')->name('galleryindex');
+    Route::get('/', 'HomeController@index')->name('galleryindex');
+    Route::get('/participate', 'HomeController@participate')->name('participate');
+    Route::get('/winners', 'HomeController@winners')->name('winners');
+    Route::post('participate', 'HomeController@registerForm');
 });
-
-//api
 
 Route::group(['middleware' => 'web', 'prefix' => '/api/v1/gallery'], function () {
-    Route::post('like/{id}', 'GalleryApi@apiLike');
     Route::post('store', 'GalleryApi@apiStore');
-    Route::get('index', 'GalleryApi@apiIndex')->name('gallery.index');
-    Route::get('show/{id}', 'GalleryApi@apiShow');
-    Route::get('winners', 'GalleryApi@apiWinners');
+    Route::post('like/{id}', 'GalleryApi@apiLike');
 });
 
-//web gallery
-
-Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function () {
-    Route::get('index', 'GalleryApi@index')->name('galleryindex');
-    Route::get('/', 'GalleryApi@index')->name('galleryindex');
-    Route::get('/participate', 'GalleryApi@participate')->name('participate');
-    Route::get('/winners', 'GalleryApi@winners')->name('winners');
-});
 
 //admin
 
@@ -75,9 +63,8 @@ Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admi
 });
 
 
+//share route
 
-//fix this route
-
-Route::group(['middleware' => 'web', 'prefix' => '/gallery/share', 'namespace' => 'App\Http\Controllers'], function(){
+Route::group(['middleware' => 'web', 'prefix' => '/gallery/share', 'namespace' => 'App\Http\Controllers'], function () {
     Route::get('/{modelId}', 'GalleryShareController@index');
 });

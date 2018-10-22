@@ -202,6 +202,9 @@
                 let formData = new FormData();
                 formData.append('photo', blob);
 
+                console.log(blob);
+                console.log(formData);
+
                 axios.post(this.$parent.apiUrl + 'gallery/store', formData, config)
                     .then(response => {
                         this.button = 'Upload';

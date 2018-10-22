@@ -15315,7 +15315,7 @@ var render = function() {
                   {
                     attrs: {
                       href:
-                        _vm.$parent.baseUrl + "/gallery/item/show/" + item.id
+                        _vm.$parent.baseUrl + "/api/v1/gallery/show/" + item.id
                     }
                   },
                   [
@@ -16909,6 +16909,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var formData = new FormData();
             formData.append('photo', blob);
+
+            console.log(blob);
+            console.log(formData);
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post(this.$parent.apiUrl + 'gallery/store', formData, config).then(function (response) {
                 _this.button = 'Upload';

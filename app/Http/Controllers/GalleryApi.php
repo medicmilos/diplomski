@@ -32,24 +32,6 @@ class GalleryApi extends Controller
 
     protected $disabled = false;
 
-    public function __construct(Route $route)
-    {
-        if (!in_array($route->getActionMethod(), [
-            'apiIndex',
-            'index',
-            'apiShow',
-            'show',
-            'landing',
-            'register',
-            'registerForm',
-            'apiWinners',
-            'winners',
-            'apiLike'
-        ])) {
-            $this->middleware('registered')->except(['getReport']);
-        }
-    }
-
     public function apiIndex(Request $request)
     {
         if (isset($request->itemLimit)) {
@@ -102,14 +84,20 @@ class GalleryApi extends Controller
 
             $galleryItem = GalleryItem::create();
 
-            $itemData = $this->createItemData($request, $galleryItem->id);
+            $user = Auth::user();
 
-            $galleryItemData = new GalleryItemData();
-            $galleryItemData->fill($itemData)->save();
+            $itemData = [
+                'item_id' => $galleryItem->id,
+                'photo' => $request->photo,
+                'name' => explode(' ', $user->name)[0] . " " . explode(' ', $user->name, 2)[1]
+            ];
+
+            GalleryItemData::insert($itemData);
 
             $response = response()->json($galleryItem, $status = 200);
         } catch (\Exception $e) {
-            throw $e;
+            //throw $e;
+            return response($e->getMessage(), 200);
         } finally {
             if (!$response) {
                 $response = response()->json(['message' => 'Aktivacija nije aktivna.'], 403);
@@ -120,7 +108,7 @@ class GalleryApi extends Controller
 
     public function apiLike($id)
     {
-        if(!auth()->user())
+        if (!auth()->user())
             return response()->json(['message' => 'Morate biti prijavljeni kako biste glasali.'], 403);
         $galleryItem = GalleryItem::findOrFail($id);
         if ($galleryItem) {
@@ -156,72 +144,5 @@ class GalleryApi extends Controller
         return [
             'photo' => 'required|image|mimes:jpeg,png,jpg|max:10000',
         ];
-    }
-
-    protected function createItemData($request, $item_id)
-    {
-        $user = auth()->user();
-        return [
-            'item_id' => $item_id,
-            'photo' => $request->photo,
-            'name' => explode(' ', $user->name)[0] . " " . explode(' ', $user->name, 2)[1]
-        ];
-    }
-
-    public function register()
-    {
-        $user = auth()->user();
-        if (!$user) return redirect('login');
-
-        if ($user->userData) {
-            return redirect('gallery');
-        }
-
-        return view('registration');
-    }
-
-    public function registerForm(Request $request)
-    {
-        $this->validate($request, [
-            'livingPlace' => 'required|string|max:191',
-            'firstName' => 'required|string|max:191',
-            'lastName' => 'required|string|max:191',
-        ]);
-
-        $name = $request->firstName . " " . $request->lastName;
-
-        $user = auth()->user();
-        if (!$user) abort(400);
-
-        $user->name = $name;
-        $user->save();
-
-        $userData = new UserData();
-        $userData->user_id = $user->id;
-        $userData->completed = 1;
-        $userData->livingPlace = $request->post('livingPlace');
-        $userData->save();
-
-        return redirect('home');
-    }
-
-    public function index()
-    {
-        return view('index');
-    }
-
-    public function winners()
-    {
-        return view('winners');
-    }
-
-    public function landing()
-    {
-        return view('landingpage');
-    }
-
-    public function participate()
-    {
-        return view('participate');
     }
 }
