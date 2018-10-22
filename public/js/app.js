@@ -15652,7 +15652,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         error: function error(e) {
             var array = {
                 'type': 'Greška!',
-                'msg': "Pogrešan format fajla (podržani formati slike: jpg, jpeg, png)."
+                'msg': "Pogrešan format fajla ili je fajl prevelik (podržani formati slike: jpg, jpeg, png i maksimalna veličina: 10mb)."
             };
             this.showModal(array);
         }

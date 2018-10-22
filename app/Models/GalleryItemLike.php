@@ -8,9 +8,9 @@
 
 namespace App\Models;
 
-use App\Models\GalleryModel;
+use Illuminate\Database\Eloquent\Model;
 
-class GalleryItemLike extends GalleryModel
+class GalleryItemLike extends Model
 {
     protected $table = 'gallery_likes';
     protected $primaryKey = "post_id";

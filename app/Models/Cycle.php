@@ -9,10 +9,9 @@
 namespace App\Models;
 
 use Jenssegers\Date\Date;
-use App\Models\GalleryModel;
-use App\Http\Traits\TimezonedTimestampsTrait;
+use Illuminate\Database\Eloquent\Model;
 
-class Cycle extends GalleryModel
+class Cycle extends Model
 {
     protected $table = 'cycles';
     protected $guarded = ['id'];

@@ -18,9 +18,6 @@ class GalleryShareController extends Controller
 {
     public function index($modelId = null)
     {
-      
-            return redirect("http://diplomski.milosmedic.com/public/gallery/item/show/$modelId");
-
+        return redirect("http://diplomski.milosmedic.com/public/gallery/item/show/$modelId");
     }
-
 }

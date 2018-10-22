@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Jenssegers\Date\Date;
 use App\Http\Helpers as Helper;
+use Illuminate\Database\Eloquent\Model;
 
-class UserInputModel extends GalleryModel
+class UserInputModel extends Model
 {
 
     public static function boot()

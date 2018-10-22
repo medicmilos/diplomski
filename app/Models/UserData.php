@@ -8,8 +8,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 
-class UserData extends GalleryModel
+class UserData extends Model
+
 {
     protected $table = 'user_data';
 

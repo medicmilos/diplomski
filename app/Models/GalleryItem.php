@@ -11,9 +11,6 @@ namespace App\Models;
 use Illuminate\Support\Traits\Macroable;
 use PHPUnit\Framework\MockObject\Stub;
 use App\Models\UserInputModel;
-use App\Models\GalleryModel;
-use App\Http\Traits\TimezonedTimestampsTrait;
-use App\Http\Traits\Approvable;
 use App\Http\Traits\Likeable;
 
 
@@ -29,7 +26,7 @@ class GalleryItem extends UserInputModel
 
     protected $table = 'gallery_items';
 
-    use Approvable;
+
     use Likeable;
 
     protected $fillable = [

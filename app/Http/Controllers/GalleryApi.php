@@ -77,7 +77,9 @@ class GalleryApi extends Controller
                 throw new \Exception();
             }
 
-            $this->validate($request, $this->validationRules());
+            $this->validate($request, [
+                'photo' => 'required|image|mimes:jpeg,png,jpg|max:10000'
+            ]);
 
             $request->request->add(['photo_max_width' => 1440, 'photo_max_height' => 1440]);
             $request = $this->saveFiles($request);
@@ -96,8 +98,7 @@ class GalleryApi extends Controller
 
             $response = response()->json($galleryItem, $status = 200);
         } catch (\Exception $e) {
-            //throw $e;
-            return response($e->getMessage(), 200);
+            throw $e;
         } finally {
             if (!$response) {
                 $response = response()->json(['message' => 'Aktivacija nije aktivna.'], 403);
@@ -137,12 +138,5 @@ class GalleryApi extends Controller
                           WHERE x.id = :item_id'),
             ['item_id' => $itemId]
         )[0]->position;
-    }
-
-    protected function validationRules()
-    {
-        return [
-            'photo' => 'required|image|mimes:jpeg,png,jpg|max:10000',
-        ];
     }
 }

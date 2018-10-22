@@ -8,9 +8,9 @@
 
 namespace App\Models;
 
-use App\Models\GalleryModel;
+use Illuminate\Database\Eloquent\Model;
 
-class GalleryItemData extends GalleryModel
+class GalleryItemData extends Model
 {
     protected $table = 'gallery_item_data';
 
