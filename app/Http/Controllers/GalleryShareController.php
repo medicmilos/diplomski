@@ -9,10 +9,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\View;
-use Jenssegers\Agent\Facades\Agent;
-use Intervention\Image\Facades\Image;
-use App\Models\GalleryItem;
 
 class GalleryShareController extends Controller
 {
