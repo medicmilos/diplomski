@@ -14,4 +14,9 @@ class GalleryItemLike extends Model
 {
     protected $table = 'gallery_likes';
     protected $primaryKey = "post_id";
+
+    public function item()
+    {
+        return $this->belongsTo('App\Models\GalleryItem');
+    }
 }

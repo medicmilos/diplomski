@@ -1756,7 +1756,7 @@ new Vue({
         updateFrontEndLike: function updateFrontEndLike(id) {
             for (var i = 0; i < this.appItems.length; i++) {
                 if (this.appItems[i].item_data.item_id === id) {
-                    this.appItems[i].likeCount += +1;
+                    this.appItems[i].likeCount = parseInt(this.appItems[i].likeCount) + +1;
                     this.appItems[i].canLike = false;
                     break;
                 }
@@ -15602,6 +15602,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -16583,14 +16586,15 @@ var render = function() {
               size: 10,
               alertOnError: false,
               customStrings: {
-                upload: "",
+                upload: "<p>Vaš uređaj ne podržava dodavanje slika.</p>",
                 drag: "Prevucite sliku ili kliknite ovde da biste je izabrali",
                 change: "Izmeni sliku",
                 remove: "Izbriši sliku",
-                select: "",
-                fileSize: "",
-                fileType: "",
-                aspect: ""
+                select: "Izaberite sliku",
+                tap: "Pritisnite ovde da izaberete sliku <br>iz vaše galerije",
+                selected: "<p>Slika je uspešno izabrana!</p>",
+                fileSize: "Veličina fajla prelazi dozvoljeni limit.",
+                fileType: "Tip fajla nije održan."
               }
             },
             on: {

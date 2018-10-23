@@ -14,7 +14,7 @@
     <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     @stack('css')
 
-    <link href="{{ asset('css/main.css?v=1') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css?v=2') }}" rel="stylesheet">
     <script>
         let baseUrl = '<?php echo url('/'); ?>';
     </script>

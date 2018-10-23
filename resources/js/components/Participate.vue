@@ -15,17 +15,20 @@
                 :size=10
                 :alertOnError="false"
                 :customStrings="{
-                            'upload' : '',
+                            'upload' : '<p>Vaš uređaj ne podržava dodavanje slika.</p>',
                             'drag' : 'Prevucite sliku ili kliknite ovde da biste je izabrali',
                             'change' : 'Izmeni sliku',
                             'remove' : 'Izbriši sliku',
-                            'select' : '',
-                            'fileSize' : '',
-                            'fileType' : '',
-                            'aspect' : ''
+                            'select' : 'Izaberite sliku',
+                            'tap': 'Pritisnite ovde da izaberete sliku <br>iz vaše galerije',
+                            'selected': '<p>Slika je uspešno izabrana!</p>',
+                            'fileSize': 'Veličina fajla prelazi dozvoljeni limit.',
+                            'fileType': 'Tip fajla nije održan.'
                         }"
             >
             </picture-input>
+
+
             <button class="button-submit" @click="submitForm()">Pošalji</button>
         </div>
         <modal v-if="this.modalOpen" @close="showModal">

@@ -57,7 +57,7 @@ new Vue({
         updateFrontEndLike: function (id) {
             for (let i = 0; i < this.appItems.length; i++) {
                 if (this.appItems[i].item_data.item_id === id) {
-                    this.appItems[i].likeCount += +1;
+                    this.appItems[i].likeCount = parseInt(this.appItems[i].likeCount) + +1;
                     this.appItems[i].canLike = false;
                     break;
                 }

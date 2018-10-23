@@ -44,10 +44,17 @@
                                 {{$role->name}}
                             @endforeach
                         </td>
-                        <td>{{$user->password}}</td>
-                        <td><a class="btn btn-xs btn btn-default" href="update/{{$user->id}}">uredi</a> <a
-                                    class="btn btn-xs btn btn-danger" onclick="return confirm('Da li ste sigurni?')"
-                                    href="delete/{{$user->id}}">obriši</a></td>
+                        <td class="password-admin">{{$user->password}}</td>
+                        <td>
+
+                            <a class="btn btn-xs btn btn-default" href="update/{{$user->id}}">uredi</a>
+                            @if(Auth::user()->id != $user->id)
+                                <a
+                                    class="btn btn-xs btn btn-danger"
+                                    onclick="return confirm('Da li ste sigurni? Brisanjem korisnika, obrisaćete i sve njegove fotografije!')"
+                                    href="delete/{{$user->id}}">obriši</a>
+                            @endif
+                        </td>
                     </tr>
                     @php
                         $counter++

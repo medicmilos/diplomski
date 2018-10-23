@@ -32,6 +32,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\UserData');
     }
+    public function userGalleryItems()
+    {
+        return $this->hasMany('App\Models\GalleryItem');
+    }
 
     public function roles()
     {

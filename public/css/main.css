@@ -228,6 +228,7 @@ button {
     display: inline-block;
     max-width: 6rem;
     margin: 2rem;
+    cursor: pointer;
 }
 
 .modify-image {
@@ -838,3 +839,117 @@ table > tbody > tr:hover {
 .modal-open .modal {
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+@media screen and (max-width: 768px) {
+    .landing p {
+        font-size: 1.25rem;
+        margin-top: 2rem;
+        margin-bottom: 0rem;
+    }
+
+    .home-imgs img {
+        max-width: 80%;
+    }
+
+    .home-imgs-main img {
+        max-width: 70%;
+    }
+
+    .header .navbar-nav {
+        margin-top: 2rem;
+    }
+
+    .header .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .modify-image-finish,
+    .modify-image,
+    .row.participate,
+    .container.show-page > .row,
+    .container.winners > div,
+    .container.winners .gallery.row,
+    .gallery.row {
+        float: none;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .modify-image-finish {
+        padding-top: 2rem;
+    }
+
+    .mugen-scroll div {
+        padding: 1rem;
+    }
+
+    .input-wrapper {
+        min-width: 19rem;
+        min-height: 2.4rem;
+        padding-top: 0rem;
+    }
+
+    .show-page {
+        padding-top: 2rem;
+    }
+
+    .show-page .inner-content {
+        position: relative;
+        top: unset;
+        left: unset;
+        margin-right: unset;
+        transform: unset;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .row.participate {
+        padding-bottom: 4rem;
+    }
+
+    .participate .picture-inner .picture-inner-text {
+        font-size: 1.4rem !important;
+    }
+
+    .modify-image .choose-sticker img {
+        margin: 0.5rem;
+    }
+
+    .choose-sticker {
+        padding: 2rem 0rem;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .input-wrapper {
+        min-width: 16rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .input-wrapper {
+        min-width: 13rem;
+    }
+}
+
+@media screen and (max-width: 1866px) {
+    .container,
+    .container.header {
+        max-width: 1000px;
+    }
+
+
+}
+
+@media screen and (max-width: 1439px) {
+    .container,
+    .container.header {
+        max-width: 790px;
+    }
+
+    .table td.password-admin {
+        word-break: break-all;
+    }
+}
+
+

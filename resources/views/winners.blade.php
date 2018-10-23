@@ -5,7 +5,7 @@
         <div class="col-lg-12 row">
             <div class="col-lg-12 middle-block">
                 <p class="title">
-                    Čestitamo nedeljnim dobitnicima!
+                    Čestitamo dobitnicima nagrada!
                 </p>
                 <p class="description">
                     Molimo autore fotografija da nas kontaktiraju na mail <span class="red-font"><a

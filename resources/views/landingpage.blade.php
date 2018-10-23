@@ -10,12 +10,12 @@
     </div>
 
         <div class="col-lg-12 row">
-            <div class="col-lg-5 col-center">
+            <div class="col-lg-5 col-center home-imgs">
                 <img src="{{asset("images/1.png")}}"><br>
                 <img src="{{asset("images/2.png")}}"><br>
                 <img src="{{asset("images/3.png")}}">
             </div>
-            <div class="col-lg-7">
+            <div class="col-lg-7 home-imgs-main">
                 <img class="col-center" src="{{asset("images/example.png")}}">
             </div>
         </div>

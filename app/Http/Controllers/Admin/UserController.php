@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
+use App\Models\UserData;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -131,6 +132,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+
+        $user->userGalleryItems()->delete();
+        $user->userData()->delete();
         $user->delete();
         return redirect('admin/user/index');
     }
