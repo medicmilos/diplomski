@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UserData;
+use App\Models\GalleryItem;
 
 class HomeController extends Controller
 {
@@ -83,5 +84,11 @@ class HomeController extends Controller
         $userData->save();
 
         return redirect('home');
+    }
+
+    public function show($id)
+    {
+        $galleryItem = GalleryItem::query()->findOrFail($id);
+        return view('show')->with(['galleryItem' => $galleryItem->toArray()]);
     }
 }

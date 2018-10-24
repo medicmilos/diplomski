@@ -15106,7 +15106,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         fbShare: function fbShare(id) {
-            var url = baseUrl + "/gallery/item/show/" + id;
+            var url = baseUrl + "/gallery/share/" + id;
             var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, "pop", "width=600, height=400, scrollbars=no");
             this.$parent.shareItem(id);
         },
@@ -15315,7 +15315,7 @@ var render = function() {
                   {
                     attrs: {
                       href:
-                        _vm.$parent.baseUrl + "/api/v1/gallery/show/" + item.id
+                        _vm.$parent.baseUrl + "/gallery/item/show/" + item.id
                     }
                   },
                   [

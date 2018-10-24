@@ -3,7 +3,7 @@
         <div class="item-wrapper col-lg-4 col-md-4 col-sm-6 col-xs-12" v-for="item in $parent.appItems">
             <div class="item-inner-wrapper">
                 <div class="item-outter-wrapper">
-                    <a v-bind:href="$parent.baseUrl+'/api/v1/gallery/show/'+item.id">
+                    <a v-bind:href="$parent.baseUrl+'/gallery/item/show/'+item.id">
                         <img :src="$parent.pItemUrl+item.item_data.photo">
                     </a>
                 </div>
@@ -114,7 +114,7 @@
                 }
             },
             fbShare(id) {
-                let url = baseUrl + "/gallery/item/show/" + id;
+                let url = baseUrl + "/gallery/share/" + id;
                 let fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, "pop", "width=600, height=400, scrollbars=no");
                 this.$parent.shareItem(id);
             },

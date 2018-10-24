@@ -25,6 +25,8 @@ Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function () {
     Route::get('/participate', 'HomeController@participate')->name('participate');
     Route::get('/winners', 'HomeController@winners')->name('winners');
     Route::post('participate', 'HomeController@registerForm');
+    Route::get('item/show/{id}', 'HomeController@show');
+
 });
 
 Route::group(['middleware' => 'web', 'prefix' => '/api/v1/gallery'], function () {
@@ -65,6 +67,6 @@ Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admi
 
 //share route
 
-Route::group(['middleware' => 'web', 'prefix' => '/gallery/share', 'namespace' => 'App\Http\Controllers'], function () {
+Route::group(['middleware' => 'web', 'prefix' => '/gallery/share'], function () {
     Route::get('/{modelId}', 'GalleryShareController@index');
 });

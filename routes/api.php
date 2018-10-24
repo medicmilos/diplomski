@@ -18,7 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => '/v1/gallery/'], function () {
-
     Route::get('index', 'GalleryApi@apiIndex')->name('gallery.index');
     Route::get('show/{id}', 'GalleryApi@apiShow');
     Route::get('winners', 'GalleryApi@apiWinners');
