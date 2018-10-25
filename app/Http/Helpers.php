@@ -11,16 +11,19 @@ namespace App\Http;
 
 class Helpers
 {
-    static function getCurrentCycleId(){
-        if($cycleId = SessionHandler::get('cycleId')){
-            return $cycleId;
-        }
+    static function getCurrentCycleId()
+    {
+//        if ($cycleId = SessionHandler::get('cycleId')) {
+//            return $cycleId;
+//        }
+
         $query = \Illuminate\Support\Facades\DB::select(\Illuminate\Support\Facades\DB::raw('SELECT id as cycleId FROM cycles WHERE CURRENT_TIMESTAMP < lasts_until ORDER BY lasts_until asc LIMIT 1'));
-        if(isset($query[0])) {
+        if (isset($query[0])) {
             $cycleId = $query[0]->cycleId;
             SessionHandler::set('cycleId', $cycleId);
             return $cycleId;
         }
+
         return -1;
     }
 }

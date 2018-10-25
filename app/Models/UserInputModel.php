@@ -21,6 +21,7 @@ class UserInputModel extends Model
     {
         parent::boot();
         self::creating(function ($model) {
+
             $model->user_id = Auth::user()->id;
             $model->cycle_id = Helper::getCurrentCycleId();
             if ($model->cycle_id == -1) {

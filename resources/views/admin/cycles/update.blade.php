@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @push('css')
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
     <style>
         .admin .navbar-collapse {
@@ -80,7 +80,7 @@
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker1').datetimepicker({
-                format: 'dd-MM-yyyy hh:mm:ss',
+                format: 'yyyy-MM-dd hh:mm:ss',
                 todayHighlight: 'TRUE'
             });
         });

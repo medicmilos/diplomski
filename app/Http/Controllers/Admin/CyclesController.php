@@ -123,11 +123,14 @@ class CyclesController extends Controller
         //check if new cycle is slicing current cycle
         $currentCycleId = Helper::getCurrentCycleId();
         $currentCycle = Cycle::find($currentCycleId);
-        if ($request->lasts_until < $currentCycle->lasts_until) {
-            if ($currentCycle->begun == 1) {
-                Session::flash('message', 'Vremenski raspon za ovaj ciklus se preseca sa još jednim ciklusom koji je već započeo.');
 
-                return redirect()->back();
+        if (isset($currentCycle)) {
+            if ($request->lasts_until > $currentCycle->lasts_until) {
+                if ($currentCycle->begun == 1) {
+                    Session::flash('message', 'Vremenski raspon za ovaj ciklus se preseca sa još jednim ciklusom koji je već započeo.');
+
+                    return redirect()->back();
+                }
             }
         }
 
