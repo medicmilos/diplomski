@@ -15,7 +15,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <h3>{{$users}}</h3>
-                                    <span>Users</span>
+                                    <span>Korisnici</span>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <h3>{{$usersInfo}}</h3>
-                                    <span>Users with info</span>
+                                    <span>Korisnici sa podacima</span>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <h3>{{$images}}</h3>
-                                    <span>Images</span>
+                                    <span>Fotografije</span>
                                 </div>
                             </div>
                         </div>

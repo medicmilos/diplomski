@@ -28,7 +28,7 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Ime i prezime</th>
+                    <th>Naziv</th>
                     <th>Traje do</th>
                     <th>Počeo</th>
                     <th>Dozvoljen unos</th>
@@ -59,7 +59,7 @@
                 <tfoot>
                 <tr>
                     <th>Id</th>
-                    <th>Ime i prezime</th>
+                    <th>Naziv</th>
                     <th>Traje do</th>
                     <th>Počeo</th>
                     <th>Dozvoljen unos</th>

@@ -149,7 +149,11 @@ class CyclesController extends Controller
     public function destroy($id)
     {
         $cycle = Cycle::findOrFail($id);
+        $cycle->cycleItems()->delete();
         $cycle->delete();
         return redirect('admin/cycle/index');
+
+
+
     }
 }

@@ -16,11 +16,18 @@ class Cycle extends Model
     protected $table = 'cycles';
     protected $guarded = ['id'];
 
-    public function getLastsUntilAttribute() {
-        return  Date::parse($this->attributes['lasts_until']);
+    public function getLastsUntilAttribute()
+    {
+        return Date::parse($this->attributes['lasts_until']);
     }
 
-    public function setLastsUntilAttribute($value) {
+    public function setLastsUntilAttribute($value)
+    {
         $this->attributes['lasts_until'] = Date::parse($value)->timezone('UTC');
+    }
+
+    public function cycleItems()
+    {
+        return $this->hasMany('App\Models\GalleryItem', 'cycle_id', 'id');
     }
 }
