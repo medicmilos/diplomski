@@ -22,7 +22,7 @@
                     <div class="rotate-wrapper">
                         <div class="gallery-img-wrapper">
                             <img class="gallery-item-image" src="{{$galleryItem['imageUrl']['upload']}}">
-                        </div> 
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 sub-description">
@@ -41,9 +41,6 @@
         </div>
     </div>
 @endsection
-
-
-
 @section('title_text')
     Hvala | ICT galerija
 @endsection

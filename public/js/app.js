@@ -17211,14 +17211,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'app',
+    props: ['nameold', 'lastnameold', 'placeold'],
     components: {
         axios: __WEBPACK_IMPORTED_MODULE_0_axios___default.a
     },
+    created: function created() {
+        console.log(this.nameold);
+    },
+
     data: function data() {
         return {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -17262,13 +17270,55 @@ var render = function() {
               domProps: { value: _vm.csrf }
             }),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "col-md-8 col-center" }, [
+                _c("div", { staticClass: "input-wrapper" }, [
+                  _c("input", {
+                    staticClass: "form-control form-input firstName",
+                    attrs: {
+                      name: "firstName",
+                      type: "text",
+                      placeholder: "Ime"
+                    },
+                    domProps: { value: _vm.nameold }
+                  })
+                ])
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(1),
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "col-md-8 col-center" }, [
+                _c("div", { staticClass: "input-wrapper" }, [
+                  _c("input", {
+                    staticClass: "form-control form-input lastName",
+                    attrs: {
+                      name: "lastName",
+                      type: "text",
+                      placeholder: "Prezime"
+                    },
+                    domProps: { value: _vm.lastnameold }
+                  })
+                ])
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(2),
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "col-md-8 col-center" }, [
+                _c("div", { staticClass: "input-wrapper" }, [
+                  _c("input", {
+                    staticClass: "form-control form-input address",
+                    attrs: {
+                      name: "livingPlace",
+                      type: "text",
+                      placeholder: "Mesto stanovanja"
+                    },
+                    domProps: { value: _vm.placeold }
+                  })
+                ])
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(3)
+            _vm._m(0)
           ]
         )
       ])
@@ -17276,75 +17326,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "col-md-8 col-center" }, [
-        _c("div", { staticClass: "input-wrapper" }, [
-          _c("input", {
-            staticClass: "form-control form-input firstName",
-            attrs: {
-              name: "firstName",
-              type: "text",
-              placeholder: "Ime",
-              maxlength: "30",
-              minlength: "2",
-              pattern: "^[a-zA-Z\\s]*$",
-              required: ""
-            }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "col-md-8 col-center" }, [
-        _c("div", { staticClass: "input-wrapper" }, [
-          _c("input", {
-            staticClass: "form-control form-input lastName",
-            attrs: {
-              name: "lastName",
-              type: "text",
-              placeholder: "Prezime",
-              maxlength: "30",
-              minlength: "2",
-              pattern: "^[a-zA-Z\\s]*$",
-              required: ""
-            }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "col-md-8 col-center" }, [
-        _c("div", { staticClass: "input-wrapper" }, [
-          _c("input", {
-            staticClass: "form-control form-input address",
-            attrs: {
-              name: "livingPlace",
-              type: "text",
-              placeholder: "Mesto stanovanja",
-              maxlength: "60",
-              minlength: "2",
-              pattern: "^[a-zA-Z0-9\\s\\/,-]*$",
-              required: ""
-            }
-          })
-        ])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

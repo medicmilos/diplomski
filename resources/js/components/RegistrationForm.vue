@@ -10,7 +10,8 @@
                         <div class="col-md-8 col-center">
                             <div class="input-wrapper">
                                 <input class="form-control form-input firstName" name="firstName" type="text"
-                                       placeholder="Ime" maxlength="30" minlength="2" pattern="^[a-zA-Z\s]*$" required>
+                                       :value="nameold"
+                                       placeholder="Ime">
                             </div>
                         </div>
                     </div>
@@ -18,7 +19,8 @@
                         <div class="col-md-8 col-center">
                             <div class="input-wrapper">
                                 <input class="form-control form-input lastName" name="lastName" type="text"
-                                       placeholder="Prezime" maxlength="30" minlength="2" pattern="^[a-zA-Z\s]*$" required>
+                                       :value="lastnameold"
+                                       placeholder="Prezime">
                             </div>
                         </div>
                     </div>
@@ -26,7 +28,8 @@
                         <div class="col-md-8 col-center">
                             <div class="input-wrapper">
                                 <input class="form-control form-input address" name="livingPlace" type="text"
-                                       placeholder="Mesto stanovanja" maxlength="60" minlength="2" pattern="^[a-zA-Z0-9\s\/,-]*$" required>
+                                       :value="placeold"
+                                       placeholder="Mesto stanovanja">
                             </div>
                         </div>
                     </div>
@@ -48,16 +51,21 @@
 
     export default {
         name: 'app',
+        props: ['nameold', 'lastnameold', 'placeold'],
         components: {
             axios
+        },
+        created() {
+            console.log(this.nameold);
         },
         data: () => ({
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         }),
-        methods: {
-            formValidateBeforeSubmit: function formValidateBeforeSubmit() {
-                document.querySelector('#userForm').submit();
+        methods:
+            {
+                formValidateBeforeSubmit: function formValidateBeforeSubmit() {
+                    document.querySelector('#userForm').submit();
+                }
             }
-        }
     }
 </script>

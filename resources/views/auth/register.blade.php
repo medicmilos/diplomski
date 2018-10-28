@@ -18,7 +18,7 @@
                                         <input id="email" type="email"
                                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                                name="email" value="{{ old('email') }}" placeholder="Email adresa"
-                                               required>
+                                               >
                                     </div>
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                                     <div class="input-wrapper">
                                         <input id="password" type="password"
                                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                               name="password" placeholder="Lozinka" required>
+                                               name="password" placeholder="Lozinka" >
                                     </div>
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
@@ -47,8 +47,13 @@
                                 <div class="col-md-8 col-center">
                                     <div class="input-wrapper">
                                         <input id="password-confirm" type="password" class="form-control"
-                                               name="password_confirmation" placeholder="Potvrdi lozinku" required>
+                                               name="password_confirmation" placeholder="Potvrdi lozinku" >
                                     </div>
+                                    @if ($errors->has('password_confirmation'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -60,6 +65,13 @@
                                 </div>
                             </div>
                         </form>
+                        @if($errors->all())
+                            <ul class="alert alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>

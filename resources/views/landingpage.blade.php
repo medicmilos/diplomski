@@ -6,9 +6,7 @@
             <p>Podeli svoj omiljeni studentski trenutak koji ćeš obogatiti ICT stikerima. Najkreativnije fotografije
                 mogu osvojiti nagradu svake nedelje.
             </p>
-
         </div>
-
         <div class="col-lg-12 row">
             <div class="col-lg-5 col-center home-imgs">
                 <img src="{{asset("images/1.png")}}"><br>
@@ -20,7 +18,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('title_text')

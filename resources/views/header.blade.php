@@ -12,17 +12,19 @@
                     <ul class="navbar-nav">
 
                         <li class="nav-item">
-                            @foreach(Auth::user()->roles as $role)
-                                @php ($userRole = $role->name)
-                            @endforeach
-                            @if(isset($userRole))
-                                @if($userRole === "Super Admin" || $userRole === "Administrator")
-                                    <a href="{{url("/admin")}}"
-                                       class="nav-link" target="_blank">
-                                        <button class="btn btn-primary panel-button">Admin
-                                            panel
-                                        </button>
-                                    </a>
+                            @if(Auth::user())
+                                @foreach(Auth::user()->roles as $role)
+                                    @php ($userRole = $role->name)
+                                @endforeach
+                                @if(isset($userRole))
+                                    @if($userRole === "Super Admin" || $userRole === "Administrator")
+                                        <a href="{{url("/admin")}}"
+                                           class="nav-link" target="_blank">
+                                            <button class="btn btn-primary panel-button">Admin
+                                                panel
+                                            </button>
+                                        </a>
+                                    @endif
                                 @endif
                             @endif
                         </li>

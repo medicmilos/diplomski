@@ -8,7 +8,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" class="loginForm" action="{{ route('login') }}">
                             @csrf
 
                             <div class="form-group">
@@ -18,7 +18,7 @@
                                         <input id="email" type="email"
                                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                                name="email" value="{{ old('email') }}" placeholder="Email adresa"
-                                               required
+
                                                autofocus>
                                     </div>
                                     @if ($errors->has('email'))
@@ -35,7 +35,7 @@
                                     <div class="input-wrapper">
                                         <input id="password" type="password"
                                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                               name="password" placeholder="Lozinka" required>
+                                               name="password" placeholder="Lozinka" >
                                     </div>
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
@@ -66,11 +66,11 @@
                                 </div>
                             </div>
                             {{--<div class="form-group">--}}
-                                {{--<div class="col-md-8 col-center">--}}
-                                    {{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
-                                        {{--Zaboravljena lozinka?--}}
-                                    {{--</a>--}}
-                                {{--</div>--}}
+                            {{--<div class="col-md-8 col-center">--}}
+                            {{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
+                            {{--Zaboravljena lozinka?--}}
+                            {{--</a>--}}
+                            {{--</div>--}}
                             {{--</div>--}}
                             <div class="form-group">
                                 <div class="col-md-8 col-center">
@@ -80,12 +80,40 @@
                                 </div>
                             </div>
                         </form>
+                        @if($errors->all())
+                            <ul class="alert alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $(".loginForm").click(function () {
+                /*
+                var fname = document.getElementById('fname').value;
+                var lname = document.getElementById('lname').value;
+                var age = document.getElementById('age').value;
+
+                if (fname.length == 0) {
+                    alert("Please input a first name");
+                } else if (lname.length == 0) {
+                    alert("Please input a last name");
+                } else if (age.length == 0) {
+                    alert("Please input an age");
+                }
+                */
+            });
+        });
+    </script>
+@endpush
 @section('title_text')
     Prijava | ICT galerija
 @endsection

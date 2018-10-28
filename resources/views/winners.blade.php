@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('ontent')
     <div class="container winners">
         <div class="col-lg-12 row">
             <div class="col-lg-12 middle-block">
@@ -16,7 +16,6 @@
             <winners></winners>
         </div>
     </div>
-
 @endsection
 @push('scripts')
     <script src="{{ asset('js/app.js') }}"></script>

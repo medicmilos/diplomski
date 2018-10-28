@@ -58,9 +58,9 @@ class HomeController extends Controller
     public function registerForm(Request $request)
     {
         $this->validate($request, [
-            'livingPlace' => 'required|string|max:191',
-            'firstName' => 'required|string|max:191',
-            'lastName' => 'required|string|max:191',
+            'livingPlace' => 'required|string|min:2|max:191',
+            'firstName' => 'required|string|min:2|max:191',
+            'lastName' => 'required|string|min:2|max:191',
         ]);
 
         $name = $request->firstName . " " . $request->lastName;

@@ -1,17 +1,12 @@
 @extends('layouts.app')
 @section('content')
-
     <div class="container show-page">
         <div class="col-lg-12 row">
             <div class="item-wrap col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <img class="" src="{{$galleryItem['imageUrl']['upload']}}">
-
             </div>
-
             <div class="outter-content col-lg-6 col-md-6 col-sm-12">
                 <div class="inner-content">
-
-
                     <p class="">{{$galleryItem['item_data']['name']}}</p>
                     <p class="">Glasovi: <span
                             class="show-like-count">{{$galleryItem['likeCount']}}</span></p>
@@ -46,9 +41,7 @@
             </div>
         </div>
     </div>
-
 @endsection
-
 @push('scripts')
     <script>
         $(document).ready(function () {
@@ -63,7 +56,6 @@
 
         $(".show-like").on("click", function () {
             let id = "<?php print_r($galleryItem['id']); ?>";
-
             let baseUrl = "<?php  echo url('/'); ?>";
 
             $.ajax({
@@ -93,9 +85,7 @@
             return false;
         }
     </script>
-
 @endpush
-
 @section('title_text')
     Rad | ICT galerija
 @endsection

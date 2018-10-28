@@ -1006,6 +1006,12 @@ table > tbody > tr:hover {
     }
 }
 
+@media screen and (min-width: 1440px) {
+    .container {
+        width: 1440px;
+    }
+}
+
 @media screen and (max-width: 1440px) {
     .canvas-wrapper {
         min-height: 25rem;
@@ -1041,3 +1047,4 @@ table > tbody > tr:hover {
 .winners .gallery {
     padding-top: 0;
 }
+

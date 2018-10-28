@@ -40,10 +40,17 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        if(!session()->has('url.intended'))
-        {
+        if (!session()->has('url.intended')) {
             session(['url.intended' => url()->previous()]);
         }
         return view('auth.login');
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|string|email|max:255',
+            'password' => 'required',
+        ]);
     }
 }
