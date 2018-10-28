@@ -1,6 +1,6 @@
 <template>
     <div class="col-lg-12 row participate">
-        <div class="col-lg-6 col-center">
+        <div class="col-lg-6 col-md-8 col-center">
             <picture-input
                 ref="pictureInput"
                 @change="onChanged"
@@ -17,19 +17,19 @@
                 :customStrings="{
                             'upload' : '<p>Vaš uređaj ne podržava dodavanje slika.</p>',
                             'drag' : 'Prevucite sliku ili kliknite ovde da biste je izabrali',
-                            'change' : 'Izmeni sliku',
-                            'remove' : 'Izbriši sliku',
+                            'change' : 'Promeni izbor',
+                            'remove' : 'Poništi izbor',
                             'select' : 'Izaberite sliku',
                             'tap': 'Pritisnite ovde da izaberete sliku <br>iz vaše galerije',
                             'selected': '<p>Slika je uspešno izabrana!</p>',
                             'fileSize': 'Veličina fajla prelazi dozvoljeni limit.',
-                            'fileType': 'Tip fajla nije održan.'
+                            'fileType': 'Tip fajla nije podržan.'
                         }"
             >
             </picture-input>
 
 
-            <button class="button-submit" @click="submitForm()">Pošalji</button>
+            <button class="button-submit" @click="submitForm()">Dalje</button>
         </div>
         <modal v-if="this.modalOpen" @close="showModal">
             <div slot="header">
@@ -83,11 +83,17 @@
                 this.image = '';
             },
             submitForm() {
-                let canvas1 = $(".picture-preview");
-
-                this.$parent.$emit('loadImageToCanvas', canvas1[0].toDataURL("image/png"));
-
-                $(".participate-display").hide();
+                if (this.image !== "") {
+                    let canvas1 = $(".picture-preview");
+                    this.$parent.$emit('loadImageToCanvas', canvas1[0].toDataURL("image/png"));
+                    $(".participate-display").hide();
+                } else {
+                    let array = {
+                        'type': 'Upozorenje',
+                        'msg': 'Morate dodati sliku da biste nastavili dalje.'
+                    };
+                    this.showModal(array);
+                }
             },
             error: function (e) {
                 let array = {

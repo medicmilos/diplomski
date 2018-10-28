@@ -103,11 +103,11 @@ img {
 .header .navbar .nav-item a,
 .header .navbar-brand {
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }
 
 .header .navbar-brand {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .header .navbar-nav {
@@ -120,8 +120,7 @@ img {
     font-size: 2rem;
     color: #539a00;
     line-height: 1.2;
-    transform: rotate(-3deg);
-    margin-top: 5rem;
+    transform: rotate(-2deg);
 }
 
 .gallery .item-wrapper .item-inner-wrapper {
@@ -135,6 +134,7 @@ img {
 .gallery .item-wrapper .item-outter-wrapper {
     background-color: #fff;
     padding: 0.2rem;
+    border-radius: 0.3rem;
 }
 
 .gallery .item-wrapper {
@@ -234,7 +234,7 @@ button {
 .modify-image {
     text-align: center;
     padding-top: 2rem;
-    padding-bottom: 10rem;
+    padding-bottom: 1rem;
 }
 
 .modify-image .canvas-container canvas {
@@ -316,7 +316,7 @@ button {
 }
 
 .modify-image-finish {
-    padding-top: 5rem;
+    padding-top: 2.5rem;
 }
 
 .show-page {
@@ -429,7 +429,7 @@ button {
 }
 
 .mugen-scroll div {
-    padding: 5rem;
+    padding: 2.5rem;
 }
 
 .winners .middle-block p {
@@ -938,7 +938,6 @@ table > tbody > tr:hover {
         max-width: 1000px;
     }
 
-
 }
 
 @media screen and (max-width: 1439px) {
@@ -952,4 +951,93 @@ table > tbody > tr:hover {
     }
 }
 
+.header .navbar {
+    padding: 0;
+}
 
+.navbar-brand img {
+    max-width: 4.25rem;
+}
+
+.landing {
+    padding-top: 2.5rem;
+}
+
+.panel-button {
+    background-color: #283c90;
+    border-color: #283c90;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    padding: 0 0.4rem;
+    line-height: 1.5;
+    font-size: 1.1rem;
+    vertical-align: bottom;
+}
+
+.panel-button:hover {
+    background-color: #283c90;
+}
+
+.item-outter-wrapper img {
+    border-radius: 0.3rem;
+}
+
+.delete {
+    width: 6rem;
+    padding: 0.5rem 0.5rem;
+    line-height: 1;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.modify-wrap {
+    position: relative;
+}
+
+.remove-sticker {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+@media screen and (min-width: 1820px) {
+    .remove-sticker {
+        right: 4rem;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .canvas-wrapper {
+        min-height: 25rem;
+    }
+
+    .home-imgs-main {
+        max-width: 16rem;
+    }
+
+    .landing p {
+        font-size: 1.5rem;
+    }
+
+    .participate button {
+        padding: 0.5rem 1.25rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .modify-image .choose-sticker img {
+        margin: 1rem 2rem;
+    }
+
+    .participate button {
+        margin-bottom: 0 !important;
+    }
+}
+
+.gallery {
+    padding-top: 2rem;
+}
+
+.winners .gallery {
+    padding-top: 0;
+}

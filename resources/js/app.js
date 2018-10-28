@@ -72,13 +72,15 @@ new Vue({
             console.log('Gallery - insertMoreDataToList');
 
             let self = this;
-            if (this.loadingData === 0) {
-                this.loadingData = 1;
+            if (this.moreItems === 1 && this.loadingData === 0) {
+                if (this.loadingData === 0) {
+                    this.loadingData = 1;
 
-                this.loadMoreData(
-                    function (errorText) {
-                        self.loadingData = 0;
-                    });
+                    this.loadMoreData(
+                        function (errorText) {
+                            self.loadingData = 0;
+                        });
+                }
             }
         },
 

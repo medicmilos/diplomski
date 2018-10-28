@@ -10,6 +10,22 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            @foreach(Auth::user()->roles as $role)
+                                @php ($userRole = $role->name)
+                            @endforeach
+                            @if(isset($userRole))
+                                @if($userRole === "Super Admin" || $userRole === "Administrator")
+                                    <a href="{{url("/admin")}}"
+                                       class="nav-link" target="_blank">
+                                        <button class="btn btn-primary panel-button">Admin
+                                            panel
+                                        </button>
+                                    </a>
+                                @endif
+                            @endif
+                        </li>
                         <li class="nav-item {{ ((\Request::route()->getName() == 'participate')) ? 'active' : '' }}">
                             <a class="nav-link" href="<?php  echo url('/'); ?>/gallery/participate">Prijavi rad</a>
                         </li>

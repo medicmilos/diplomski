@@ -4,7 +4,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
                 <button id="showLeftPush" class="btn btn-primary">&#9776;</button>
-                <a target="_blank" class="btn btn-primary" href="{{ url('/') }}">Aktivacija</a>
+                <a target="_blank" class="btn btn-primary panel-button" href="{{ url('/') }}">Aktivacija</a>
 
                 <div class="navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">

@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="container landing">
-        <div class="title col-lg-8 col-center">
+        <div class="title col-xs-12 col-lg-10  row col-center">
             <p>Podeli svoj omiljeni studentski trenutak koji ćeš obogatiti ICT stikerima. Najkreativnije fotografije
                 mogu osvojiti nagradu svake nedelje.
             </p>
 
-    </div>
+        </div>
 
         <div class="col-lg-12 row">
             <div class="col-lg-5 col-center home-imgs">

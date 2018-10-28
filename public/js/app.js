@@ -1771,12 +1771,14 @@ new Vue({
             console.log('Gallery - insertMoreDataToList');
 
             var self = this;
-            if (this.loadingData === 0) {
-                this.loadingData = 1;
+            if (this.moreItems === 1 && this.loadingData === 0) {
+                if (this.loadingData === 0) {
+                    this.loadingData = 1;
 
-                this.loadMoreData(function (errorText) {
-                    self.loadingData = 0;
-                });
+                    this.loadMoreData(function (errorText) {
+                        self.loadingData = 0;
+                    });
+                }
             }
         },
 
@@ -15440,7 +15442,7 @@ var render = function() {
           this.$parent.moreItems === 1 && this.$parent.appItems.length > 6
             ? _c("div", [
                 _c("img", {
-                  staticStyle: { "max-width": "6.5rem" },
+                  staticStyle: { "max-width": "2.5rem" },
                   attrs: { src: _vm.$parent.baseUrl + "/images/loading.gif" }
                 })
               ])
@@ -15645,11 +15647,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.image = '';
         },
         submitForm: function submitForm() {
-            var canvas1 = $(".picture-preview");
-
-            this.$parent.$emit('loadImageToCanvas', canvas1[0].toDataURL("image/png"));
-
-            $(".participate-display").hide();
+            if (this.image !== "") {
+                var canvas1 = $(".picture-preview");
+                this.$parent.$emit('loadImageToCanvas', canvas1[0].toDataURL("image/png"));
+                $(".participate-display").hide();
+            } else {
+                var array = {
+                    'type': 'Upozorenje',
+                    'msg': 'Morate dodati sliku da biste nastavili dalje.'
+                };
+                this.showModal(array);
+            }
         },
 
         error: function error(e) {
@@ -16572,7 +16580,7 @@ var render = function() {
     [
       _c(
         "div",
-        { staticClass: "col-lg-6 col-center" },
+        { staticClass: "col-lg-6 col-md-8 col-center" },
         [
           _c("picture-input", {
             ref: "pictureInput",
@@ -16588,13 +16596,13 @@ var render = function() {
               customStrings: {
                 upload: "<p>Vaš uređaj ne podržava dodavanje slika.</p>",
                 drag: "Prevucite sliku ili kliknite ovde da biste je izabrali",
-                change: "Izmeni sliku",
-                remove: "Izbriši sliku",
+                change: "Promeni izbor",
+                remove: "Poništi izbor",
                 select: "Izaberite sliku",
                 tap: "Pritisnite ovde da izaberete sliku <br>iz vaše galerije",
                 selected: "<p>Slika je uspešno izabrana!</p>",
                 fileSize: "Veličina fajla prelazi dozvoljeni limit.",
-                fileType: "Tip fajla nije održan."
+                fileType: "Tip fajla nije podržan."
               }
             },
             on: {
@@ -16614,7 +16622,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Pošalji")]
+            [_vm._v("Dalje")]
           )
         ],
         1
@@ -16780,6 +16788,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         $(".modifyimage-display").hide();
+        $(".delete").hide();
         var self = this;
         this.$parent.$on('loadImageToCanvas', function (image) {
             $(".modifyimage-display").show();
@@ -16807,9 +16816,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (scaleW > scaleH) scale = scaleH;else scale = scaleW;
 
                 if ($(window).width() > 768) {
-                    $(".canvas-container").css("transform", "scale(" + scale * 0.8 + ")");
-                    $(".canvas-wrapper").css('width', parseInt(img.width * scale * 0.8) + 'px');
-                    $(".canvas-wrapper").css('height', parseInt(img.height * scale * 0.8) + 'px');
+                    $(".canvas-container").css("transform", "scale(" + scale * 0.85 + ")");
+                    $(".canvas-wrapper").css('width', parseInt(img.width * scale * 0.85) + 'px');
+                    $(".canvas-wrapper").css('height', parseInt(img.height * scale * 0.85) + 'px');
                 } else {
                     $(".canvas-container").css("transform", "scale(" + scale + ")");
                     $(".canvas-wrapper").css('width', parseInt(img.width * scale) + 'px');
@@ -16835,6 +16844,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     cornerSize: cornerSize,
                     rotatingPointOffset: cornerSize * 2,
                     transparentCorners: false
+                });
+
+                self.canvas.on('selection:created', function () {
+                    $(".delete").show();
+                });
+
+                self.canvas.on('selection:cleared', function () {
+                    $(".delete").hide();
                 });
             });
         });
@@ -16955,7 +16972,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "col-lg-12 col-centered col-sm-12 col-md-12 col-xs-12 remove-sticker"
+              "col-lg-4 col-centered col-sm-12 col-md-4 col-xs-12 remove-sticker"
           },
           [
             _c(
@@ -17076,7 +17093,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "col-lg-8 col-md-8 col-sm-12 col-center" },
+      { staticClass: "col-lg-8 col-md-8 col-sm-12 col-center modify-wrap" },
       [
         _c("div", { staticClass: "canvas-wrapper aligner" }, [
           _c("canvas", { attrs: { id: "canvasMain" } })

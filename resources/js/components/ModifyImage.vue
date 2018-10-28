@@ -1,12 +1,12 @@
 <template>
     <div class="col-lg-12 row modify-image">
         <div class="col-lg-12 col-center">
-            <div class="col-lg-8 col-md-8 col-sm-12 col-center">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-center modify-wrap">
                 <div class="canvas-wrapper aligner">
                     <canvas id="canvasMain"></canvas>
                 </div>
             </div>
-            <div class="col-lg-12 col-centered col-sm-12 col-md-12 col-xs-12 remove-sticker">
+            <div class="col-lg-4 col-centered col-sm-12 col-md-4 col-xs-12 remove-sticker">
                 <button @click="removeSticker" class="delete">Obriši selektovani stiker</button>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 choose-sticker">
@@ -65,6 +65,7 @@
         },
         mounted() {
             $(".modifyimage-display").hide();
+            $(".delete").hide();
             const self = this;
             this.$parent.$on('loadImageToCanvas', (image) => {
                 $(".modifyimage-display").show();
@@ -95,9 +96,9 @@
                         scale = scaleW;
 
                     if ($(window).width() > 768) {
-                        $(".canvas-container").css("transform", "scale(" + scale * 0.8 + ")");
-                        $(".canvas-wrapper").css('width', parseInt(img.width * scale * 0.8) + 'px');
-                        $(".canvas-wrapper").css('height', parseInt(img.height * scale * 0.8) + 'px');
+                        $(".canvas-container").css("transform", "scale(" + scale * 0.85 + ")");
+                        $(".canvas-wrapper").css('width', parseInt(img.width * scale * 0.85) + 'px');
+                        $(".canvas-wrapper").css('height', parseInt(img.height * scale * 0.85) + 'px');
                     } else {
                         $(".canvas-container").css("transform", "scale(" + scale + ")");
                         $(".canvas-wrapper").css('width', parseInt(img.width * scale) + 'px');
@@ -123,6 +124,14 @@
                         cornerSize: cornerSize,
                         rotatingPointOffset: cornerSize * 2,
                         transparentCorners: false
+                    });
+
+                    self.canvas.on('selection:created', function () {
+                        $(".delete").show();
+                    });
+
+                    self.canvas.on('selection:cleared', function () {
+                        $(".delete").hide();
                     });
                 });
             });

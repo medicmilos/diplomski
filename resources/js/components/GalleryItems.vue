@@ -21,11 +21,11 @@
                     <span class="item-like" v-if="item.canLike">
                             <span class="vote-button"
                                   v-on:click="processLike(item.item_data.item_id)"><img
-                                    :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
+                                :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
                         </span>
                             <span class="item-like" v-else>
                             <span class="vote-button" style="opacity:0.5"><img
-                                    :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
+                                :src="$parent.baseUrl+'/images/btn_glasaj.png'"></span>
                         </span>
                         </div>
                         <div class="share">
@@ -33,7 +33,7 @@
                                 Glasovi: {{item.likeCount}}
                             </span>
                             <span class="item-share" v-on:click="fbShare(item.id)"><img
-                                    :src="$parent.baseUrl+'/images/btn_share.png'"></span>
+                                :src="$parent.baseUrl+'/images/btn_share.png'"></span>
                             <div class="clear"></div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
 
         <mugen-scroll class="col-lg-12" :handler="fetchData" :should-handle="!loading">
             <div v-if="this.$parent.moreItems === 1 && this.$parent.appItems.length > 6">
-                <img style="max-width: 6.5rem" :src="$parent.baseUrl+'/images/loading.gif'">
+                <img style="max-width: 2.5rem" :src="$parent.baseUrl+'/images/loading.gif'">
             </div>
             <div v-else>
                 Kraj podataka za prikaz.

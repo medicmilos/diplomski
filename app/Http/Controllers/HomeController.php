@@ -16,6 +16,9 @@ class HomeController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
+        $this->middleware('auth', ['only' => [
+            'participate'
+        ]]);
     }
 
     /**
@@ -41,24 +44,15 @@ class HomeController extends Controller
 
     public function participate()
     {
-        if ($user = auth()->user()) {
-            $userData = $user->userData;
+        $user = auth()->user();
+        $userData = $user->userData;
 
-            if ($userData && $userData->completed == 1) {
-                return view('participate');
-            } else {
-                if (!$user) {
-                    return redirect('login');
-                }
-
-                if ($user->userData) {
-                    return redirect('gallery');
-                }
-
-                return view('registration');
-            }
+        if ($userData && $userData->completed == 1) {
+            return view('participate');
+        } else {
+            return view('registration');
         }
-        return redirect(route('login'));
+
     }
 
     public function registerForm(Request $request)
@@ -83,7 +77,7 @@ class HomeController extends Controller
         $userData->livingPlace = $request->post('livingPlace');
         $userData->save();
 
-        return redirect('home');
+        return redirect(route('participate'));
     }
 
     public function show($id)
