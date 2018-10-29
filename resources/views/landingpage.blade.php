@@ -9,14 +9,18 @@
         </div>
         <div class="col-lg-12 row landing-bottom">
             <div class="col-lg-5 col-center home-imgs">
-                <a class="home-manual-img" href="<?php  echo url('/'); ?>/gallery/participate"><img src="{{asset("images/1.png")}}"></a><br>
+                <a class="home-manual-img" href="<?php  echo url('/'); ?>/gallery/participate"><img
+                            src="{{asset("images/1.png")}}"></a><br>
                 <img class="downArrow" src="{{asset("images/arrow_down.png")}}"><br>
-                <a class="home-manual-img" href="<?php  echo url('/'); ?>/gallery/participate"><img src="{{asset("images/2.png")}}"></a><br>
+                <a class="home-manual-img" href="<?php  echo url('/'); ?>/gallery/participate"><img
+                            src="{{asset("images/2.png")}}"></a><br>
                 <img class="downArrow" src="{{asset("images/arrow_down.png")}}"><br>
-                <a class="home-manual-img" href="<?php  echo url('/'); ?>/gallery/awards"><img src="{{asset("images/3.png")}}"></a>
+                <a class="home-manual-img" href="<?php  echo url('/'); ?>/gallery/awards"><img
+                            src="{{asset("images/3.png")}}"></a>
             </div>
             <div class="col-lg-7 home-imgs-main">
-                <img class="col-center" src="{{asset("images/example.png")}}">
+                <a href="<?php  echo url('/'); ?>/gallery/index"><img class="col-center"
+                                                                      src="{{asset("images/example.png")}}"></a>
             </div>
         </div>
     </div>
