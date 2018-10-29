@@ -1731,7 +1731,7 @@ new Vue({
         items: [],
         currentOffset: -1,
         startingOffset: -1,
-        limit: 4,
+        limit: 7,
         moreItems: 1,
         loadingData: 0,
         baseUrl: baseUrl,
@@ -16762,6 +16762,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -16983,6 +16988,8 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
         _c(
           "div",
           { staticClass: "col-lg-12 col-md-12 col-sm-12 choose-sticker" },
@@ -17097,6 +17104,22 @@ var staticRenderFns = [
       [
         _c("div", { staticClass: "canvas-wrapper aligner" }, [
           _c("canvas", { attrs: { id: "canvasMain" } })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col-lg-12 col-md-12 col-sm-12 manual-sticker" },
+      [
+        _c("p", [
+          _vm._v(
+            "\n                Ukrasite svoju fotografiju sa našim stikerima\n            "
+          )
         ])
       ]
     )

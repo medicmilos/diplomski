@@ -32,7 +32,7 @@ new Vue({
         items: [],
         currentOffset: -1,
         startingOffset: -1,
-        limit: 4,
+        limit: 7,
         moreItems: 1,
         loadingData: 0,
         baseUrl: baseUrl,

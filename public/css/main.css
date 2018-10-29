@@ -35,7 +35,7 @@ img {
 }
 
 .container.header {
-    max-width: 1470px;
+    max-width: 1190px;
 }
 
 .admin-wrap {
@@ -88,6 +88,7 @@ img {
 .header-wrap {
     background: url("../images/ictheader-bg-big.jpg");
     background-repeat: repeat-x;
+    background-position-y: top;
 }
 
 .header .navbar {
@@ -117,7 +118,7 @@ img {
 
 .landing p {
     font-family: KGSecondChancesSolid;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #539a00;
     line-height: 1.2;
     transform: rotate(-2deg);
@@ -194,8 +195,17 @@ img {
     font-size: 1rem;
 }
 
+.home-manual-img img {
+    max-width: 23rem;
+}
+
+.home-imgs-main img {
+    max-width: 17rem;
+}
+
 .participate .preview-container {
     border: 5px solid #539a00;
+    border-radius: 0.5rem !important;
 }
 
 .participate .picture-inner .picture-inner-text {
@@ -239,6 +249,7 @@ button {
 
 .modify-image .canvas-container canvas {
     border: 5px solid #539a00;
+    border-radius: 0.5rem;
 }
 
 .canvas-wrapper {
@@ -282,10 +293,6 @@ button {
     }
 }
 
-@media only screen and (max-width: 768px) {
-
-}
-
 @media only screen and (max-width: 478px) {
     button {
         font-size: 0.8rem;
@@ -313,6 +320,7 @@ button {
 
 .modify-image-finish .gallery-item-image {
     border: 5px solid #539a00;
+    border-radius: 0.5rem;
 }
 
 .modify-image-finish {
@@ -320,11 +328,12 @@ button {
 }
 
 .show-page {
-    padding-top: 5rem;
+    padding-top: 2.5rem;
 }
 
 .show-page .item-wrap img {
     border: 5px solid #539a00;
+    border-radius: 0.5rem;
 }
 
 .show-page {
@@ -347,6 +356,11 @@ button {
 
 .show-page .outter-content {
     position: relative;
+}
+
+.winners h1 {
+    margin-bottom: 2rem;
+    margin-top: 2.5rem;
 }
 
 .show-page .inner-content {
@@ -374,8 +388,17 @@ button {
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
-    padding-top: 3rem;
+    padding-top: 2.5rem;
     margin: 0 auto;
+}
+
+.login .page-title {
+    font-family: KGSecondChancesSolid;
+    font-size: 1.8rem;
+    color: #539a00;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    font-weight: normal;
 }
 
 .login .card {
@@ -384,39 +407,12 @@ button {
 }
 
 .login .form-control {
-    background: transparent;
-    border: none;
-    min-height: 2rem;
-    outline: none;
-    box-shadow: none;
-    margin-left: 1rem;
-    width: 90%;
-    color: #000;
-    font-weight: bold;
+    border-radius: 0.5rem;
 }
 
 .form-control:focus {
-    border: none;
-    outline: none;
+
     box-shadow: none;
-}
-
-.input-wrapper {
-    background: url("../images/input.png");
-    border: none;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    min-width: 25rem;
-    min-height: 3rem;
-    padding-top: 0.1rem;
-}
-
-.form-control:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px white inset;
-    color: #000;
-    -webkit-text-fill-color: #000;
-    background-image: none;
 }
 
 .login .form-group {
@@ -851,6 +847,15 @@ table > tbody > tr:hover {
         max-width: 80%;
     }
 
+    .home-imgs .downArrow {
+        max-width: 2rem !important;
+
+    }
+
+    .home-imgs-main {
+        padding: 1rem 0;
+    }
+
     .home-imgs-main img {
         max-width: 70%;
     }
@@ -917,6 +922,12 @@ table > tbody > tr:hover {
 
     .choose-sticker {
         padding: 2rem 0rem;
+    }
+
+    .landing p {
+        font-size: 1rem !important;
+        margin-top: 0rem;
+        margin-bottom: -1rem;
     }
 }
 
@@ -1000,21 +1011,34 @@ table > tbody > tr:hover {
     right: 0;
 }
 
+.manual-sticker p {
+    font-family: KGSecondChancesSolid;
+    font-size: 1.4rem;
+    color: #539a00;
+    line-height: 0.045;
+}
+
 @media screen and (min-width: 1820px) {
     .remove-sticker {
         right: 4rem;
     }
 }
 
-@media screen and (min-width: 1440px) {
-    .container {
-        width: 1440px;
-    }
-}
-
 @media screen and (max-width: 1440px) {
     .canvas-wrapper {
         min-height: 25rem;
+    }
+
+    .header .navbar .nav-item a, .header .navbar-brand {
+        font-size: 0.9rem;
+    }
+
+    .winners .middle-block {
+        padding-bottom: 0rem;
+    }
+
+    .landing .title {
+        margin-bottom: 2rem;
     }
 
     .home-imgs-main {
@@ -1026,7 +1050,38 @@ table > tbody > tr:hover {
     }
 
     .participate button {
-        padding: 0.5rem 1.25rem;
+        padding: 0.5rem 0.7rem;
+    }
+
+    .home-manual-img img {
+        max-width: 100%;
+    }
+
+    .home-imgs-main img {
+        max-width: 14rem;
+    }
+
+    .awards .user_manual p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 0rem;
+    }
+
+    .awards .middle-block .awards-imgs h2 {
+        font-size: 1.1rem;
+    }
+
+    .awards .awards-shirt,
+    .awards .awards-cap {
+        max-width: 14rem;
+    }
+
+    .awards .middle-block .awards-imgs {
+        margin-top: 1rem;
+    }
+
+    .awards .user_manual h1 {
+        margin-bottom: 1rem;
     }
 }
 
@@ -1038,6 +1093,36 @@ table > tbody > tr:hover {
     .participate button {
         margin-bottom: 0 !important;
     }
+
+}
+
+@media screen and (max-width: 480px) {
+    .landing-bottom,
+    .home-imgs-main {
+        float: none;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .canvas-wrapper {
+        min-height: 20rem;
+    }
+
+    .choose-sticker {
+        padding: 0rem 0rem;
+    }
+
+    .remove-sticker {
+        position: relative;
+        top: unset;
+        right: unset;
+        margin-top: -2rem;
+        margin-bottom: 1rem;
+    }
+
+    .delete {
+        width: 12rem;
+    }
 }
 
 .gallery {
@@ -1048,3 +1133,78 @@ table > tbody > tr:hover {
     padding-top: 0;
 }
 
+.preview-container .picture-inner {
+    border-radius: 1rem !important;
+}
+
+.downArrow {
+    max-width: 2rem;
+    margin: 0 auto;
+}
+
+.home-imgs {
+    text-align: center;
+}
+
+.awards {
+    padding-top: 2.5rem;
+}
+
+.gallery.row {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.alert-danger {
+    list-style: none;
+}
+
+.awards-shirt,
+.awards-cap {
+    max-width: 20rem;
+}
+
+.user_manual h1 {
+    font-family: KGSecondChancesSolid;
+    font-size: 1.8rem;
+    color: #539a00;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
+.user_manual p {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin-bottom: 0rem;
+}
+
+.user_manual p a {
+    color: #5e961d;
+}
+
+.awards .awards-imgs {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.awards .awards-imgs h1 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.awards .awards-imgs h2 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.awards .awards-imgs .awards-shirt {
+    margin-right: 5rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .manual-sticker p {
+        line-height: 1;
+    }
+}

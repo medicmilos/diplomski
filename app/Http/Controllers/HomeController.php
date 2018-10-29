@@ -37,6 +37,11 @@ class HomeController extends Controller
         return view('winners');
     }
 
+    public function awards()
+    {
+        return view('awards');
+    }
+
     public function landing()
     {
         return view('landingpage');

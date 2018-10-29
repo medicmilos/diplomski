@@ -7,11 +7,13 @@
                 mogu osvojiti nagradu svake nedelje.
             </p>
         </div>
-        <div class="col-lg-12 row">
+        <div class="col-lg-12 row landing-bottom">
             <div class="col-lg-5 col-center home-imgs">
-                <img src="{{asset("images/1.png")}}"><br>
-                <img src="{{asset("images/2.png")}}"><br>
-                <img src="{{asset("images/3.png")}}">
+                <a class="home-manual-img" href="<?php  echo url('/'); ?>/gallery/participate"><img src="{{asset("images/1.png")}}"></a><br>
+                <img class="downArrow" src="{{asset("images/arrow_down.png")}}"><br>
+                <a class="home-manual-img" href="<?php  echo url('/'); ?>/gallery/participate"><img src="{{asset("images/2.png")}}"></a><br>
+                <img class="downArrow" src="{{asset("images/arrow_down.png")}}"><br>
+                <a class="home-manual-img" href="<?php  echo url('/'); ?>/gallery/awards"><img src="{{asset("images/3.png")}}"></a>
             </div>
             <div class="col-lg-7 home-imgs-main">
                 <img class="col-center" src="{{asset("images/example.png")}}">

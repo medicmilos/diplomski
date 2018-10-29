@@ -37,6 +37,9 @@
                         <li class="nav-item {{ ((\Request::route()->getName() == 'winners')) ? 'active' : '' }}">
                             <a class="nav-link" href="<?php  echo url('/'); ?>/gallery/winners">Pobednici</a>
                         </li>
+                        <li class="nav-item {{ ((\Request::route()->getName() == 'awards')) ? 'active' : '' }}">
+                            <a class="nav-link" href="<?php  echo url('/'); ?>/gallery/awards">Kako učestvovati?</a>
+                        </li>
                         <li class="nav-item">
                             @if (Auth::check())
                                 <a class="nav-link" href="{{ url('/logout') }}">Odjavi se</a>

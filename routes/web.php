@@ -24,6 +24,7 @@ Route::group(['middleware' => 'web', 'prefix' => '/gallery'], function () {
     Route::get('/', 'HomeController@index')->name('galleryindex');
     Route::get('/participate', 'HomeController@participate')->name('participate');
     Route::get('/winners', 'HomeController@winners')->name('winners');
+    Route::get('/awards', 'HomeController@awards')->name('awards');
     Route::post('participate', 'HomeController@registerForm');
     Route::get('item/show/{id}', 'HomeController@show');
 

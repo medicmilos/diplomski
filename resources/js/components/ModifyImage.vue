@@ -9,6 +9,11 @@
             <div class="col-lg-4 col-centered col-sm-12 col-md-4 col-xs-12 remove-sticker">
                 <button @click="removeSticker" class="delete">Obriši selektovani stiker</button>
             </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 manual-sticker">
+                <p>
+                    Ukrasite svoju fotografiju sa našim stikerima
+                </p>
+            </div>
             <div class="col-lg-12 col-md-12 col-sm-12 choose-sticker">
                 <img class="img-responsive" @click="selectSticker($parent.baseUrl + '/images/stickers/logo.png')"
                      v-bind:src="$parent.baseUrl + '/images/stickers/logo.png'"/>

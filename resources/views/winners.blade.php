@@ -1,17 +1,19 @@
 @extends('layouts.app')
 
-@section('ontent')
+@section('content')
     <div class="container winners">
         <div class="col-lg-12 row">
-            <div class="col-lg-12 middle-block">
-                <p class="title">
-                    Čestitamo dobitnicima nagrada!
+
+            <div class="container user_manual" id="app" style="text-align: center">
+                <h1>Pobednici</h1>
+                <p>
+                    Molimo autore dole izabranih fotografija da nas kontaktiraju na mail <span class="red-font"><a
+                                href="mailto:contact@milosmedic.com">contact@milosmedic.com</a></span> kako
+                    bismo dogovorili sve detalje oko preuzimanja nagrade koju ste izabrali.
+
                 </p>
-                <p class="description">
-                    Molimo autore fotografija da nas kontaktiraju na mail <span class="red-font"><a
-                                href="mailto:test@test.com">test@test.com</a></span> kako
-                    bismo dogovorili sve detalje oko preuzimanja nagrade.
-                </p>
+
+
             </div>
             <winners></winners>
         </div>
