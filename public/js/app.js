@@ -15607,6 +15607,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -16630,18 +16631,28 @@ var render = function() {
       _vm._v(" "),
       this.modalOpen
         ? _c("modal", { on: { close: _vm.showModal } }, [
-            _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "modal-default-button",
-                  on: { click: _vm.showModal }
-                },
-                [_vm._v("X")]
-              ),
-              _vm._v(" "),
-              _c("div", [_vm._v(_vm._s(_vm.modalData.type))])
-            ]),
+            _c(
+              "div",
+              {
+                staticClass: "modal-head",
+                attrs: { slot: "header" },
+                slot: "header"
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "modal-default-button",
+                    on: { click: _vm.showModal }
+                  },
+                  [_vm._v("X")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticStyle: { clear: "both" } }),
+                _vm._v(" "),
+                _c("div", [_vm._v(_vm._s(_vm.modalData.type))])
+              ]
+            ),
             _vm._v(" "),
             _c("div", { attrs: { slot: "body" }, slot: "body" }, [
               _c("span", { domProps: { innerHTML: _vm._s(_vm.modalData.msg) } })
@@ -17008,11 +17019,11 @@ var render = function() {
             _vm._v(" "),
             _c("img", {
               staticClass: "img-responsive",
-              attrs: { src: _vm.$parent.baseUrl + "/images/stickers/vue.png" },
+              attrs: { src: _vm.$parent.baseUrl + "/images/stickers/love.png" },
               on: {
                 click: function($event) {
                   _vm.selectSticker(
-                    _vm.$parent.baseUrl + "/images/stickers/vue.png"
+                    _vm.$parent.baseUrl + "/images/stickers/love.png"
                   )
                 }
               }
@@ -17020,13 +17031,11 @@ var render = function() {
             _vm._v(" "),
             _c("img", {
               staticClass: "img-responsive",
-              attrs: {
-                src: _vm.$parent.baseUrl + "/images/stickers/laravel.png"
-              },
+              attrs: { src: _vm.$parent.baseUrl + "/images/stickers/lol.png" },
               on: {
                 click: function($event) {
                   _vm.selectSticker(
-                    _vm.$parent.baseUrl + "/images/stickers/laravel.png"
+                    _vm.$parent.baseUrl + "/images/stickers/lol.png"
                   )
                 }
               }
@@ -17034,11 +17043,11 @@ var render = function() {
             _vm._v(" "),
             _c("img", {
               staticClass: "img-responsive",
-              attrs: { src: _vm.$parent.baseUrl + "/images/stickers/bill.png" },
+              attrs: { src: _vm.$parent.baseUrl + "/images/stickers/like.png" },
               on: {
                 click: function($event) {
                   _vm.selectSticker(
-                    _vm.$parent.baseUrl + "/images/stickers/bill.png"
+                    _vm.$parent.baseUrl + "/images/stickers/like.png"
                   )
                 }
               }

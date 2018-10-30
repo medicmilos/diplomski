@@ -32,8 +32,9 @@
             <button class="button-submit" @click="submitForm()">Dalje</button>
         </div>
         <modal v-if="this.modalOpen" @close="showModal">
-            <div slot="header">
+            <div class="modal-head" slot="header">
                 <button class="modal-default-button" @click="showModal">X</button>
+                <div style="clear: both;"></div>
                 <div>{{modalData.type}}</div>
             </div>
             <div slot='body'>

@@ -88,7 +88,8 @@ img {
 .header-wrap {
     background: url("../images/ictheader-bg-big.jpg");
     background-repeat: repeat-x;
-    background-position-y: top;
+    background-position-y: bottom;
+
 }
 
 .header .navbar {
@@ -121,7 +122,6 @@ img {
     font-size: 1.8rem;
     color: #539a00;
     line-height: 1.2;
-    transform: rotate(-2deg);
 }
 
 .gallery .item-wrapper .item-inner-wrapper {
@@ -422,6 +422,7 @@ button {
 
 .login .reg-link {
     color: #539a00;
+    font-size: 1.1rem;
 }
 
 .mugen-scroll div {
@@ -1207,4 +1208,8 @@ table > tbody > tr:hover {
     .manual-sticker p {
         line-height: 1;
     }
+}
+
+.delete {
+    background-color: #d70c0c;
 }

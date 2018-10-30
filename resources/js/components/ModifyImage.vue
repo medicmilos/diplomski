@@ -17,12 +17,12 @@
             <div class="col-lg-12 col-md-12 col-sm-12 choose-sticker">
                 <img class="img-responsive" @click="selectSticker($parent.baseUrl + '/images/stickers/logo.png')"
                      v-bind:src="$parent.baseUrl + '/images/stickers/logo.png'"/>
-                <img class="img-responsive" @click="selectSticker($parent.baseUrl + '/images/stickers/vue.png')"
-                     v-bind:src="$parent.baseUrl + '/images/stickers/vue.png'"/>
-                <img class="img-responsive" @click="selectSticker($parent.baseUrl + '/images/stickers/laravel.png')"
-                     v-bind:src="$parent.baseUrl + '/images/stickers/laravel.png'"/>
-                <img class="img-responsive" @click="selectSticker($parent.baseUrl + '/images/stickers/bill.png')"
-                     v-bind:src="$parent.baseUrl + '/images/stickers/bill.png'"/>
+                <img class="img-responsive" @click="selectSticker($parent.baseUrl + '/images/stickers/love.png')"
+                     v-bind:src="$parent.baseUrl + '/images/stickers/love.png'"/>
+                <img class="img-responsive" @click="selectSticker($parent.baseUrl + '/images/stickers/lol.png')"
+                     v-bind:src="$parent.baseUrl + '/images/stickers/lol.png'"/>
+                <img class="img-responsive" @click="selectSticker($parent.baseUrl + '/images/stickers/like.png')"
+                     v-bind:src="$parent.baseUrl + '/images/stickers/like.png'"/>
             </div>
             <div class="col-sm-12 modify-buttons-wrapper">
                 <button :disabled="isDisabled" class="button-upload save" @click="uploadModitiedImage">
