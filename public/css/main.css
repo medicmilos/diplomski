@@ -88,7 +88,6 @@ img {
 .header-wrap {
     background: url("../images/ictheader-bg-big.jpg");
     background-repeat: repeat-x;
-    background-position-y: bottom;
 
 }
 
@@ -1099,7 +1098,9 @@ table > tbody > tr:hover {
 
 @media screen and (max-width: 480px) {
     .landing-bottom,
-    .home-imgs-main {
+    .home-imgs-main,
+    .awards-imgs,
+    .container.awards div {
         float: none;
         display: block;
         margin: 0 auto;
@@ -1121,9 +1122,18 @@ table > tbody > tr:hover {
         margin-bottom: 1rem;
     }
 
+    .awards .awards-imgs .awards-shirt {
+        margin-right: 0rem;
+    }
+
     .delete {
         width: 12rem;
     }
+
+    .user_manual p {
+        font-size: 1rem !important;
+    }
+
 }
 
 .gallery {

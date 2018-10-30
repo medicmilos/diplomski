@@ -3,8 +3,8 @@
 @section('content')
     <div class="container landing">
         <div class="title col-xs-12 col-lg-10  row col-center">
-            <p>Podeli svoj omiljeni studentski trenutak koji ćeš obogatiti našim stikerima. Najkreativnije fotografije
-                mogu osvojiti nagradu svake nedelje.
+            <p>Podeli svoj omiljeni studentski trenutak koji ćeš obogatiti našim stikerima. Najinteresantnije fotografije
+                mogu osvojiti nagradu početkom svake nedelje.
             </p>
         </div>
         <div class="col-lg-12 row landing-bottom">

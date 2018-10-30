@@ -8,7 +8,7 @@
                     Molimo autore dole izabranih fotografija, koje je izabrao žiri na osnovu najviše lajkovanih radova,
                     da nas kontaktiraju na mail <span class="red-font"><a
                                 href="mailto:contact@milosmedic.com">contact@milosmedic.com</a></span> kako
-                    bismo dogovorili sve detalje oko preuzimanja nagrade koju ste izabrali.
+                    bismo dogovorili sve detalje oko preuzimanja nagrade po vašem izboru.
                 </p>
             </div>
             <winners></winners>

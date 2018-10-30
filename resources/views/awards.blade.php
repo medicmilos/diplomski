@@ -18,7 +18,7 @@
                             - Zatim klikom na <a  href="<?php  echo url('/'); ?>/gallery/participate">Prijavi rad</a> postavite svoju fotografiju i dodajte naše stikere.
                         </p>
                         <p>
-                           - Šaljite nam vaše radove, a mi ćemo nagraditi najzanimljivije.
+                           - Šaljite nam vaše radove, a mi ćemo nagraditi najinteresantnije.
                         </p>
 
                     </div>
