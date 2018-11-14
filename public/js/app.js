@@ -15054,6 +15054,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -15439,16 +15443,9 @@ var render = function() {
           attrs: { handler: _vm.fetchData, "should-handle": !_vm.loading }
         },
         [
-          this.$parent.moreItems === 1 && this.$parent.appItems.length > 6
-            ? _c("div", [
-                _c("img", {
-                  staticStyle: { "max-width": "2.5rem" },
-                  attrs: { src: _vm.$parent.baseUrl + "/images/loading.gif" }
-                })
-              ])
-            : _c("div", [
-                _vm._v("\n            Kraj podataka za prikaz.\n        ")
-              ])
+          _c("div", [
+            _vm._v("\n            Kraj podataka za prikaz.\n        ")
+          ])
         ]
       ),
       _vm._v(" "),

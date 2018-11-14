@@ -1223,3 +1223,17 @@ table > tbody > tr:hover {
 .delete {
     background-color: #d70c0c;
 }
+
+.unser-header {
+    background: url("../images/test.png");
+    background-size: contain;
+    background-repeat: repeat-x;
+}
+
+.landing-bottom .home-imgs-main {
+    text-align: center;
+}
+
+.landing-bottom .home-imgs-main img {
+    display: inline-block;
+}

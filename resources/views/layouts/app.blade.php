@@ -21,7 +21,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title_text')</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/main.css?v=6') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css?v=7') }}" rel="stylesheet">
     <script>
         let baseUrl = '<?php echo url('/'); ?>';
     </script>

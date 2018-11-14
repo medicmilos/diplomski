@@ -42,10 +42,14 @@
         </div>
 
         <mugen-scroll class="col-lg-12" :handler="fetchData" :should-handle="!loading">
-            <div v-if="this.$parent.moreItems === 1 && this.$parent.appItems.length > 6">
-                <img style="max-width: 2.5rem" :src="$parent.baseUrl+'/images/loading.gif'">
-            </div>
-            <div v-else>
+            <!--<div  v-if="this.$parent.moreItems === 1 && this.$parent.appItems.length > 6">-->
+                <!--<img style="max-width: 2.5rem" :src="$parent.baseUrl+'/images/loading.gif'">-->
+            <!--</div>-->
+            <!--<div v-else>-->
+                <!--Kraj podataka za prikaz.-->
+            <!--</div>-->
+
+            <div >
                 Kraj podataka za prikaz.
             </div>
         </mugen-scroll>
