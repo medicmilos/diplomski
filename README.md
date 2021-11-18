@@ -1,1 +1,1 @@
-# Diplomski
+# Pictures gallery
